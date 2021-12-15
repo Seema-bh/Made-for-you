@@ -1,0 +1,70 @@
+<section class="section-spacing">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item medium-up--one-third small--one-whole">
+        {% if section.settings.text != blank %}
+        <h6 class="small--text-center">{{ section.settings.text }}</h6>
+        {% endif %}
+      </div>
+      <div class="grid__item medium-up--one-third small--one-half">
+        <div class="diamond-comparison text-center">
+          <div class="image-wrapper">
+            <img class="lazyload"
+                 src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/diamond_0ab61a89-c4ba-4b8a-a6fe-91c5aaed3af5.png?v=1629354013"
+                 data-src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/diamond_0ab61a89-c4ba-4b8a-a6fe-91c5aaed3af5.png?v=1629354013"
+                 data-sizes="auto"
+                 alt="" />
+            <p>Lab grown diamond</p>
+          </div>
+          <ul>
+            <li><span>Chemical Composition</span> <span class="small--hide">•</span> Carbon</li>
+            <li><span>Hardness</span> <span class="small--hide">•</span> 10 On The Mohs Scale</li>
+            <li><span>Reflective Index</span> <span class="small--hide">•</span> 2.417 - 2.419</li>
+            <li>Created In Laboratory</li>
+            <li>Relatively Affordable</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid__item medium-up--one-third small--one-half">
+        <div class="diamond-comparison text-center">
+          <div class="image-wrapper">
+            <img class="lazyload"
+                 src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/diamond_0ab61a89-c4ba-4b8a-a6fe-91c5aaed3af5.png?v=1629354013"
+                 data-src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/diamond_0ab61a89-c4ba-4b8a-a6fe-91c5aaed3af5.png?v=1629354013"
+                 data-sizes="auto"
+                 alt="" />
+            <p>Natural diamond</p>
+          </div>
+          <ul>
+            <li><span>Chemical Composition</span> <span class="small--hide">•</span> Carbon</li>
+            <li><span>Hardness</span> <span class="small--hide">•</span> 10 On The Mohs Scale</li>
+            <li><span>Reflective Index</span> <span class="small--hide">•</span> 2.417 - 2.419</li>
+            <li>Exists Naturally</li>
+            <li>Expensive</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Three columns",
+	"class": "ow-three-columns-section",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "text",
+        "default": "Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

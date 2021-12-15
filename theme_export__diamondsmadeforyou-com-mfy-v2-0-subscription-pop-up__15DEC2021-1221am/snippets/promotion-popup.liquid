@@ -1,0 +1,68 @@
+<div id="promotion-popup" class="overlay">
+  <div class="popup-wrapper">
+    <div class="popup-header text-center">
+      <span class="close-popup">
+        <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="33" height="32">
+            <rect x="16.4995" y="0.346771" width="22.1372" height="22.1372" transform="rotate(45 16.4995 0.346771)" fill="#C4C4C4"/>
+          </mask>
+          <g mask="url(#mask0)"><path d="M17.1074 16.5065L20.9271 20.3263L20.3195 20.934L16.4997 17.1142L12.68 20.934L12.0723 20.3263L15.892 16.5065L12.0723 12.6868L12.68 12.0791L16.4997 15.8989L20.3195 12.0791L20.9271 12.6868L17.1074 16.5065Z" fill="#fff" stroke="#fff"/>
+          </g>
+        </svg>
+      </span>
+    </div>
+    <div class="popup-content">
+      <div class="col-left">
+        <div class="content content-form-info text-center">
+          <h2>Join Our Community</h2>
+          <div class="offer">
+            <p>Enjoy exclusive first access to new collections and promotions, plus get <b>15%</b> off your first order!</p>
+          </div>
+          <form method="post" action="/contact#contact_form" accept-charset="UTF-8" class="contact-form" novalidate="novalidate">
+            <input type="hidden" name="form_type" value="customer">
+            <input type="hidden" name="utf8" value="✓">
+            <input type="hidden" name="contact[tags]" value="Subscription popup">
+            <input type="email" name="contact[email]" placeholder="Enter your email">
+            <input type="submit" value="Subscribe Now" class="btn">
+          </form>
+          <div class="error-wrapper">
+            <p class="error">Please fill in your email address.</p>
+          </div>
+          <div class="ajax-loader">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-spinner" viewBox="0 0 20 20" style="width: 40px;height: 40px;" fill="#fff">
+              <path d="M7.229 1.173a9.25 9.25 0 1 0 11.655 11.412 1.25 1.25 0 1 0-2.4-.698 6.75 6.75 0 1 1-8.506-8.329 1.25 1.25 0 1 0-.75-2.385z" fill="#fff" style="fill: #fff;"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="content-thank-you text-center hide">
+          <h2>Thank You</h2>
+          <p>For signing up. We’ve got so much to share with you.</p>
+        </div>
+      </div>
+      <div class="col-right">
+        <a {% if settings.popupUrl != blank %}href="{{ settings.popupUrl }}"{% endif %}>
+          <div class="image_wrapper small--hide" style="padding-top:{{ 1 | divided_by: settings.popupImg.aspect_ratio | times: 100 }}%;">
+            {%- assign img_url = settings.popupImg | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img class="lazyload custom__image"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 600]"
+                 data-aspectratio="{{ settings.popupImg.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ preview_image.alt }}"
+                 data-image>
+          </div>
+          <div class="image_wrapper medium-up--hide" style="padding-top:{{ 1 | divided_by: settings.popupImgMobile.aspect_ratio | times: 100 }}%;">
+            {%- assign img_url = settings.popupImgMobile | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img class="lazyload custom__image"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 600]"
+                 data-aspectratio="{{ settings.popupImgMobile.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ preview_image.alt }}"
+                 data-image>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

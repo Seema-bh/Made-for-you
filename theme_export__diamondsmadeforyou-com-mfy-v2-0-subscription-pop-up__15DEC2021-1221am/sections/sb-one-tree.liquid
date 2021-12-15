@@ -1,0 +1,81 @@
+<div class="section-spacing">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item grid__item-images">
+        <div class="two-images">
+          {% assign banner_1 = section.settings.banner_1 | img_url: 'master' %}
+          <div class="image-wrapper image-1">
+            <img class="lazyload" 
+                 src="{{ banner_1 }}"
+                 data-src="{{ banner_1 }}" 
+                 data-sizes="auto" 
+                 alt="" />
+          </div>
+          {% assign banner_2 = section.settings.banner_2 | img_url: 'master' %}
+          <div class="image-wrapper image-2">
+            <img class="lazyload" 
+                 src="{{ banner_2 }}"
+                 data-src="{{ banner_2 }}" 
+                 data-sizes="auto" 
+                 alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="grid__item grid__item-content">
+        <div class="content text-center">
+          <div class="icons-wrapper">
+            <img class="lazyload"
+                 src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/one-tree.png?v=1629368684"
+                 data-src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/one-tree.png?v=1629368684"
+                 data-sizes="auto"
+                 alt="" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="svg-x" viewBox="0 0 27 27"><defs><style>.icon-x-a{fill:#fff;opacity:0;}.icon-x-b{fill:none;stroke:#39342f;}</style></defs><g transform="translate(-76 -1775)"><rect class="icon-x-a" width="27" height="27" transform="translate(76 1775)"/><g transform="translate(80 1779.121)"><line class="icon-x-b" x2="19.695" y2="19.695" transform="translate(0 -0.121)"/><line class="icon-x-b" x1="19.695" y2="19.695" transform="translate(0 -0.121)"/></g></g></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="306" height="32" class="svg-mfy" viewBox="0 0 385 40"><defs><style>.mfy-a{fill:#fff;opacity:0;}.mfy-b{fill:#39342f;}</style></defs><g transform="translate(-80 -1829)"><rect class="mfy-a" width="385" height="40" transform="translate(80 1829)"/><path class="mfy-b" d="M-158.539-30.36V0h-2.208V-22.632l.276-5.52h-.046L-171.6,0h-2.116l-11.086-28.152h-.046l.276,5.52V0h-2.208V-30.36h3.45l9.154,23,1.518,4.646h.046l1.472-4.6,9.154-23.046ZM-148.281,0l12.144-30.36h2.714L-121.279,0h-2.438l-9.936-24.886-1.1-3.22h-.046l-1.1,3.128L-145.843,0Zm5.382-9.522v-2.116h16.146v2.116Zm41.446-20.838q7.268,0,11.2,3.841t3.933,11.109q0,7.5-3.933,11.454T-101.453,0h-9.568V-30.36Zm.184,28.244q6.072,0,9.315-3.45t3.243-9.844q0-6.164-3.243-9.5t-9.315-3.335h-7.452V-2.116ZM-74.083,0V-30.36h20.746v2.116H-71.783v11.73H-57.2v2.162H-71.783V-2.116H-52.6V0Zm72.45-28.244h-18.4v11.73H-5.451v2.162H-20.033V0h-2.3V-30.36h20.7ZM20.4-30.82a14.029,14.029,0,0,1,7.452,1.909,12.65,12.65,0,0,1,4.83,5.405,18.847,18.847,0,0,1,1.7,8.326,18.847,18.847,0,0,1-1.7,8.326,12.65,12.65,0,0,1-4.83,5.405A14.029,14.029,0,0,1,20.4.46a14.059,14.059,0,0,1-7.429-1.909A12.6,12.6,0,0,1,8.119-6.854a18.847,18.847,0,0,1-1.7-8.326,18.847,18.847,0,0,1,1.7-8.326,12.6,12.6,0,0,1,4.853-5.405A14.059,14.059,0,0,1,20.4-30.82Zm0,2.116a11.3,11.3,0,0,0-6.141,1.633,10.6,10.6,0,0,0-4,4.669,17.094,17.094,0,0,0-1.4,7.222,17.094,17.094,0,0,0,1.4,7.222,10.6,10.6,0,0,0,4,4.669A11.3,11.3,0,0,0,20.4-1.656a11.272,11.272,0,0,0,6.164-1.633,10.8,10.8,0,0,0,4-4.669,16.856,16.856,0,0,0,1.426-7.222A16.856,16.856,0,0,0,30.567-22.4a10.8,10.8,0,0,0-4-4.669A11.272,11.272,0,0,0,20.4-28.7Zm37.49-1.656a10.778,10.778,0,0,1,7.245,2.3,7.853,7.853,0,0,1,2.691,6.3,7.621,7.621,0,0,1-2.714,6.233,11.094,11.094,0,0,1-7.268,2.231l-.23.138H48.921V0h-2.3V-30.36Zm-.046,15.042a8.491,8.491,0,0,0,5.635-1.656,5.92,5.92,0,0,0,1.955-4.784,5.99,5.99,0,0,0-1.955-4.807,8.411,8.411,0,0,0-5.635-1.679H48.921v12.926Zm1.794.414L69.437,0H66.723L57.707-13.616ZM117.6-30.36,106.835-11.822V0h-2.3V-11.822L93.771-30.36h2.714l5.934,10.4,3.266,5.75,3.266-5.75,5.934-10.4Zm20.93-.46a14.029,14.029,0,0,1,7.452,1.909,12.65,12.65,0,0,1,4.83,5.405,18.847,18.847,0,0,1,1.7,8.326,18.847,18.847,0,0,1-1.7,8.326,12.65,12.65,0,0,1-4.83,5.405A14.029,14.029,0,0,1,138.529.46,14.059,14.059,0,0,1,131.1-1.449a12.6,12.6,0,0,1-4.853-5.405,18.847,18.847,0,0,1-1.7-8.326,18.847,18.847,0,0,1,1.7-8.326,12.6,12.6,0,0,1,4.853-5.405A14.059,14.059,0,0,1,138.529-30.82Zm0,2.116a11.3,11.3,0,0,0-6.141,1.633,10.6,10.6,0,0,0-4,4.669,17.094,17.094,0,0,0-1.4,7.222,17.094,17.094,0,0,0,1.4,7.222,10.6,10.6,0,0,0,4,4.669,11.3,11.3,0,0,0,6.141,1.633,11.272,11.272,0,0,0,6.164-1.633,10.8,10.8,0,0,0,4-4.669,16.856,16.856,0,0,0,1.426-7.222A16.856,16.856,0,0,0,148.7-22.4a10.8,10.8,0,0,0-4-4.669A11.272,11.272,0,0,0,138.529-28.7Zm48.944-1.656v19.274q0,5.658-3.059,8.6T175.789.46q-5.566,0-8.648-2.944t-3.082-8.6V-30.36h2.3v18.814q0,4.876,2.415,7.383t7.015,2.507q4.6,0,6.992-2.507t2.392-7.383V-30.36Z" transform="translate(272 1864)"/></g></svg>
+          </div>
+          {% if section.settings.text != blank %}
+          <div class="text">{{ section.settings.text }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "One tree",
+	"class": "sb-one-tree",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_section",
+        "label": "Enable section",
+		"default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "banner_1",
+        "label": "Banner 1",
+        "info": "Recommended size 380x510 (px)"
+      },
+      {
+        "type": "image_picker",
+        "id": "banner_2",
+        "label": "Banner 2",
+        "info": "Recommended size 380x510 (px)"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+		"default": "<p>Description goes here.</p>"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,126 @@
+<div class="header-panel__bottom header-panel-bt">      
+    <div class="block">
+      {% comment %} Logo-Wrapper {% endcomment %}
+      <h1 class="header-logo" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="url" content="{{ shop.url }}">
+        {% if section.settings.brand_type == 'image' and section.settings.logo_pc != bank %}
+        <a class="logo-img" href="/" title="Logo">
+          <img data-src="{{ section.settings.logo_pc | img_url: 'master' }}"
+               src="{{ section.settings.logo_pc | img_url: 'master' }}"
+               alt="{{ section.settings.logo_pc.alt | default: shop.name }}" itemprop="logo" class="lazyautosizes lazyloaded" data-sizes="auto">
+        </a>
+        {% elsif section.settings.brand_text != '' %}
+        <a class="logo-title" href="/">
+          {{ section.settings.brand_text }}
+        </a>
+        {% else %}
+        <a class="logo-title" href="/">
+          {{ shop.name }}
+        </a>
+        {% endif %}
+      </h1>
+    </div>
+  </div>
+{% schema %}
+{
+"name": "header logo",
+"settings": [
+{
+"type": "header",
+"content": "Logo"
+},
+{
+"type": "radio",
+"id": "brand_type",
+"label": "Use image or text for logo?",
+"options": [
+{
+"value": "text",
+"label": "Text"
+},
+{
+"value": "image",
+"label": "Image"
+}
+],
+"default": "text"
+},
+{
+"type": "textarea",
+"id": "brand_text",
+"label": "Add Logo Text Or Logo Svg"
+},{
+"type": "color",
+"id": "logo_text_color",
+"label": "Logo Text Color",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "logo_text_color_mb",
+"label": "Logo Text Color Mobile",
+"default": "#37353c"
+},
+{
+"type": "text",
+"id": "logo_text_size",
+"label": "Logo Text Size",
+"default": "25px"
+},
+{
+"type": "text",
+"id": "logo_text_size_mb",
+"label": "Logo Text Size Mobile",
+"default": "18px",
+"info":"==================="
+},
+{
+"type": "color",
+"id": "logo_svg_color_mb",
+"label": "Logo Svg Color Mobile",
+"default": "#37353c"
+},
+{
+"type": "color",
+"id": "logo_svg_color",
+"label": "Logo Svg Color",
+"default": "#fff"
+},
+{
+"type": "text",
+"id": "logo_svg_size",
+"label": "Logo Svg Size",
+"default": "40px"
+},
+{
+"type": "text",
+"id": "logo_svg_size_mb",
+"label": "Logo Svg Size Mobile",
+"default": "30px"
+},
+{
+"type":"header",
+"content":"Logo Image"
+},
+{
+"type": "image_picker",
+"id": "logo_pc",
+"label": "Logo image for PC",
+"info": "248px x 47px recommended"
+},
+{
+"type": "text",
+"id": "max_height_logo_pc",
+"label": "Max Height of Logo PC",
+"default": "50px" 
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

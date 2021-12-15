@@ -1,0 +1,223 @@
+{% assign main_description = product.description %}
+<div class="product_description--accordion">
+  {% if main_description != blank %}
+    {% if main_description contains 'The perfectly crafted jewelry product Made for You' %}
+    {% else %}
+    <h3 class="accordion-header">
+      Product Description
+      <span class="toggle-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="accordion-header-icon-plus plus" viewBox="0 0 15 15"><defs><style>.accordion-header-icon-plus .a{opacity:0;}.accordion-header-icon-plus .b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-1244 -723)"><rect class="a" width="15" height="15" transform="translate(1244 723)"/><g transform="translate(1245.174 724.191)"><line class="b" y2="12" transform="translate(6)"/><line class="b" x2="12" transform="translate(0 6)"/></g></g></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="accordion-header-icon-minus minus" viewBox="0 0 15 15"><defs><style>.accordion-header-icon-minus .a{opacity:0;}.accordion-header-icon-minus .b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-1244 -586)"><rect class="a" width="15" height="15" transform="translate(1244 586)"/><g transform="translate(1245.174 587.5)"><line class="b" x2="12" transform="translate(0 6)"/></g></g></svg>
+      </span>
+    </h3>
+    <div class="accordion-content">
+      {% for description in main_description %}
+      {% if forloop.index == 1 %}  
+      {{ description }}
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  {% endif %}
+  
+  <h3 class="accordion-header">
+    Specifications
+    <span class="toggle-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="accordion-header-icon-plus plus" viewBox="0 0 15 15"><defs><style>.accordion-header-icon-plus .a{opacity:0;}.accordion-header-icon-plus .b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-1244 -723)"><rect class="a" width="15" height="15" transform="translate(1244 723)"/><g transform="translate(1245.174 724.191)"><line class="b" y2="12" transform="translate(6)"/><line class="b" x2="12" transform="translate(0 6)"/></g></g></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="accordion-header-icon-minus minus" viewBox="0 0 15 15"><defs><style>.accordion-header-icon-minus .a{opacity:0;}.accordion-header-icon-minus .b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-1244 -586)"><rect class="a" width="15" height="15" transform="translate(1244 586)"/><g transform="translate(1245.174 587.5)"><line class="b" x2="12" transform="translate(0 6)"/></g></g></svg>
+    </span>
+  </h3>
+  <div class="accordion-content">            
+    <div class="meta-field-des">
+      {% assign adjustable = product.metafields.Product['Adjustable'] %}
+      {% if adjustable != 0 and adjustable != blank %}
+      <p>Adjustable : {{ adjustable }}</p>
+      {% endif %}
+      {% assign centrestonecttw = product.metafields.Product['Centre Stone Cttw'] %}
+      {% if centrestonecttw != 0 and centrestonecttw != blank %}
+      <p>Centre Stone CTTW : {{ centrestonecttw }}</p>
+      {% endif %}
+      {% assign centrestoneshape = product.metafields.Product['Centre Stone Shape'] %}
+      {% if centrestoneshape != 0 and centrestoneshape != blank %}
+      <p>Centre Stone Shape : {{ centrestoneshape }}</p>
+      {% endif %}
+      {% assign stonects = product.metafields.Product['Stone 1 Cttw'] %}
+      {% if stonects != 0 and stonects != blank %}
+      <p>Stone 1 CTTW : {{ stonects }}</p>
+      {% endif %}
+      {% assign stonepcs = product.metafields.Product['Stone 1 Pcs'] %}
+      {% if stonepcs != 0 and stonepcs != blank %}
+      <p>Stone 1 PCS : {{ stonepcs }}</p>
+      {% endif %}
+      {% assign stoneshape = product.metafields.Product['Stone 1 Shape'] %}
+      {% if stoneshape != 0 and stoneshape != blank %}
+      <p>Stone 1 Shape : {{ stoneshape }}</p>
+      {% endif %}
+      {% assign centrestoneclarity = product.metafields.Product['Stone Clarity'] %}
+      {% if centrestoneclarity != 0 and centrestoneclarity != blank %}
+      <p>Stone Clarity : {{ centrestoneclarity }}</p>
+      {% endif %} 
+      {% assign centrestonecolor = product.metafields.Product['Stone Color'] %}
+      {% if centrestonecolor != 0 and centrestonecolor != blank %}
+      <p>Stone Color : {{ centrestonecolor }}</p>
+      {% endif %}
+      {% assign centrestonetype = product.metafields.Product['Stone Type'] %}
+      {% if centrestonetype != 0 and centrestonetype != blank %}
+      <p>Stone Type : {{ centrestonetype }}</p>
+      {% endif %}
+
+      {% assign totaldiamondweightcttw = product.metafields.Product['Total Diamond Weight Cttw '] %}
+      {% if totaldiamondweightcttw == blank %}
+      {% assign totaldiamondweightcttw = product.metafields.Product['Total Diamond Weight Cttw'] %}
+      {% endif %}
+      {% if totaldiamondweightcttw != 0 and totaldiamondweightcttw != blank %}
+      <p>Total Diamond Weight Cttw : {{ totaldiamondweightcttw }}</p>
+      {% endif %}
+
+      {% assign centrestone = product.metafields.Product['Centre Stone'] %}
+      {% if centrestone != 0 and centrestone != blank %}
+      <p>Centre Stone : {{ centrestone }}</p>
+      {% endif %}
+
+      {% assign centrestonepcs = product.metafields.Product['Centre Stone Pcs'] %}
+      {% if centrestonepcs != 0 and centrestonepcs != blank %}
+      <p>Centre Stone PCS : {{ centrestone }}</p>
+      {% endif %}
+
+      {% assign color = product.metafields.Product['Color'] %}
+      {% if color != 0 and color != blank %}
+      <p>Color : {{ color }}</p>
+      {% endif %}
+      {% assign gemstonetype = product.metafields.Product['Gemstone Type'] %}
+      {% if gemstonetype != 0 and gemstonetype != blank %}
+      <p>Gemstone Type : {{ gemstonetype }}</p>
+      {% endif %}   
+      {% assign sizelength = product.metafields.Product['Size/Length'] %}
+      {% if sizelength != 0 and sizelength != blank %}
+      <p>Size/Length : {{ sizelength }}</p>
+      {% endif %}   
+      {% assign stonetype = product.metafields.Product['Stone 1 Type'] %}
+      {% if stonetype != 0 and stonetype != blank %}
+      <p>Stone 1 Type : {{ stonetype }}</p>
+      {% endif %}
+      {% assign stonetwocts = product.metafields.Product['Stone 2 Cttw'] %}
+      {% if stonetwocts != 0 and stonetwocts != blank %}
+      <p>Stone 2 CTTW : {{ stonetwocts }}</p>
+      {% endif %}
+      {% assign stonetwopcs = product.metafields.Product['Stone 2 Pcs'] %}
+      {% if stonetwopcs != 0 and stonetwopcs != blank %}
+      <p>Stone 2 Pcs : {{ stonetwopcs }}</p>
+      {% endif %}
+
+      {% assign stonetwoshape = product.metafields.Product['Stone 2 Shape'] %}
+      {% if stonetwoshape != 0 and stonetwoshape != blank %}
+      <p>Stone 2 Shape : {{ stonetwoshape }}</p>
+      {% endif %}
+
+      {% assign stonetwotype = product.metafields.Product['Stone 2 Type'] %}
+      {% if stonetwotype != 0 and stonetwotype != blank %}
+      <p>Stone 2 Type : {{ stonetwotype }}</p>
+      {% endif %}
+
+      {% assign stonetwotype = product.metafields.Product['Origin'] %}
+      {% if stonetwotype != 0 and stonetwotype != blank %}
+      <p>Origin : {{ stonetwotype }}</p>
+      {% endif %}
+
+      <!--  New layout fields -->
+      {% assign Metal_global = product.metafields.global['Metal'] %}
+      {% assign Metal = product.metafields.Product['Metal'] %}
+      {% if Metal != 0 and Metal != blank %}
+      <p><span>Metal :</span> <span>{{ Metal }}</span></p>
+      {% elsif Metal_global != 0 and Metal_global != blank %}
+      <p><span>Metal :</span> <span>{{ Metal_global }}</span></p>
+      {% endif %}
+
+      {% assign TotalDiamondWeight = product.metafields.Product['Total Diamond Weight'] %}
+      {% if TotalDiamondWeight != 0 and TotalDiamondWeight != blank %}
+      <p><span>Total Diamond Weight :</span> <span>{{ TotalDiamondWeight }}</span></p>
+      {% endif %}
+
+      {% assign SustainablyLab-CreatedDiamonds = product.metafields.Product['Sustainably'] %}
+      {% if SustainablyLab-CreatedDiamonds != 0 and SustainablyLab-CreatedDiamonds != blank %}
+      <p><span>{{ SustainablyLab-CreatedDiamonds }}</span></p>
+      {% endif %}
+
+      {% assign Dimensions = product.metafields.Product['Dimensions'] %}
+      {% if Dimensions != 0 and Dimensions != blank %}
+      <p><span>Dimensions :</span> <span>{{ Dimensions }}</span></p>
+      {% endif %}
+
+      {% assign Dimensionsofmotif = product.metafields.Product['Dimensions of motif'] %}
+      {% if Dimensionsofmotif != 0 and Dimensionsofmotif != blank %}
+      <p><span>Dimensions of motif :</span> <span>{{ Dimensionsofmotif }}</span></p>
+      {% endif %}
+
+      {% assign ChainLengthglobal = product.metafields.global['Chain Length'] %}
+      {% assign ChainLength = product.metafields.Product['Chain Length'] %}
+      {% if ChainLength != 0 and ChainLength != blank %}
+      <p><span>Chain Length :</span> <span>{{ ChainLength }}</span></p>
+      {% elsif ChainLengthglobal != 0 and ChainLengthglobal != blank %}
+      <p><span>Chain Length :</span> <span>{{ ChainLengthglobal }}</span></p>
+      {% endif %}
+
+      {% assign BraceletLengthglobal = product.metafields.global['Bracelet Length'] %}
+      {% assign BraceletLength = product.metafields.Product['Bracelet Length'] %}
+      {% if BraceletLength != 0 and BraceletLength != blank %}
+      <p><span>Bracelet Length :</span> <span>{{ BraceletLength }}</span></p>
+      {% elsif BraceletLengthglobal != 0 and BraceletLengthglobal != blank %}
+      <p><span>Bracelet Length :</span> <span>{{ BraceletLengthglobal }}</span></p>
+      {% endif %}
+      <!-- Dated 17/08/2021 -->
+      {% assign Diamentions-InnerDiaifhoop = product.metafields.Product['Diamentions-Inner Dia if hoop'] %}
+      {% if Diamentions-InnerDiaifhoop != 0 and Diamentions-InnerDiaifhoop != blank %}
+      <p><span>Diamentions-InnerDiaifhoop :</span> <span>{{ Diamentions-InnerDiaifhoop }}</span></p>
+      {% endif %}
+      {% assign Idofbangle = product.metafields.Product['ID Of Bangle'] %}
+      {% if Idofbangle != 0 and Idofbangle != blank %}
+      <p><span>ID Of Bangle :</span> <span>{{ Idofbangle }}</span></p>
+      {% endif %}
+    </div> 
+  </div>
+  
+  <h3 class="accordion-header">
+    Care
+    <span class="toggle-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="accordion-header-icon-plus plus" viewBox="0 0 15 15"><defs><style>.accordion-header-icon-plus .a{opacity:0;}.accordion-header-icon-plus .b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-1244 -723)"><rect class="a" width="15" height="15" transform="translate(1244 723)"/><g transform="translate(1245.174 724.191)"><line class="b" y2="12" transform="translate(6)"/><line class="b" x2="12" transform="translate(0 6)"/></g></g></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="accordion-header-icon-minus minus" viewBox="0 0 15 15"><defs><style>.accordion-header-icon-minus .a{opacity:0;}.accordion-header-icon-minus .b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-1244 -586)"><rect class="a" width="15" height="15" transform="translate(1244 586)"/><g transform="translate(1245.174 587.5)"><line class="b" x2="12" transform="translate(0 6)"/></g></g></svg>
+    </span>
+  </h3>
+  <div class="accordion-content">
+    <p>This piece should be stored in a cool, dry place – our sustainable packaging is ideal! Clean carefully with a soft non-abrasive cloth to maintain shine.</p>
+  </div>
+
+  <h3 class="accordion-header">
+    Shipping & Returns
+    <span class="toggle-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="accordion-header-icon-plus plus" viewBox="0 0 15 15"><defs><style>.accordion-header-icon-plus .a{opacity:0;}.accordion-header-icon-plus .b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-1244 -723)"><rect class="a" width="15" height="15" transform="translate(1244 723)"/><g transform="translate(1245.174 724.191)"><line class="b" y2="12" transform="translate(6)"/><line class="b" x2="12" transform="translate(0 6)"/></g></g></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="accordion-header-icon-minus minus" viewBox="0 0 15 15"><defs><style>.accordion-header-icon-minus .a{opacity:0;}.accordion-header-icon-minus .b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-1244 -586)"><rect class="a" width="15" height="15" transform="translate(1244 586)"/><g transform="translate(1245.174 587.5)"><line class="b" x2="12" transform="translate(0 6)"/></g></g></svg>
+    </span>
+  </h3>
+  <div class="accordion-content">
+    <p class="no-margin">Enjoy complimentary shipping & returns on all orders.</p>
+    <p class="no-margin">If for any reason you are not satisfied, we will gladly accept most items for exchange, refund or merchandise credit within 60 days. Custom and engraved items are non-refundable. After 60 days, all sales are final. All returns must be in the original condition.</p>
+    <p>All refunds will be issued in the original form of payment within 14 days from the date the return is received. Merchandise credits will be issued through our system within 3 days from the date the return is received. Please contact us at <a href="mailto:{{shop.email}}" aria-describedby="a11y-external-message">{{shop.email}}</a>.</p>
+    <h5 style="border-top: 1px solid rgba(0,0,0,.1);padding-top: 10px;">SHIPPING A RETURN</h5>
+    <p>Please contact us at <a href="mailto:{{shop.email}}">{{shop.email}}</a> to make arrangements for returning your item. A specialist will provide you with shipping instructions along with a Return Authorization Number.</p>
+  </div>
+  
+  <h3 class="accordion-header">
+    Sustainability Information 
+    <span class="toggle-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="accordion-header-icon-plus plus" viewBox="0 0 15 15"><defs><style>.accordion-header-icon-plus .a{opacity:0;}.accordion-header-icon-plus .b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-1244 -723)"><rect class="a" width="15" height="15" transform="translate(1244 723)"/><g transform="translate(1245.174 724.191)"><line class="b" y2="12" transform="translate(6)"/><line class="b" x2="12" transform="translate(0 6)"/></g></g></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="accordion-header-icon-minus minus" viewBox="0 0 15 15"><defs><style>.accordion-header-icon-minus .a{opacity:0;}.accordion-header-icon-minus .b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-1244 -586)"><rect class="a" width="15" height="15" transform="translate(1244 586)"/><g transform="translate(1245.174 587.5)"><line class="b" x2="12" transform="translate(0 6)"/></g></g></svg>
+    </span>
+  </h3>
+  <div class="accordion-content">
+    <ul>
+      <li>Lab-grown diamonds offer essentially the same physical, chemical and optical properties as mined diamonds.</li>
+      <li>Lab-grown diamonds are larger, and offer a higher quality than mined diamonds of the same price.</li>
+      <li>Each stone is conflict-free.</li>
+    </ul>
+  </div>
+</div>

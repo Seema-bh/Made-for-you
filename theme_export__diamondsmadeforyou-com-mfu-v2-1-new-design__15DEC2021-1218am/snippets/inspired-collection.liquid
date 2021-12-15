@@ -1,0 +1,105 @@
+{% comment %}onclick="window.location.href='{{ section.settings.button_link }}';"{% endcomment %}
+<section class="section-spacing">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+    <div class="section-header">
+      {% if section.settings.sub_title != blank %}
+      <span class="subtitle">{{ section.settings.sub_title }}</span>
+      {% endif %}
+      <h2 class="title">
+        {{ section.settings.title }}
+        {% if section.settings.button_text and section.settings.button_link != blank %}
+        <div class="btn-wrapper">
+          <a href="{{ section.settings.button_link }}" class="btn-arrow">
+            {{ section.settings.button_text }}
+            {% include 'icon-btn-arrow' %}
+          </a>
+        </div>
+        {% endif %}
+      </h2>
+    </div>
+    {% endif %}
+    <div class="inspired-collection_slider custom-slider">
+      {% for block in section.blocks %}
+      <div class="feature-row">
+        {% capture image_layout %}
+        <div class="feature-row__item feature-row__item-image">
+          {% if block.settings.image != blank %}
+          {% capture img_id %}FeatureRowImage-{{ block.id }}{% endcapture %}
+          {% capture wrapper_id %}FeatureRowImageWrapper-{{ block.id }}{% endcapture %}
+          {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+            <img id="{{ img_id }}"
+                 class="feature-row__image lazyload"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ block.settings.image.alt | escape }}">
+          </div>
+
+          <noscript>
+            {{ block.settings.image | img_url: '600x600', scale: 2 | img_tag: block.settings.image.alt, 'feature-row__image' }}
+          </noscript>
+          {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+
+          {% if block.settings.title != blank %}
+          <!--           <h3 class="text-center">{{ block.settings.title }}</h3> -->
+          {% endif %}
+        </div>
+        {% endcapture %}
+
+        <div class="feature-row text_section">
+          {% if block.settings.layout == 'left' %}
+          {{ image_layout }}
+          {% endif %}
+
+          <div class="feature-row__item feature-row__text feature-row__text--{{ block.settings.layout }} lookbook-parent">        
+            {%- assign max_height = 198 -%}
+            {%- assign product1 = all_products[block.settings.featured_product1] -%}
+            {%- assign product2 = all_products[block.settings.featured_product2] -%}
+            {%- assign product3 = all_products[block.settings.featured_product3] -%}
+            {%- assign product4 = all_products[block.settings.featured_product4] -%}
+            <ul class="grid grid--uniform look-product-all-wrapper">
+              <li class="grid__item medium-up--one-half grid__item--{{block.id}}">
+                {% include 'inspired-card-grid', max_height: max_height, product: product1, show_vendor: section.settings.show_vendor %}
+              </li>
+              {% if product2 != blank %}
+              <li class="grid__item medium-up--one-half grid__item--{{block.id}}">
+                {% include 'inspired-card-grid', max_height: max_height, product: product2, show_vendor: section.settings.show_vendor %}
+              </li>
+              {% endif %}
+              {% if product3 != blank %}
+              <li class="grid__item medium-up--one-half grid__item--{{block.id}}">
+                {% include 'inspired-card-grid', max_height: max_height, product: product3, show_vendor: section.settings.show_vendor %}
+              </li>
+              {% endif %}
+              {% if product4 != blank %}
+              <li class="grid__item medium-up--one-half grid__item--{{block.id}}">
+                {% include 'inspired-card-grid', max_height: max_height, product: product4, show_vendor: section.settings.show_vendor %}
+              </li>
+              {% endif %}
+            </ul>
+
+            <div class="button-wrapper text-center">
+              <div class="medium-up--hide total-price">
+                <span>Total:</span> <span class="lprice"></span><span class="comparePrice"></span>
+              </div>
+              <button class="btn look-add-all">
+                Add all to bag
+              </button>
+              <p class="error">Please select product.</p>
+            </div>
+          </div>
+
+          {% if block.settings.layout == 'right' %}
+          {{ image_layout }}
+          {% endif %}
+        </div>
+      </div><!-- feature-row end -->
+      {% endfor %}
+    </div>
+  </div>  
+</section>

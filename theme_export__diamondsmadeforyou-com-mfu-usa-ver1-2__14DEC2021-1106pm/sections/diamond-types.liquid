@@ -1,0 +1,239 @@
+<div class="four-types-diamond" id="section-{{section.id}}">
+  <div class="diamond">
+    <div class="diamond-image">
+      {%- assign img_url =  section.settings.image | img_url:'350x350' -%}
+      <img data-src={{img_url}} src="{{section.settings.image}}" class="lazyload">
+    </div>
+    <div class="diamond-para">
+      <div class="diamond-paragraph">
+        <h2>{{section.settings.title}}</h2>
+        <p>{{section.settings.banner_des}}</p>
+        <div class="learn-more">
+          <a href="two-ways-of-creating-lab-grown-diamonds">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="diamond justify-content-end">
+    <div class="diamond-image order-md-2">
+      {%- assign img_url =  section.settings.image2 | img_url:'350x350' -%}
+      <img data-src={{img_url}} src="{{section.settings.image2}}" class="lazyload">
+    </div>
+    <div class="diamond-para order-md-1">
+      <div class="diamond-paragraph">
+        <h2>{{section.settings.title2}}</h2>
+        <p>{{section.settings.banner_des2}}</p>
+        <div class="learn-more">
+          <a href="how-can-i-be-sure-of-the-quality-of-my-lab-grown-diamond" class="learn-more">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="diamond">
+    <div class="diamond-image">
+      {%- assign img_url =  section.settings.image3 | img_url:'350x350' -%}
+      <img data-src={{img_url}} src="{{section.settings.image3}}" class="lazyload">
+    </div>
+    <div class="diamond-para">
+      <div class="diamond-paragraph">
+        <h2>{{section.settings.title3}}</h2>
+        <p>{{section.settings.banner_des3}}</p>
+        <div class="learn-more">
+          <a href="lab-grown-diamonds-the-science-behind-the-process" class="learn-more">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="diamond justify-content-end">
+    <div class="diamond-image order-md-2">
+      {%- assign img_url =  section.settings.image4 | img_url:'350x350' -%}
+      <img data-src={{img_url}} src="{{section.settings.image4}}" class="lazyload">
+    </div>
+    <div class="diamond-para order-md-1">
+      <div class="diamond-paragraph">
+        <h2>{{section.settings.title4}}</h2>
+        <p>{{section.settings.banner_des4}}</p>
+        <div class="learn-more">
+          <a href="looking-after-diamond-jewellery" class="learn-more">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="diamond">
+    <div class="diamond-image">
+      {%- assign img_url =  section.settings.image5 | img_url:'350x350' -%}
+      <img data-src={{img_url}} src="{{section.settings.image5}}" class="lazyload">
+    </div>
+    <div class="diamond-para">
+      <div class="diamond-paragraph">
+        <h2>{{section.settings.title5}}</h2>
+        <p>{{section.settings.banner_des5}}</p>
+        <div class="learn-more">
+          <a href="the-four-cs-of-a-diamond" class="learn-more">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="diamond justify-content-end">
+    <div class="diamond-image order-md-2">
+      {%- assign img_url =  section.settings.image6 | img_url:'350x350' -%}
+      <img data-src={{img_url}} src="{{section.settings.image6}}" class="lazyload">
+    </div>
+    <div class="diamond-para order-md-1">
+      <div class="diamond-paragraph">
+        <h2>{{section.settings.title6}}</h2>
+        <p>{{section.settings.banner_des6}}</p>
+        <div class="learn-more">
+          <a href="understanding-what-s-real-and-what-s-fake" class="learn-more">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="diamond">
+    <div class="diamond-image">
+      {%- assign img_url =  section.settings.image7 | img_url:'350x350' -%}
+      <img data-src={{img_url}} src="{{section.settings.image7}}" class="lazyload">
+    </div>
+    <div class="diamond-para">
+      <div class="diamond-paragraph">
+        <h2>{{section.settings.title7}}</h2>
+        <p>{{section.settings.banner_des7}}</p>
+        <div class="learn-more">
+          <a href="what-are-lab-grown-diamonds-are-they-real" class="learn-more">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+"name": "Diamond Types",
+"class": "dimonds-info",
+"settings": [
+{
+  "type":"image_picker",
+  "id":"image",
+  "label":"Diamond One"
+},
+{
+  "type":"text",
+  "id":"title",
+  "label":"Diamond One text",
+  "default":"Watches"
+},
+{
+  "type":"textarea",
+  "id":"banner_des",
+  "label":"Diamond One Desc"
+},
+{
+  "type":"image_picker",
+  "id":"image2",
+  "label":"Diamond Two"
+},
+{
+  "type":"text",
+  "id":"title2",
+  "label":"Diamond Two Title",
+  "default":"Watches"
+},
+{
+  "type":"textarea",
+  "id":"banner_des2",
+  "label":"Diamond Two Desc"
+},
+{
+  "type":"image_picker",
+  "id":"image3",
+  "label":"Diamond Three"
+},
+{
+  "type":"text",
+  "id":"title3",
+  "label":"Diamond Three Title",
+  "default":"Watches"
+},
+{
+  "type":"textarea",
+  "id":"banner_des3",
+  "label":"Diamond Three Desc"
+},
+{
+  "type":"image_picker",
+  "id":"image4",
+  "label":"Diamond Four"
+},
+{
+  "type":"text",
+  "id":"title4",
+  "label":"Diamond Four Title",
+  "default":"Watches"
+},
+{
+  "type":"textarea",
+  "id":"banner_des4",
+  "label":"Diamond Four Desc"
+},
+{
+  "type":"image_picker",
+  "id":"image5",
+  "label":"Diamond five"
+},
+{
+  "type":"text",
+  "id":"title5",
+  "label":"Diamond five Title",
+  "default":"Watches"
+},
+{
+  "type":"textarea",
+  "id":"banner_des5",
+  "label":"Diamond five Desc"
+},
+{
+  "type":"image_picker",
+  "id":"image6",
+  "label":"Diamond six"
+},
+{
+  "type":"text",
+  "id":"title6",
+  "label":"Diamond six Title",
+  "default":"Watches"
+},
+{
+  "type":"textarea",
+  "id":"banner_des6",
+  "label":"Diamond six Desc"
+},
+{
+  "type":"image_picker",
+  "id":"image7",
+  "label":"Diamond Seven"
+},
+{
+  "type":"text",
+  "id":"title7",
+  "label":"Diamond seven Title",
+  "default":"Watches"
+},
+{
+  "type":"textarea",
+  "id":"banner_des7",
+  "label":"Diamond seven Desc"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

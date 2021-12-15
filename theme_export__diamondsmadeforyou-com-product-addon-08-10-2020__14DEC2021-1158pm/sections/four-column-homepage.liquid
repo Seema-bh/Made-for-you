@@ -1,0 +1,132 @@
+<div class="four-column-homepage container">
+  {% for block in section.blocks %}
+  {% if block.type == "text" %}
+  <div class="banner-count-{{ forloop.index }} four-banner desktop-xs">
+    <a href="{% if block.settings.button != blank %}{{block.settings.link_1}}{% else %}javascript:void(0){% endif %}" class="link-banner">
+      {% if block.settings.image_1 != blank%}
+      <div class="logo-banner">
+        {%- assign url_img_logo1 = block.settings.image_1 | img_url:'400x'-%}
+        <img data-src="{{url_img_logo1}}" alt="{{block.settings.image_1.alt | default: shop.name}}" {% include 'lazyload'%}>
+      </div>
+      {% endif %}
+
+      {% if block.settings.des != blank %}
+      <div class="content rte">
+        <p>{{ block.settings.des }}</p>
+        {% if block.settings.button != blank %}
+        <a href=" {{block.settings.link_1}}" class="link-banner">{{ block.settings.button }}</a>
+        {% endif%}
+      </div>
+      {% endif %}
+    </a>
+  </div>
+
+  {% else %}
+  <div class="banner-count-{{ forloop.index }} four-banner">
+    <a href="{% if block.settings.button != blank %}{{block.settings.link_1}}{% else %}javascript:void(0){% endif %}" class="link-banner">
+      {%if block.settings.image_1 != blank%}
+      <div class="logo-banner">
+        {%- assign url_img_logo1 = block.settings.image_1 | img_url:'400x'-%}
+        {%- assign url_img_logo2 = block.settings.mobimage_1 | img_url:'400x'-%}
+        <img data-src="{{url_img_logo1}}" alt="{{block.settings.image_1.alt | default: shop.name}}" class="lazyload desktop-xs {{lazyload}}" 
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-sizes="auto">
+        <img data-src="{{url_img_logo2}}" alt="{{block.settings.mobimage_1.alt | default: shop.name}}" class="lazyload mobile-xs {{lazyload}}" 
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-sizes="auto">
+      </div>
+      {% endif %}
+
+      {% if block.settings.des != blank %}
+      <div class="content rte">
+        <p>{{ block.settings.des }}</p>
+        {% if block.settings.button != blank %}
+        <a href=" {{block.settings.link_1}}" class="link-banner">{{ block.settings.button }}</a>
+        {% endif%}
+      </div>
+      {% endif %}
+    </a>
+  </div>
+  {% endif%}
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "two column homepage",
+  "settings": [
+    
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Without mobile image",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "des",
+          "label": "Description",
+          "default": "Quisque destibulum risus cosmopolis an cosmodous"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image"
+        },
+		{
+          "type": "text",
+          "id": "button",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "link_1",
+          "label": "Add Link"
+        }
+      ]
+    },
+	{
+      "type": "mobile",
+      "name": "With mobile image",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "des",
+          "label": "Description",
+          "default": "Quisque destibulum risus cosmopolis an cosmodous"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image"
+        },
+		{
+          "type": "image_picker",
+          "id": "mobimage_1",
+          "label": "Image"
+        },
+		{
+          "type": "text",
+          "id": "button",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "link_1",
+          "label": "Add Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Four colunm homepage",
+      "category": "Block Images"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

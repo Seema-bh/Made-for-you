@@ -1,0 +1,92 @@
+<section class="section-spacing">
+  <div class="page-width">
+    {% capture image_layout %}
+    <div class="feature-row__item feature-row__item-image">
+      <div class="small--hide">
+        {% if section.settings.image != blank %}
+        {% capture img_id %}FeatureRowImage-{{ section.id }}{% endcapture %}
+        {% capture wrapper_id %}FeatureRowImageWrapper-{{ section.id }}{% endcapture %}
+        {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}      
+        <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+          <div style="padding-top:{{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100}}%;" data-image-loading-animation>
+            <img id="{{ img_id }}"
+                 class="feature-row__image lazyload"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ section.settings.image.alt | escape }}">
+          </div>
+        </div>
+        <noscript>
+          {{ section.settings.image | img_url: '600x600', scale: 2 | img_tag: section.settings.image.alt, 'feature-row__image' }}
+        </noscript>
+        {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+      
+      <div class="medium-up--hide">
+        {% if section.settings.image_mob != blank %}
+        {% capture img_id %}FeatureRowImage-{{ section.id }}{% endcapture %}
+        {% capture wrapper_id %}FeatureRowImageWrapper-{{ section.id }}{% endcapture %}
+        {%- assign img_url = section.settings.image_mob | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}      
+        <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+          <div style="padding-top:{{ 1 | divided_by: section.settings.image_mob.aspect_ratio | times: 100}}%;" data-image-loading-animation>
+            <img id="{{ img_id }}"
+                 class="feature-row__image lazyload"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-aspectratio="{{ section.settings.image_mob.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ section.settings.image_mob.alt | escape }}">
+          </div>
+        </div>
+        <noscript>
+          {{ section.settings.image_mob | img_url: '600x600', scale: 2 | img_tag: section.settings.image_mob.alt, 'feature-row__image' }}
+        </noscript>
+        {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+    </div>
+    {% endcapture %}
+
+    <div class="feature-row text_section small--text-center" {% if section.settings.bgcolor != blank %}style="background-color: {{ section.settings.bgcolor }};"{% endif %}>
+      {% if section.settings.layout == 'left' %}
+      {{ image_layout }}
+      {% endif %}
+
+      <div class="feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }}">
+        {% if section.settings.title != blank %}
+        <h2>{{ section.settings.title | escape }}</h2>
+        {% endif %}
+        
+        {% if section.settings.text != blank %}
+        <div class="featured-row__subtext">{{ section.settings.text }}</div>
+        {% endif %}
+        
+        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        {%- capture ariaLabel -%}
+        {{- section.settings.button_label -}}
+        {%- if section.settings.button_link.type == 'frontpage_link' -%}
+        : {{ 'homepage.general.title' | t -}}
+        {%- elsif section.settings.button_link.type == 'catalog_link' -%}
+        : {{ 'collections.catalog.title' | t -}}
+        {%- elsif section.settings.button_link.object.title -%}
+        : {{ section.settings.button_link.object.title -}}
+        {%- endif -%}
+        {%- endcapture -%}
+        <a href="{{ section.settings.button_link }}" class="btn-arrow" aria-label="{{ ariaLabel }}">
+          {{- section.settings.button_label | escape -}}
+          {% include 'icon-btn-arrow' %}
+        </a>
+        {% endif %}
+      </div>
+
+      {% if section.settings.layout == 'right' %}
+      {{ image_layout }}
+      {% endif %}
+    </div>
+  </div>
+</section>

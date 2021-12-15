@@ -1,0 +1,688 @@
+/* About Us page start here */
+.about-us-banner {
+  margin-top: 67px;
+  @media ( max-width: 767px ) {
+    margin-top: 21px;
+  }
+}
+.left-side-text {
+  width: 50%;
+  float: left;
+  padding-top: 50px;
+  @media ( max-width: 767px ) {
+    width: 100%;
+    float: none;
+    padding-top: 21px;
+  }
+  @media ( min-width: 768px ) and ( max-width: 1024px ) {
+    padding-top: 0;
+  }
+  h2.title {
+    font-family: 'frank_ruhl_libreregular';
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: 100;
+    color: #645E59;
+    margin-bottom: 23px;
+    border-left: 5px solid #AA7F58;
+    padding-left: 11.5px;
+    @media ( max-width: 767px ) {
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+  }
+  .content {
+    font-family: 'montserratregular';
+    font-size: 18px;
+    line-height: 29px;
+    padding-right: 79px;
+    color: #1A1818;
+    @media ( max-width: 767px ) {
+      padding-right: 0;
+      font-size: 16px;
+      line-height: 25px;
+    }
+    @media ( min-width: 768px ) and ( max-width: 1024px ) {
+      padding-right: 30px;
+      font-size: 16px;
+      line-height: 25px;
+    }
+  }
+}
+.right-side-image {
+  width: 50%;
+  float: right;
+  @media ( max-width: 767px ) {
+    width: 100%;
+    float: none;
+  }
+}
+.design-text {
+  width: 100%;
+  float: left;
+  background-image: url(https://cdn.shopify.com/s/files/1/0411/6437/4183/files/pink-banner.png?v=1594359085);
+  margin-top: 54px;
+  @media ( max-width: 767px ) {
+    float: none;
+    text-align: center;
+    background-color: #fbf7f4;
+    background-image: none;
+  }
+  .inner-banner-txt {
+    margin: auto;
+    width: fit-content;
+    padding: 119px 0;
+    @media ( max-width: 767px ) {
+      width: 100%;
+      padding: 70px 0;
+      position: relative;
+      z-index: 999;
+    }
+    h2 {
+      font-family: 'montserratregular';
+      font-weight: normal;
+      font-size: 30px;
+      line-height: 31px;
+      color: #645E59;
+      margin-bottom: 14px;
+      @media ( max-width: 767px ) {
+        font-size: 20px;
+        line-height: 26px;
+      }
+    }
+    p {
+      font-family: 'montserratregular';
+      color: #AA7F58;
+      font-size: 15px;
+      letter-spacing: 2.25px;
+      line-height: 19px;
+      text-transform: uppercase;
+      @media ( max-width: 767px ) {
+        font-size: 12px;
+      }
+    }
+  }
+}
+.about-us-content-key {
+  column-count: 4;
+  width: 100%;
+  text-align: center;
+  margin: 83px 0;
+  padding-top: 83px;
+      margin-bottom: 20px;
+  @media ( max-width: 767px ) {
+    column-count: 1;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 20px;
+    padding-top: 53px;
+  }
+  @media ( min-width: 768px ) and ( max-width: 1024px ) {
+    column-count: 2;
+  }
+}
+.grown-diamond {
+  display: flex;
+  @media ( max-width: 767px ) {
+    display: contents;
+  }
+  .grown-diamond-image {
+    width: 50%;
+    @media ( max-width: 767px ) {
+      width: 100%;
+    }
+    img.lazyloaded {
+      width: 100%;
+    }
+  }
+  .gron-diamond-info {
+    background: transparent linear-gradient(57deg, #645E59 0%, #322F2D 100%) 0% 0% no-repeat padding-box;
+    width: 50%;
+    color: #F7F7F7;
+    font-weight: normal;
+    @media ( max-width: 767px ) {
+      width: 100%;
+    }
+    .inner-diamond {
+      margin: 84px 65px;
+      @media ( max-width: 767px ) {
+        margin: 0 19px;
+        padding: 30px 0;
+      }
+      @media ( min-width: 768px ) and ( max-width: 1024px ) {
+        margin: 22px;
+      }
+      h2.title {
+        font-family: 'frank_ruhl_libreregular';
+        font-size: 25px;
+        line-height: 36px;
+        font-weight: normal;
+        @media ( min-width: 768px ) and ( max-width: 1024px ) {
+          font-size: 22px;
+          line-height: 30px;
+        }
+      }
+      ul {
+        list-style-type: disc;
+        margin-left: 18px;
+        font-family: 'montserratregular';
+        font-size: 14px;
+        line-height: 28px;
+        @media ( min-width: 768px ) and ( max-width: 1024px ) {
+          font-size: 12px;
+          line-height: 24px;
+        }
+      }
+    }
+  }
+}
+body#about-us {
+  .block-container {
+    padding-top: 82px;
+    @media ( max-width: 767px ) {
+      margin-top: 52px;
+      background: #fbf7f4;
+      padding-top: 0;
+    }
+    .custom-content {
+      text-align: left;
+      top: 33%;
+      left: 9%;
+      @media ( max-width: 767px ) {
+        top: 0;
+        left: 0;
+        background: #fbf7f4;
+        margin-top: 0;
+        padding-left: 19px;
+        position: relative;
+      }
+      @media ( min-width: 768px ) and ( max-width: 1024px ) {
+        top: 26%;
+        left: 4%;
+      }
+      ul {
+        list-style-type: disc;
+        margin-left: 18px;
+        font-size: 14px;
+        line-height: 28px;
+        text-transform: initial;
+        font-family: 'montserratlight';
+        letter-spacing: 0;
+        @media ( max-width: 767px ) {
+          margin-left: 0;
+        }
+        @media ( min-width: 768px ) and ( max-width: 1024px ) {
+          font-size: 12px;
+          line-height: 24px;
+        }
+      }
+    }
+  }
+}
+/* About Us page end here */
+
+/* Contact Us page start here */
+
+.contact-us-page {
+  margin-top: 35px;
+  h2 {
+    font-family: 'frank_ruhl_libremedium';
+    color: #AA7F58;
+    font-weight: normal;
+    text-transform: initial;
+    font-size: 25px;
+    line-height: 32px;
+    margin-bottom: 5px;
+    text-align: left;
+    @media ( max-width: 767px ) {
+      text-align: center;
+      font-size: 20px;
+      line-height: 26px;
+      margin-bottom: 6px;
+    }
+  }
+  .col-md-7.col-lg-8.col-xl-8.form-contact {
+    background: #F7F7F7 0% 0% no-repeat padding-box;
+    padding: 108px 78px;
+    @media ( max-width: 767px ) {
+      padding: 20px;
+    }
+    @media ( min-width: 768px ) and ( max-width: 1024px ) {
+      padding: 76px 30px;
+    }
+  }
+  input, textarea#contactFormMessage {
+    background: transparent;
+    font-family: 'montserratregular' !important;
+  }
+}
+span.top-head {
+  font-family: 'montserratregular';
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1.95px;
+  color: #B5AEA5;
+  line-height: 16px;
+  margin-bottom: 7px;
+  @media ( max-width: 767px ) {
+    font-size: 12px;
+    letter-spacing: 1.8px;
+    line-height: 15px;
+    margin-bottom: 18px;
+  }
+}
+.about-data {
+  font-family: 'frank_ruhl_libreregular';
+  color: #FFFFFF;
+  font-size: 18px;
+  line-height: 24px;
+}
+.contact-page-section {
+  display: flex;
+  width: 100%;
+  @media(max-width:767px){
+    flex-direction: column;
+  }
+}
+p.about-text {
+  font-family: 'montserratregular';
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  line-height: 13px;
+  color: #F7F7F7;
+}
+h1.faq-head {
+  color: #645E59;
+  font-size: 30px;
+  line-height: 36px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-family: 'frank_ruhl_libreregular';
+  font-weight: normal;
+  @media ( max-width: 767px ) { 
+    font-size: 20px;
+    line-height: 26px;
+    margin-bottom: 6px;
+  }
+}
+.des_faqs {
+  text-align: center;
+  color: #AA7F58;
+  font-size: 14px;
+  letter-spacing: 2.8px;
+  line-height: 18px;
+  font-family: 'montserratmedium';
+  margin-bottom: 50px;
+  @media ( max-width: 767px ) { 
+    font-size: 10px;
+    letter-spacing: 2px;
+    line-height: 13px;
+    margin-bottom: 36px;
+    text-transform: uppercase;
+  }
+  @media ( min-width: 768px ) and ( max-width: 1024px ) {
+    margin-bottom: 36px;
+  }
+}
+@media ( max-width: 767px ) {
+  .contact-us-page .flex {
+    display: block;
+  }
+  .contact-us-page .form-group {
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+  .diamond-image img {
+    width: 100%;
+  }
+}
+/* Contact Us page start here */
+
+/* Education page css start here */
+
+div#shopify-section-education-text {
+  text-align: center;
+  color: #645E59;
+  font-size: 16px;
+  font-family: 'montserratregular';
+  line-height: 22px;
+  padding: 0 83px;
+  margin-bottom: 75px;
+  @media ( max-width: 767px ) {
+    margin-bottom: 52px;
+    padding: 0;
+  }
+}
+.image-with-video-overlay {
+  margin-bottom: 75px;
+    @media ( max-width: 767px ) {
+        margin-bottom: 52px;
+    }
+  h3.box-title {
+    text-align: center;
+    color: #645E59;
+    font-size: 30px;
+    line-height: 36px;
+    margin-bottom: 4px;
+    font-family: 'frank_ruhl_libreregular';
+    font-weight: normal;
+    @media ( max-width: 767px ) {
+      font-size: 20px;
+      line-height: 27px;
+      padding: 0 16px;
+      font-family: 'montserratmedium';
+      text-transform: capitalize;
+    }
+  }
+  p.banner-des {
+    color: #AA7F58;
+    text-align: center;
+    letter-spacing: 2.8px;
+    line-height: 18px;
+    text-transform: uppercase;
+    font-family: 'montserratmedium';
+    margin-bottom: 22px;
+  }
+}
+
+.diamond {
+  display: flex;
+  margin-bottom: 107px;
+  clear: both;
+  &.justify-content-end{
+    justify-content: flex-end;
+  }
+  @media ( max-width: 767px ) {
+    display: block;
+    margin-bottom: 53px;
+  }
+  .diamond-image{
+    width:55%;
+    
+    img{
+     width:100%;
+    }
+  }
+  .diamond-para {
+    width: 35%;
+    border: 0.5px solid #505050;
+    opacity: 0.6;
+    padding: 30px 43px;
+    display: inline-flex;
+    align-items: center;
+    @media ( max-width: 767px ) {
+      width: 100%;
+    }
+    h2 {
+      font-family: 'frank_ruhl_libreregular';
+      margin-bottom: 21px;
+   
+      @media ( max-width: 767px ) {
+        font-size: 20px;
+        line-height: 36px;
+        padding-top: 0;
+      }
+    }
+    p {
+      color: #645E59;
+      font-size: 15px;
+      font-family: 'montserratregular';
+      line-height: 22px;
+      padding-bottom:15px;
+      @media ( max-width: 767px ) {
+        font-size: 14px;
+        line-height: 23px;
+      }
+    }
+    a{
+    font-weight: bold;
+    color: #645E59;
+    }
+  }
+}
+.diamond-table {
+  background: transparent linear-gradient(180deg, #645E59 0%, #322F2D 100%) 0% 0% no-repeat padding-box;
+  border: 1px solid #AA7F58;
+  opacity: 1;
+  padding: 52px;
+  @media ( max-width: 767px ) {
+      padding: 30px 2px;
+  }
+  h1 {
+    color: #F7F7F7;
+    text-align: center;
+    font-weight: normal;
+    font-family: 'frank_ruhl_libreregular';
+    font-size: 30px;
+    line-height: 36px;
+    margin-bottom: 42px;
+    @media ( max-width: 767px ) {
+        font-size: 26px;
+    }
+  }
+  table {
+    border: 0;
+    display: inline-table;
+    td {
+      border: 0;
+      color: #F7F7F7;
+      font-size: 16px;
+      line-height: 21px;
+      @media ( max-width: 767px ) {
+      font-size: 14px;
+      }
+    }
+    th {
+      border: 0;
+      color: #BB997A;
+      font-size: 16px;
+      font-family: 'montserratregular';
+      font-weight: normal;
+          text-align: center;
+          @media ( max-width: 767px ) {
+        font-size: 13px;
+    }
+    }
+  }
+}
+/* Education page css end here */
+
+//inner education page start here
+
+.education-para{
+  .des.rte {
+    text-align: left;
+  b{
+    color:#645E59;
+   }
+  }
+}
+  .inner-education {
+    margin: 0 auto;
+    max-width: 1000px;
+    
+  .header{
+  h2{
+     font-size: 34px;
+    color: #645E59;
+    padding: 30px 0px;
+    margin-bottom: 0px;
+   font-family: 'frank_ruhl_libreregular';
+  }
+   p{
+     margin-bottom:25px;
+    }
+  }
+  .image-text{
+    display:flex;
+    margin: 35px 0px;
+    .text{
+      width:50%;
+      h2{
+      color: #645E59;
+      font-family: 'frank_ruhl_libreregular';
+      margin-bottom: 20px;
+     }
+    
+      .para1{
+      padding-bottom: 20px;
+      }
+    }
+    .image {
+    width: 50%;
+    padding-left: 34px;
+    }
+  }
+   p {
+    color: #645E59;
+    font-size: 15px;
+    line-height:27px;
+    font-family: 'montserratregular';
+     }
+    .paragraph{
+      display:flex;
+      margin-bottom: 35px;
+      .left-text{
+        width:50%;
+        padding-right: 33px;
+      }
+      .right-text{
+        width:50%;
+        padding: 0 15px;
+        
+        p{
+              
+              font-size: 27px;
+              font-style: italic;
+        }
+      }
+    }
+    
+  }
+
+@media (max-width:501px) {
+.diamond {
+  .diamond-image {
+    width: 100%;
+   }
+  .diamond-para {
+ 
+    padding: 50px 15px;
+    h2{font-size: 27px;
+    line-height: 32px;}
+    .learn-more {
+    text-align: center;
+   }
+  }
+
+}
+  div#shopify-section-eduction-banner h3.title{
+  font-size: 27px;
+   padding: 0px;
+  }
+}
+
+//inner education page responsive
+@media (max-width:501px) {
+  .inner-education {
+  .image-text {
+    display:block;
+    .text{
+     width:100%;
+      }
+    .image {
+    width: 100%;
+    padding-left: 0px;
+    }
+  }
+     .paragraph{
+      display: block;
+      .left-text
+     {
+       width: 100%;
+       padding:0px;
+     }
+       .right-text {
+       width: 100%;
+         padding:0px;
+       }
+  } 
+ }
+}
+// artical section start here 
+.artical-section{
+  margin: 50px 0;
+  h2{
+    font-size: 40px;
+    color: #645E59;
+    font-family: 'frank_ruhl_libreregular';
+    margin-bottom: 30px;
+  }
+  p{
+    font-size: 16px;
+    margin-bottom: 30px;
+    strong{
+      font-size: 16px;
+      font-style: italic;
+      color: #645E59;
+    }
+  }
+  img{
+    margin-bottom: 30px;
+    width: 100%;
+  }
+  h5{
+    font-size: 30px;
+    color: #645E59;
+    font-family: 'frank_ruhl_libreregular';
+    margin-bottom: 20px;
+  }
+  strong{
+    font-size: 30px;
+    font-style: italic;
+    color: #645E59;
+  }
+  .pr-40{
+    padding-right: 40px;
+  }
+  @media only screen and (max-width: 767px){
+    h2{
+      font-size: 30px;
+    }
+    p{
+      font-size: 14px;
+      strong{
+        font-size: 14px;
+      }
+    }
+    h5{
+      font-size: 20px;
+    }
+    strong{
+      font-size: 20px;
+    }
+  }
+}
+.artical-pagination{
+  margin-top: 20px;
+  margin-bottom: 50px;
+  p{
+    font-size: 15px;
+    color: #2E2924;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+  a{
+    font-size: 20px;
+    font-family: 'frank_ruhl_libreregular';
+    color: #645E59;
+    text-decoration: underline;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 200px
+  }
+}

@@ -1,0 +1,115 @@
+{% include 'inspired-collection' %}
+
+{% schema %}
+{
+  "name": "Inspired collection",
+  "class": "inspired-collection",
+  "settings": [
+  {
+    "type": "header",
+    "content": "Header"
+  },
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Heading",
+    "default": "Collection list"
+  },
+  {
+    "type": "text",
+    "id": "sub_title",
+    "label": "Sub Title"
+  },
+  {
+    "type": "text",
+    "id": "button_text",
+    "label": "Button text"
+  },
+  {
+    "type": "url",
+    "id": "button_link",
+    "label": "Button link"
+  },
+  {
+    "type": "checkbox",
+    "id": "show_vendor",
+    "label": "Show product vendors",
+    "default": false
+  },
+  {
+    "type": "text",
+    "id": "addall_tracking",
+    "label": "Add All Products Tracking ID"
+  }
+  ],
+  "blocks": [
+  {
+    "type": "column",
+    "name": "column",
+    "settings": [
+    {
+      "type": "header",
+      "content": "Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Banner title",
+      "default": "Title"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Image alignment",
+      "default": "left",
+      "options": [
+      {
+        "value": "left",
+        "label": "Left"
+      },
+      {
+        "value": "right",
+        "label": "Right"
+      }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "product",
+      "id": "featured_product1",
+      "label": "Product 1"
+    },
+    {
+      "type": "product",
+      "id": "featured_product2",
+      "label": "Product 2"
+    },
+    {
+      "type": "product",
+      "id": "featured_product3",
+      "label": "Product 3"
+    },
+    {
+      "type": "product",
+      "id": "featured_product4",
+      "label": "Product 4"
+    }
+    ]
+  }
+  ],
+  "presets": [
+  {
+    "name": "Inspired Collection",
+    "category": "Collection"
+  }
+  ]
+}
+{% endschema %}

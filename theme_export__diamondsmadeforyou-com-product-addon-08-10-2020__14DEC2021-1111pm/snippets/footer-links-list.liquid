@@ -1,0 +1,148 @@
+<div class="container">
+  <div class="footer-links row">
+    
+     <div class="footer__location col-12 col-md-12 col-lg-3 col-xl-4 mobile-xs">
+      <section class="newsletter footer__newletter">
+        <div class="block-content container row">
+          <div class="newsletter-item col-12 col-md-12 col-lg-12 col-xl-12">
+            {% assign footer_newsletter_title		= section.settings.footer_newsletter_title %}
+            {% assign footer_newsletter_des			= section.settings.footer_newsletter_des %}
+            <h3 class="newsletter-title">{{ footer_newsletter_title }}</h3>
+            <p class="newsletter-des">{{ footer_newsletter_des }}</p>
+          </div>
+          <div class=" newsletter-item col-12 col-md-12 col-lg-12 col-xl-12">
+            {% include 'newsletter-form' %}
+          </div>
+        </div>
+
+
+        {% if section.settings.show_payment_icons %}
+
+        {% if section.settings.footer_address_code != blank %}
+        {% assign class_col = 'col-12 col-md-12 col-lg-6 col-xl-12' %}
+        {% else %}
+        {% assign class_col = 'col-12 col-md-12 col-lg-12 col-xl-12' %}
+        {% endif %}
+        <div class="{{ class_col }} payments">
+          {% assign payment_string = 'visa,visa_electron,master,maestro,american_express,solo,amazon_payments,apple_pay,bitcoin,cirrus,dankort,diners_club,discover,paypal,dogecoin,dwolla,forbrugsforeningen,interac,jcb,litecoin,stripe,sage,wallet' %}
+          {% assign methods = payment_string | split: ',' %}
+            <span class="payment-text">Accepted Payment Methods</span>
+          <ul class="payment-methods">
+            {% for method in methods %}
+            {%- assign display_current_method = method | prepend: 'payment_display_' -%}
+            {% if section.settings[display_current_method] %}
+            {%- assign current_method_icon = method | prepend: 'icon_' -%}
+            <li>
+              <img data-src="{{ section.settings[current_method_icon] | img_url: 'x36' }}" alt="{{ method }}" {% include 'lazyload' %}>
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </section>
+    </div>
+    
+    {% if section.blocks.size > 0 %}
+    <div class="footer__linklist col-12 col-md-12{% if section.settings.footer_store_location_enable %} col-lg-9 col-xl-9 footer-col-left{% else %} col-lg-6 col-xl-5{% endif %}">
+      <div class="row ">
+        {% case section.blocks.size %}
+        {% when 1 %}
+        {%- assign column_size = 'col-12' -%}
+        {% when 2 %}
+        {%- assign column_size = 'col-6 col-md-6' -%}
+        {% when 3 %}
+        {%- assign column_size = 'col-6 col-md-4' -%}
+        {% when 4 %}
+        {%- assign column_size = 'col-12 col-md-3 col-lg-3 col-xl-3' -%}
+        {% endcase %}
+
+        {% for block in section.blocks %}
+        <div class="widget {{ column_size }} link-lists">
+          {% if block.settings.title != blank %}
+          <h3 class="foot-title dropdow-mb">
+            {% include 'multilang' with block.settings.title %}
+          </h3>
+          {% endif %}
+
+          {% assign footer_linklist = block.settings.menu %}
+          {% if linklists[footer_linklist].links.size > 0 %}
+          <ul>
+            {% for link in linklists[footer_linklist].links %}
+            <li>
+              <span class="arrow-next">{% include 'arrow-next-svg'  %}</span>
+              <a href="{{ link.url}}" title="{{ link.title }}" class="foot-link">
+                {% include 'multilang' with link.title %}
+              </a>
+
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="footer__location col-12 col-md-12 col-lg-3 col-xl-4 desktop-xs">
+      <section class="newsletter footer__newletter">
+        <div class="block-content container row">
+          <div class="newsletter-item col-12 col-md-12 col-lg-12 col-xl-12">
+            {% assign footer_newsletter_title		= section.settings.footer_newsletter_title %}
+            {% assign footer_newsletter_des			= section.settings.footer_newsletter_des %}
+            <h3 class="newsletter-title">{{ footer_newsletter_title }}</h3>
+            <p class="newsletter-des">{{ footer_newsletter_des }}</p>
+          </div>
+          <div class=" newsletter-item col-12 col-md-12 col-lg-12 col-xl-12">
+            {% include 'newsletter-form' %}
+          </div>
+        </div>
+
+
+        {% if section.settings.show_payment_icons %}
+
+        {% if section.settings.footer_address_code != blank %}
+        {% assign class_col = 'col-12 col-md-12 col-lg-12 col-xl-12' %}
+        {% else %}
+        {% assign class_col = 'col-12 col-md-12 col-lg-12 col-xl-12' %}
+        {% endif %}
+        <div class="{{ class_col }} payments">
+          {% assign payment_string = 'visa,visa_electron,master,maestro,american_express,solo,amazon_payments,apple_pay,bitcoin,cirrus,dankort,diners_club,discover,paypal,dogecoin,dwolla,forbrugsforeningen,interac,jcb,litecoin,stripe,sage,wallet' %}
+          {% assign methods = payment_string | split: ',' %}
+            <span class="payment-text">Accepted Payment Methods</span>
+          <ul class="payment-methods">
+            {% for method in methods %}
+            {%- assign display_current_method = method | prepend: 'payment_display_' -%}
+            {% if section.settings[display_current_method] %}
+            {%- assign current_method_icon = method | prepend: 'icon_' -%}
+            <li>
+              <img data-src="{{ section.settings[current_method_icon] | img_url: 'x36' }}" alt="{{ method }}" {% include 'lazyload' %}>
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </section>
+    </div>
+
+    <div class="footer__location col-12 col-md-12 col-lg-3 col-xl-3">
+      <img src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/MFY_LG_Logo_Black_White-01.png?v=1597321225" alt="footer-logo">
+    </div>
+
+    {% if section.settings.footer_store_location_enable %}
+    <div class="footer__location col-12 col-md-12 col-lg-3 col-xl-3">
+      <h3 class="foot-title">
+        {{ section.settings.footer_store_location_title }}
+      </h3>
+      <div class="groups-block">
+        <p class="foot-link">{{ section.settings.footer_store_location_des }}</p>
+      </div>
+      {% if section.settings.footer_social_enable %}
+      {% include 'social-media' %} 
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>

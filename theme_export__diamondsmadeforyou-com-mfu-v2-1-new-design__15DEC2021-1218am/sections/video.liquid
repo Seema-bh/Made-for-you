@@ -1,0 +1,78 @@
+{%- case section.settings.height -%}
+  {%- when 'small' -%}
+    {%- assign mobile_height = 175 -%}
+    {%- assign desktop_height = 475 -%}
+  {%- when 'medium' -%}
+    {%- assign mobile_height = 270 -%}
+    {%- assign desktop_height = 650 -%}
+  {%- when 'large' -%}
+    {%- assign mobile_height = 375 -%}
+    {%- assign desktop_height = 775 -%}
+{%- endcase -%}
+
+{%- if section.settings.image == blank -%}
+  {% style %}
+    @media screen and (max-width: 749px) {
+      .video-section-wrapper--{{ section.id }} .video__image {
+        opacity: 0;
+      }
+    }
+  {% endstyle %}
+{%- endif -%}
+<div class="page-width" data-section-id="{{ section.id }}" data-section-type="video-section">
+  {% if section.settings.video_desktop != blank %}
+  <div class="small--hide" >
+    <div class="vimeo-video-wrapper" style="padding-top:{{ 1 | divided_by: section.settings.video_poster.aspect_ratio | times: 100}}%;">
+      <iframe src="{{ section.settings.video_desktop }}?autoplay=1&muted=1&background=1&autoplay=1&loop=1&autopause=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow=autoplay style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+    </div>
+  </div>
+  {% endif %}
+  {% if section.settings.video_poster_small != blank %}
+  <div class="medium-up--hide" >
+    <div class="vimeo-video-wrapper" style="padding-top:{{ 1 | divided_by: section.settings.video_poster_small.aspect_ratio | times: 100}}%;">
+      <iframe src="{{ section.settings.video_mobile }}?autoplay=1&muted=1&background=1&autoplay=1&loop=1&autopause=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow=autoplay style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Video",
+  "class": "index-section video-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Cover image",
+      "info": "Always shown on mobile devices"
+    },
+	{
+      "type": "image_picker",
+      "id": "video_poster",
+      "label": "Desktop poster image"
+    },
+	{
+      "type": "image_picker",
+      "id": "video_poster_small",
+      "label": "Mobile poster image"
+    },
+	{
+      "type": "textarea",
+      "id": "video_desktop",
+      "label": "Desktop video url"
+    },
+	{
+      "type": "textarea",
+      "id": "video_mobile",
+      "label": "Mobile video url"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video",
+      "category": "Video"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,52 @@
+{% if section.settings.enable_section %}
+<section class="section-spacing">
+  <div class="page-width">
+    <div class="banner-wrapper">
+      {% assign banner_image = section.settings.banner_large | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      <div class="image-wrapper absolute-image-wrapper small--hide" style="padding-top:{{ 1 | divided_by: section.settings.banner_large.aspect_ratio | times: 100 }}%;">
+        <img class="lazyload" 
+             data-src="{{ banner_image }}" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+             data-aspectratio="{{ section.settings.banner_large.aspect_ratio }}" 
+             data-sizes="auto"
+             alt="" />
+      </div>
+
+      {% assign banner_image = section.settings.banner_small | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      <div class="image-wrapper absolute-image-wrapper medium-up--hide" style="padding-top:{{ 1 | divided_by: section.settings.banner_small.aspect_ratio | times: 100 }}%;">
+        <img class="lazyload" 
+             data-src="{{ banner_image }}" 
+             data-widths="[180, 360, 375, 414, 540, 800]" 
+             data-aspectratio="{{ section.settings.banner_small.aspect_ratio }}" 
+             data-sizes="auto"
+             alt="" />
+      </div>
+
+      <div class="banner-text small--text-center">
+        {% if section.settings.sub_title != blank %}
+        <span class="sub-title">{{ section.settings.sub_title }}</span>
+        {% endif %}
+        {% if section.settings.title != blank %}
+        <h2>{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.button_label and section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="btn-arrow btn-arrow-small btn-arrow-white">
+          {{ section.settings.button_label }}
+          {% include 'icon-btn-arrow' %}
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<style>
+  .gifts-banner .banner-text h2, 
+  .gifts-banner .banner-text .sub-title, 
+  .gifts-banner .banner-text p {color: {{ section.settings.color }};}
+  .gifts-banner .banner-text .btn {
+    color: {{ section.settings.color }};
+    border-color: {{ section.settings.color }};
+  }
+</style>

@@ -1,0 +1,58 @@
+{% comment %}
+Renders a list of products from a collection
+
+Accepts:
+- collection: {Object} Collection Liquid object (required)
+
+Usage:
+{% include 'collection-grid-item', collection: collection %}
+{% endcomment %}
+{% if collection.image %}
+{%- assign collection_image = collection.image -%}
+{% elsif collection.products.first and collection.products.first.media != empty %}
+{%- assign collection_image = collection.products.first.featured_media.preview_image -%}
+{% else %}
+{% assign collection_image = blank %}
+{% endif %}
+
+<div class="collection_list">
+  <a href="{% if collection.products == empty %}#{% else %}{{ collection.url }}{% endif %}" class="collection-grid">
+    {% if image_colle != blank %}
+    <div class="collection-item lazyload js">
+      <img class="lazyload" data-src="{{ image_colle }}" data-sizes="auto">
+    </div>
+    {% else %}
+    {% unless collection_image == blank %}
+    <div class="collection-item lazyload js"
+    data-bgset="{% include 'bgset', image: collection_image %}"
+    data-sizes="auto"
+    data-parent-fit="cover"
+    data-image-loading-animation></div>
+    <noscript>
+      <div class="collection-grid-item__overlay" style="background-image: url('{{ collection_image | img_url: '1024x1024' }}')"></div>
+    </noscript>
+    {% else %}
+    {% if collection == empty %}
+    <div class="collection-grid-item__overlay">
+      {% capture current %}{% cycle 1, 2, 3 %}{% endcapture %}
+      {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+    {% else %}
+    <div class="collection-grid-item__overlay" style="background-image: url('{{ collection_image | img_url: '1024x1024' }}')"></div>
+    {% endif %}
+    {% endunless %}
+    {% endif %}
+    
+    <div class="title-wrapper">
+      <div class="collection-title h3 text-center">
+        {% if btn_name != blank %}
+        {{ btn_name }}
+        {% elsif collection.title == blank %}
+        {{ 'homepage.onboarding.collection_title' | t }}
+        {% else %}
+        {{ collection.title }}
+        {% endif %}
+      </div>
+    </div>
+  </a>
+</div>

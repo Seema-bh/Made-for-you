@@ -1,0 +1,5 @@
+
+{%- capture page-style -%}theme-style-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}.scss.css {%-endcapture-%}
+{{ 'vendor.min.css' | asset_url | stylesheet_tag }}
+{{ 'theme-styles.scss.css' | asset_url | stylesheet_tag }}
+<!-- {{ page-style | asset_url | stylesheet_tag }} -->

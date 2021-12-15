@@ -1,0 +1,63 @@
+{% if id == 'schema' %}
+
+{%- if collection.handle == 'mfy-x-anika-lab-grown-diamond-rings' or collection.handle == 'mfy-x-anika-lab-grown-diamond-necklaces-pendants' or collection.handle == 'mfy-x-anika-lab-grown-diamond-earrings' or collection.handle == 'mfy-x-anika-lab-grown-diamond-bracelets' or collection.handle == 'anikas-charms' or collection.handle == 'anikas-earth-sky' or collection.handle == 'anikas-seed' -%}
+,{
+  "@type": "ListItem",
+  "position": 2,
+  "name": "MFY x Anika Collection",
+  "item": "{{ shop.url }}/collections/anikas-diamond-jewelry-collection/"
+}
+{%- elsif collection.handle == 'lab-grown-diamond-illusion-rings' or collection.handle == 'lab-grown-diamond-engagement-rings' or collection.handle == 'lab-grown-diamond-eternity-rings' or collection.handle == 'lab-grown-diamond-statement-rings' or collection.handle == 'lab-grown-diamond-heart-rings' -%}
+,{
+  "@type": "ListItem",
+  "position": 2,
+  "name": "Rings",
+  "item": "{{ shop.url }}/collections/lab-grown-diamond-rings/"
+}
+{%- elsif collection.handle == 'necklaces-charms' or collection.handle == 'necklaces-pendants-cluster' or collection.handle == 'three-stone-lab-grown-diamond-necklace-pendants' or collection.handle == 'lab-grown-diamond-heart-pendants-necklaces' or collection.handle == 'necklaces-pendants-cross' -%}
+,{
+  "@type": "ListItem",
+  "position": 2,
+  "name": "Necklaces",
+  "item": "{{ shop.url }}/collections/lab-grown-diamond-necklaces-pendants/"
+}
+{%- elsif collection.handle == 'lab-grown-diamond-hoop-earrings' or collection.handle == 'lab-grown-diamond-heart-earrings' or collection.handle == 'lab-grown-diamond-stud-earrings' or collection.handle == 'lab-grown-diamond-cluster-earrings' or collection.handle == 'lab-grown-diamond-three-stone-earrings' -%}
+,{
+  "@type": "ListItem",
+  "position": 2,
+  "name": "Earrings",
+  "item": "{{ shop.url }}/collections/lab-grown-diamond-earrings/"
+}
+{%- elsif collection.handle == 'lab-grown-diamond-tennis-bracelets' or collection.handle == 'lab-grown-diamond-bolo-bracelets' or collection.handle == 'lab-grown-diamond-classic-bracelets' or collection.handle == 'lab-grown-diamond-chain-bracelets' -%}
+,{
+  "@type": "ListItem",
+  "position": 2,
+  "name": "Bracelets",
+  "item": "{{ shop.url }}/collections/lab-grown-diamond-bracelets-bangles/"
+}
+{%- else -%}
+,{
+  "@type": "ListItem",
+  "position": 2,
+  "name": "Shop",
+  "item": "{{ shop.url }}/collections/all/"
+}
+{%- endif -%}
+
+{% else %}
+
+{%- if collection.handle == 'mfy-x-anika-lab-grown-diamond-rings' or collection.handle == 'mfy-x-anika-lab-grown-diamond-necklaces-pendants' or collection.handle == 'mfy-x-anika-lab-grown-diamond-earrings' or collection.handle == 'mfy-x-anika-lab-grown-diamond-bracelets' or collection.handle == 'anikas-charms' or collection.handle == 'anikas-earth-sky' or collection.handle == 'anikas-seed' -%}
+<a href="/collections/anikas-diamond-jewelry-collection/">MFY x Anika Collection</a>
+{%- elsif collection.handle == 'lab-grown-diamond-illusion-rings' or collection.handle == 'lab-grown-diamond-engagement-rings' or collection.handle == 'lab-grown-diamond-eternity-rings' or collection.handle == 'lab-grown-diamond-statement-rings' or collection.handle == 'lab-grown-diamond-heart-rings' -%}
+<a href="/collections/lab-grown-diamond-rings/">Rings</a>
+{%- elsif collection.handle == 'necklaces-charms' or collection.handle == 'necklaces-pendants-cluster' or collection.handle == 'three-stone-lab-grown-diamond-necklace-pendants' or collection.handle == 'lab-grown-diamond-heart-pendants-necklaces' or collection.handle == 'necklaces-pendants-cross' -%}
+<a href="/collections/lab-grown-diamond-necklaces-pendants/">Necklaces</a>
+{%- elsif collection.handle == 'lab-grown-diamond-hoop-earrings' or collection.handle == 'lab-grown-diamond-heart-earrings' or collection.handle == 'lab-grown-diamond-stud-earrings' or collection.handle == 'lab-grown-diamond-cluster-earrings' or collection.handle == 'lab-grown-diamond-three-stone-earrings' -%}
+<a href="/collections/lab-grown-diamond-earrings/">Earrings</a>
+{%- elsif collection.handle == 'lab-grown-diamond-tennis-bracelets' or collection.handle == 'lab-grown-diamond-bolo-bracelets' or collection.handle == 'lab-grown-diamond-classic-bracelets' or collection.handle == 'lab-grown-diamond-chain-bracelets' -%}
+<a href="/collections/lab-grown-diamond-bracelets-bangles/">Bracelets</a>
+{%- else -%}
+<a href="/collections/all/">Shop</a>
+{%- endif -%}
+
+{% endif %}

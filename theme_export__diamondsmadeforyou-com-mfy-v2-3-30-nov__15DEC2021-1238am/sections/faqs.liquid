@@ -1,0 +1,147 @@
+{% if section.settings.enable_section %}
+<div class="page-banner">
+  <div class="page-width">
+    {% assign banner_image = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+    <div class="image-wrapper absolute-image-wrapper" style="padding-top:{{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;">
+      <img class="lazyload" 
+           data-src="{{ banner_image }}" 
+           data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+           data-aspectratio="{{ section.settings.image.aspect_ratio }}" 
+           data-sizes="auto"
+           alt="" />
+    </div>
+  </div>
+</div>
+<div class="page-width">
+  <div class="section-header">
+    {% if section.settings.title != blank %}
+    <h1 class="text-center">{{ section.settings.title }}</h1>
+    {% else %}
+    <h1 class="text-center">{{ page.title }}</h1>
+    {% endif %}
+    {% if section.settings.text != blank %}
+    <div class="text">{{ section.settings.text }}</div>
+    {% endif %}
+  </div>
+  <div class="faq-wrapper accordion">
+    {%- for block in section.blocks -%}
+    {%- case block.type -%}
+    {%- when 'faq_title' -%}
+    {%- if block.settings.title != blank -%}
+    <h2 class="faq-title">
+      {%- if block.settings.title_icon != blank -%}{{ block.settings.title_icon }}{%- endif -%}
+      {{ block.settings.title }}
+    </h2>
+    {%- endif -%}
+    {%- when 'faq' -%}
+    <div class="acc-block">
+      {%- if block.settings.question != blank -%}
+      <h3 class="acc-title">
+        {{ block.settings.question }}
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="26.492" height="26.492" viewBox="0 0 26.492 26.492" class="minus-icon">
+            <g id="Group_123789" data-name="Group 123789" transform="translate(-1244 -723)">
+              <rect id="Rectangle_24108" data-name="Rectangle 24108" width="26.492" height="26.492" transform="translate(1244 723)" opacity="0"/>
+              <g id="Group_94331" data-name="Group 94331" transform="translate(1246.073 725.104)">
+                <line id="Line_259" data-name="Line 259" x2="21.194" transform="translate(0 10.597)" fill="none" stroke="#2b3134" stroke-linecap="round" stroke-width="1"/>
+              </g>
+            </g>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="26.492" height="26.492" viewBox="0 0 26.492 26.492" class="plus-icon">
+            <g id="Group_136779" data-name="Group 136779" transform="translate(-1244 -723)">
+              <rect id="Rectangle_24108" data-name="Rectangle 24108" width="26.492" height="26.492" transform="translate(1244 723)" opacity="0"/>
+              <g id="Group_94331" data-name="Group 94331" transform="translate(1246.073 725.104)">
+                <line id="Line_258" data-name="Line 258" y2="21.194" transform="translate(10.597)" fill="none" stroke="#2b3134" stroke-linecap="round" stroke-width="1"/>
+                <line id="Line_259" data-name="Line 259" x2="21.194" transform="translate(0 10.597)" fill="none" stroke="#2b3134" stroke-linecap="round" stroke-width="1"/>
+              </g>
+            </g>
+          </svg>
+        </span>
+      </h3>
+      {%- endif -%}
+      {%- if block.settings.answer != blank -%}
+      <div class="acc-description">
+        {{ block.settings.answer }}
+      </div>
+      {%- endif -%}
+    </div>
+    {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "FAQ's",
+	"class": "faqs-section",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_section",
+        "label": "Enable section",
+		"default": true
+      },
+	  {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image",
+        "info": "Recommended size: 1240px * 376px"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+		"default": "Title"
+      },
+	  {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      }
+	],
+	"blocks": [
+      {
+        "type": "faq_title",
+        "name": "FAQ Title",
+        "settings": [
+          {
+          	"type": "text",
+			"id": "title",
+			"label": "Title",
+			"default": "Title"
+          },
+		  {
+          	"type": "textarea",
+			"id": "title_icon",
+			"label": "Title icon"
+          }
+        ]
+      },
+	  {
+        "type": "faq",
+        "name": "FAQ",
+        "settings": [
+          {
+          	"type": "text",
+			"id": "question",
+			"label": "Question",
+			"default": "Question?"
+          },
+		  {
+          	"type": "richtext",
+			"id": "answer",
+			"label": "Answer",
+			"default": "<p>Answer!</p>"
+          }
+        ]
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

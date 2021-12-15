@@ -1,0 +1,45 @@
+<div class="footer-top-div custom__footer">
+  <div class="page-width">
+    <div class="footer_top_content">
+      <h3>Popular Searches</h3>
+      {% if collection.handle  == 'mens-diamond-jewelry' %}
+      <ul>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+      </ul>
+
+      {% elsif collection.handle == 'dark-side-diamond-jewelry' %}
+      <ul>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+      </ul>
+
+      {% else %}
+
+      <ul>
+        <li><a href="/collections/diamond-earrings/">Diamond Earrings</a></li>
+        <li><a href="/collections/diamond-necklaces-pendants/">Diamond Necklace</a></li>
+        <li><a href="/collections/anikas-charms/">Charms</a></li>
+        <li><a href="/collections/diamond-bracelets-bangles/">Bracelets</a></li>
+        <li><a href="/collections/lab-created-diamond-rings/">Rings</a></li>
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+</div>

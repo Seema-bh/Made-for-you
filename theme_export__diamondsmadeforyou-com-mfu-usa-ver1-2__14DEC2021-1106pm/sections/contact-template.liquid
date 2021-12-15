@@ -1,0 +1,194 @@
+{% comment %}
+This page template is a requirement if you are submitting your theme to the Shopify Theme Store.
+Be sure to select page.contact as the template from the admin page to have this template take effect.
+
+For information on adding more fields, visit:
+- http://docs.shopify.com/support/configuration/store-customization/adding-fields-to-the-liquid-contact-form
+{% endcomment %}
+
+{% comment %}
+Google Map
+{% endcomment %}
+
+<div class="contact-us-page">
+  <div class="container">
+
+    {% if page.content != blank %}
+    <div class="rte des">
+      {{ page.content }}
+    </div>
+    {% endif %}
+
+    <div class="wrapper">
+      <div class="row">
+        <div class="contact-page-section">
+          {% if section.settings.display_location %}
+          <div class="col-right col-md-5 col-lg-4 col-xl-4">
+            {% if section.settings.title_location != blank %}
+            <h4 class="title_location">
+              {% include 'multilang' with section.settings.title_location %}
+            </h4>
+            {% endif %}
+            {% if section.settings.location_code != blank %}
+            {% if settings.enable_multilang %}
+            <div class="location lang1">
+              {{ section.settings.location_code | split: '|' | first }}
+            </div>
+            <div class="location lang2">
+              {{ section.settings.location_code | split: '|' | last }}
+            </div>
+            {% else %}
+            <div class="location">
+              {{ section.settings.location_code | split: '|' | first }}
+            </div>
+            {% endif %}
+            {% endif %}
+          </div>
+          {% endif %}
+
+          <div class="col-md-7 col-lg-8 col-xl-8 form-contact">
+            <header class="page-header">
+              {% if settings.enable_multilang and section.settings.contact_title contains '|' %}
+              <h2 class="lang1">
+                {{ section.settings.contact_title | split: '|' | first }}
+              </h2>
+              <h2 class="lang2">
+                {{ section.settings.contact_title | split: '|' | last }}
+              </h2>
+              {% else %}
+              <h2>
+                {{ section.settings.contact_title | split: '|' | first }}
+              </h2>
+              {% endif %}
+              <span class="line"></span>
+            </header>
+            {% if settings.enable_multilang %}
+            <div class="lang1 rte des">
+              {{ section.settings.contact_text_desc | split: '[lang2]' | first }}
+            </div>
+            <div class="lang2 rte des">
+              {{ section.settings.contact_text_desc | split: '[lang2]' | last }}
+            </div>
+            {% else %}
+            <div class="rte des">
+              {{ section.settings.contact_text_desc | split: '[lang2]' | first }}
+            </div>
+            {% endif %}
+
+            {% form 'contact' %}
+
+            {% comment %}
+            Successful message
+            {% endcomment %}
+
+            {% if form.posted_successfully? %}
+            <p class="note form-success" {% if settings.enable_multilang %}data-translate="contact.form.post_success"{% endif %}>
+              {{ 'contact.form.post_success' | t }}
+            </p>
+            {% endif %}
+
+            {{ form.errors | default_errors }}
+
+            <div id="contactFormWrapper">
+              <div class="flex">
+                <div class="form-group">
+                  <input type="text" id="contactFormName" name="contact[name]" autocapitalize="words" placeholder="{{ section.settings.contact_your_name }}">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="contactFormName" name="contact[name]" autocapitalize="words" placeholder="{{ section.settings.contact_your_last_name }}">
+                </div>
+              </div>
+
+              <div class="flex">
+                <div class="form-group">
+                  <input type="email" name="contact[email]" id="contactFormEmail" autocorrect="off" autocapitalize="off" placeholder="{{ section.settings.contact_your_email }}">
+                </div>
+
+                <div class="form-group">
+                  <input type="tel" name="contact[phone]" id="contactFormPhone" pattern="[0-9]*" placeholder="{{ section.settings.contact_phone_number }}">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <textarea rows="4" name="contact[body]" id="contactFormMessage" {% if settings.enable_multilang %}data-translate="contact.form.placeholder_message" translate-item="placeholder"{%endif%} placeholder="Message"></textarea>
+              </div>
+
+              <input type="submit" class="btn btn-one" {% if settings.enable_multilang %}data-translate="contact.form.submit_contact"{%endif%} value="SUBMIT">
+            </div>
+            {% endform %}
+          </div>
+        </div>   
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+"name": "Contact Page",
+"settings": [
+{
+"type": "checkbox",
+"id": "display_google_map",
+"label": "Display Google Map?",
+"default": true
+},
+{
+"type": "textarea",
+"id": "google_map_code",
+"label": "Google Map Code"
+},
+{
+"type": "text",
+"id": "contact_title",
+"label": "Title",
+"default": "Drop Us A Line"
+},
+{
+"type": "textarea",
+"id": "contact_text_desc",
+"label": "Text Description",
+"info":"Use [lang2] to separate multiple language"
+},
+{
+"type": "text",
+"id": "contact_your_name",
+"label": "Placeholder text in Your Name"
+},
+{
+"type": "text",
+"id": "contact_your_last_name",
+"label": "Placeholder text in Your Name"
+},
+{
+"type": "text",
+"id": "contact_phone_number",
+"label": "Placeholder text in Your Phone"
+},
+{
+"type": "text",
+"id": "contact_your_email",
+"label": "Placeholder text in Your Email"
+},
+{
+"type": "checkbox",
+"id": "display_location",
+"label": "Display Location?",
+"default": true
+},
+{
+"type":"text",
+"id":"title_location",
+"label":"Title",
+"default":"Please do get in touch!"
+},
+{
+"type": "textarea",
+"id": "location_code",
+"label": "Location Code"
+}
+]
+}
+{% endschema %}

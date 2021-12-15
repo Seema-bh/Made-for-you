@@ -1,0 +1,169 @@
+<div class="top anouncement-test">
+  <div class="ann_header_top">
+    <div class="container">
+      <div class="header_message">
+        <span class="first-msg"> <a href="/pages/about-us">Made For You Lab-Grown Diamonds<br>
+          Powered and fulfilled by Renaissance Global</a></span><br>
+      </div>
+    </div>
+  </div>
+  <div class="anouncement-test">
+    {% include 'anouncement-bar' %} 
+  </div>
+  <div class="header-panel-top">
+    <div class="container-padd60">
+      <ul>
+        <div class="right-col">
+          {% if section.settings.display_customer_service and section.settings.customer_service_text != blank %}
+          <li>
+            <div class="cus-ser-text">
+            <span class="icon-call"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"><defs><style>.a{fill:rgba(255,255,255,0);}.b{fill:#aa7f58;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.2px;fill-rule:evenodd;}</style></defs><g transform="translate(-1073 -54)"><rect class="a" width="21" height="21" transform="translate(1073 54)"/><path class="b" d="M10484.368,555.311h0Zm0,.037,1.1,1.743c-.11.125-.276.25-.386.384-.165.115-.276.237-.441.373a1.06,1.06,0,0,0-.222,1.3,8.777,8.777,0,0,0,3.809,3.6,1.06,1.06,0,0,0,1.269-.312l.773-.965h0c.441.273,1.049.644,1.656.957a2.14,2.14,0,0,1-.607,1.19,2,2,0,0,1-1.049.394,4.852,4.852,0,0,1-1.766-.206,15.377,15.377,0,0,1-2.374-1.562,7.806,7.806,0,0,1-2.813-3.6,2.832,2.832,0,0,1,.056-2.282A2.394,2.394,0,0,1,10484.368,555.348Zm-.386-1.031a1.052,1.052,0,0,1,1.324.406l1.159,1.823a1.1,1.1,0,0,1-.11,1.277c-.166.158-.442.353-.607.534-.11.1-.22.194-.33.278a7.452,7.452,0,0,0,3.255,3.094l.717-.938a1.093,1.093,0,0,1,1.435-.255c.442.269,1.05.632,1.6.935a1,1,0,0,1,.551,1.1,2.846,2.846,0,0,1-.938,1.9,3.081,3.081,0,0,1-1.654.647,5.457,5.457,0,0,1-2.208-.26c-.057-.016-.111-.031-.111-.052a15.868,15.868,0,0,1-2.647-1.688,9.254,9.254,0,0,1-3.146-4.134,3.741,3.741,0,0,1,.109-3.116A3.457,3.457,0,0,1,10483.982,554.317Z" transform="translate(-9403.523 -494.618)"/><path class="b" d="M10493.725,554.05a.532.532,0,0,0-.718.271.569.569,0,0,0,.276.731,6.892,6.892,0,0,1,3.421,3.214.538.538,0,0,0,.718.283.561.561,0,0,0,.277-.726A7.954,7.954,0,0,0,10493.725,554.05Zm-.386,1.955a.6.6,0,0,0-.774.246.585.585,0,0,0,.276.74,4.379,4.379,0,0,1,1.16.792,3.78,3.78,0,0,1,.771,1.166.6.6,0,0,0,.773.246.517.517,0,0,0,.221-.739,5.307,5.307,0,0,0-.994-1.452A5.613,5.613,0,0,0,10493.339,556Z" transform="translate(-9408.242 -494.52)"/></g></svg></span>
+            {% include 'multilang' with section.settings.customer_service_text %}
+            </div>
+          </li>
+          {% endif %}
+          {% if shop.customer_accounts_enabled %}
+          <li>
+            <div class="header-links">
+              <div class="customer-links">
+                {% if customer %}
+                <a class="acc-links text-hover acc-logout" id="customer_logout_link" href="/account/logout" {% if settings.enable_multilang %}data-translate="layout.customer.log_out"{% endif %}>
+                  {{ 'layout.customer.log_out' | t }}
+                </a>
+                <span> / </span>
+                <a class="acc-links text-hover acc-title" href="/account"{% if settings.enable_multilang %} data-translate="customer.account.title"{% endif %}>
+                  {{ 'customer.account.title' | t }}
+                </a>
+                {% else %}  
+
+                <a data-dropdown-user class="acc-links text-hover acc-sign-in" id="customer_login_link" href="/account/login" {% if settings.enable_multilang %}data-translate="customer.login.sign_in"{% endif %}>
+                  {{ 'customer.login.sign_in' | t }}
+                </a>
+                <span class="or-text"{% if settings.enable_multilang %} data-translate="wishlist.general.or"{% endif %}>
+                  {{ 'wishlist.general.or' | t }}
+                </span>
+                <a class="acc-links text-hover acc-regis" id="customer_register_link" href="/account/register"{% if settings.enable_multilang %} data-translate="layout.customer.create_account"{% endif %}>
+                  {{ 'layout.customer.create_account' | t }}
+                </a>
+                {% endif %}     
+              </div>
+            </div>
+          </li>
+          {% endif %}
+          {% comment %}
+          <li>
+            {% if settings.enable_multilang %}
+            <div class="lang-currency-groups">
+              {% include 'new-language-picker' %}
+            </div>
+            {% endif %}
+          </li>
+
+          <li>
+            {% if settings.enable_multiple_currencies or settings.enable_shopify_payments_currencies  %}
+            <div class="lang-currency-groups">
+              {% include 'new-currency-picker' %}
+            </div>
+            {% endif %}
+          </li>
+          {% endcomment %}
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+"name": "anouncment and curency",
+"settings": [
+{
+"type": "header",
+"content": "Header Top"
+},
+{
+"type": "checkbox",
+"id": "display_header_top",
+"label": "Display Header Top?",
+"default": true
+},
+{
+"type": "textarea",
+"id": "top_message_text",
+"label": "Top Message Text",
+"default": "Summer Sale up to 60% OFF selected items"
+},
+{
+"type": "color",
+"id": "bg_header_top",
+"label": "Background Color",
+"default": "#4f4c56"
+},
+{
+"type": "color",
+"id": "text_header_top_color",
+"label": "Text Color",
+"default": "#fff"
+},{
+"type": "header",
+"content": "Header Bottom"
+},
+{
+"type": "color",
+"id": "bg_header_bottom_color",
+"label": "Background Color",
+"default": "#37353c"
+},
+{
+"type": "color",
+"id": "header_bottom_color",
+"label": "Header Bottom Color ",
+"default": "#fff"
+},
+
+{
+"type": "checkbox",
+"id": "display_customer_service",
+"label": "Display Customer Service?",
+"default": true
+},
+{
+"type": "textarea",
+"id": "customer_service_text",
+"label": "Customer Service Text",
+"default": "(1800) 000 8808 or Contact us",
+"info": "======================="
+},
+{
+"type": "checkbox",
+"id": "display_free_shipping",
+"label": "Display Free Shipping?",
+"default": true
+},
+{
+"type": "textarea",
+"id": "free_shipping_text1",
+"label": "Free Shipping Text Top",
+"default": "Free Shipping On All Orders."
+},
+{
+"type": "textarea",
+"id": "free_shipping_text2",
+"label": "Free Shipping Text Button",
+"default": "No Minimum Purchase"
+},
+{
+"type":"color",
+"id":"color_border_freeshipping",
+"label":" Color Border",
+"default":"#87868a"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

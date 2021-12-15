@@ -1,0 +1,55 @@
+{% comment %} Newsletter {% endcomment %}
+{% assign bg_newsletter_color					=	section.settings.bg_newsletter_color %}
+{% assign footer_newsletter_title_color			=	section.settings.footer_newsletter_title_color %}
+{% assign footer_newsletter_des_color			=	section.settings.footer_newsletter_des_color %}
+
+{% comment %} Newsletter Form {% endcomment %}
+{% assign footer_newsletter_input_bgcolor		=	section.settings.footer_newsletter_input_bgcolor %}
+{% assign footer_newsletter_input_color			=	section.settings.footer_newsletter_input_color %}
+{% assign footer_newsletter_input_bordercolor	=	section.settings.footer_newsletter_input_bordercolor %}
+{% assign footer_newsletter_btn_bgcolor			=	section.settings.footer_newsletter_btn_bgcolor %}
+{% assign footer_newsletter_btn_color			=	section.settings.footer_newsletter_btn_color %}
+{% assign footer_newsletter_btn_bgcolor_hover			=	section.settings.footer_newsletter_btn_bgcolor_hover %}
+{% assign footer_newsletter_btn_color_hover			=	section.settings.footer_newsletter_btn_color_hover %}
+
+{% comment %} linklist wrapper {% endcomment %}
+{% assign footer_linklist_bgcolor				=	section.settings.footer_linklist_bgcolor %}
+{% assign footer_linklist_color					=	section.settings.footer_linklist_color %}
+{% assign footer_linklist_color_title					=	section.settings.footer_linklist_color_title %}
+{% assign soicial_color					=	section.settings.soicial_color %}
+{% assign soicial_color_hv					=	section.settings.soicial_color_hv %}
+
+
+
+
+{% comment %} Footer bottom {% endcomment %}
+{% assign footer_payment_bgcolor				=	section.settings.footer_payment_bgcolor %}
+{% assign footer_payment_color					=	section.settings.footer_payment_color %}
+
+<style>
+  .footer__newletter { background-color: {{ bg_newsletter_color }} }
+  .footer__newletter .footer-title { color: {{ footer_newsletter_title_color }} }
+  .footer__newletter p { color: {{ footer_newsletter_des_color }} }
+  .footer__newletter .input-group .input-group-field { color: {{ footer_newsletter_input_color }}; background-color: {{ footer_newsletter_input_bgcolor }}; border: 1px solid {{ footer_newsletter_input_bordercolor }}; border-right: 0}
+  .footer__newletter .input-group .input-group-field::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: {{ footer_newsletter_input_color }};
+      opacity: 1; /* Firefox */
+    }
+  .footer__newletter .btn { background-color: {{ footer_newsletter_btn_bgcolor }}; color: {{ footer_newsletter_btn_color }};min-width:154px; }
+  .footer__newletter .btn:hover { background-color: {{ footer_newsletter_btn_bgcolor_hover }}; color: {{ footer_newsletter_btn_color_hover }} }
+  
+  .footer__main { background-color: {{ footer_linklist_bgcolor }}; color: {{ footer_linklist_color }} }
+  
+   .site-footer .footer-links .foot-title{color:{{footer_linklist_color_title}}}
+  
+  .site-footer .footer-links li, .site-footer .footer-links li a, .site-footer .footer-links p  { color: {{ footer_linklist_color | color_modify: 'alpha', 0.8 }} }
+  .social-icons li a{color:{{soicial_color}}!important}
+  .social-icons li a:hover{color:{{soicial_color_hv}}!important}
+  
+  .foot-link:hover > span:before { background-color: {{ footer_linklist_color }} }
+  
+  .footer__location .social-icons a { color: {{ footer_linklist_color }} }
+  
+  .footer__bottom { background-color: {{ footer_payment_bgcolor }} }
+  address p, address a { color: {{ footer_payment_color }} }
+</style>

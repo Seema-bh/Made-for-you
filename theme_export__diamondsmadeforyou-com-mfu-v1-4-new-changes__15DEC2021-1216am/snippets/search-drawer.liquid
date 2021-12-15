@@ -1,0 +1,40 @@
+<div id="SearchDrawer" class="search-bar drawer drawer--top critical-hidden" role="dialog" aria-modal="true" aria-label="{{ 'general.search.placeholder' | t }}" data-predictive-search-drawer>
+  <div class="search-bar__interior">
+    <div class="search-form__container" data-search-form-container>
+      <form class="search-form search-bar__form" action="{{ routes.search_url }}" method="get" role="search">
+        <div class="search-form__input-wrapper">
+          <input
+          type="text"
+          name="q"
+          placeholder="{{ 'general.search.placeholder' | t }}"
+          role="combobox"
+          aria-autocomplete="list"
+          aria-owns="predictive-search-results"
+          aria-expanded="false"
+          aria-label="{{ 'general.search.placeholder' | t }}"
+          aria-haspopup="listbox"
+          class="search-form__input search-bar__input"
+          data-predictive-search-drawer-input
+          data-base-url="{{ routes.search_url }}"
+          />
+          <input type="hidden" name="options[prefix]" value="last" aria-hidden="true" />
+          <div class="predictive-search-wrapper predictive-search-wrapper--drawer" data-predictive-search-mount="drawer"></div>
+        </div>
+        
+        <button class="search-bar__submit search-form__submit"
+        type="submit"
+        data-search-form-submit>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-search-black icon--full-color" viewBox="0 0 22 22"><defs><style>.icon-search-black .z{fill:#000;opacity:0;}.icon-search-black .y,.icon-search-black .x{fill:none;stroke:#000;stroke-miterlimit:10;}.icon-search-black .x{stroke-linecap:round;stroke-linejoin:round;}</style></defs><g transform="translate(-23 -63)"><rect class="z" width="22" height="22" transform="translate(23 63)"/><g transform="translate(25 64.739)"><path class="y" d="M1.353,0,6.492,5.138A.957.957,0,0,1,5.139,6.492L0,1.353" transform="translate(11.205 11.206)"/><path class="x" d="M13.976,6.988A6.988,6.988,0,1,1,6.987,0,6.988,6.988,0,0,1,13.976,6.988Z" transform="translate(0 0)"/><path class="x" d="M5.208,0A5.031,5.031,0,0,0,0,5.208" transform="translate(2.234 2.176)"/></g></g></svg>
+        <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
+      </button>
+    </form>
+    
+    <div class="search-bar__actions">
+      <button type="button" class="btn--link search-bar__close js-drawer-close">
+        {% include 'icon-close' %}
+        <span class="icon__fallback-text">{{ 'general.search.close' | t }}</span>
+      </button>
+    </div>
+  </div>
+</div>
+</div>

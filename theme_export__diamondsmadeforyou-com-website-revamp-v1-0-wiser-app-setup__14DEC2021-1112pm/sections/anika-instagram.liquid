@@ -1,0 +1,54 @@
+<div class="page-width insta-feed">
+  {% if section.settings.title != blank or section.settings.sub_title != blank %}
+  <div class="section-header text-center">
+    {% if section.settings.title != blank %}
+    <h2>{{section.settings.title}}</h2>
+    {% endif %}
+    {% if section.settings.sub_title != blank %}
+    <p>{{ section.settings.sub_title  }}</p>
+    {% endif %}
+  </div>
+  {% endif %}
+  <div id="instagram-feed-box"></div>
+</div>
+{% schema %}
+{
+  "name": "Instagram Feed",
+  "class": "index-section instagram-section",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Heading",
+    "default": {
+      "cs": "Obrázek s textem",
+      "da": "Billede med tekst",
+      "de": "Foto mit Text",
+      "en": "Image with text",
+      "es": "Imagen con texto",
+      "fi": "Kuva tekstillä",
+      "fr": "Image avec texte",
+      "it": "Immagine con testo",
+      "ja": "テキスト付き画像",
+      "ko": "텍스트 포함 이미지",
+      "nb": "Bilde med tekst",
+      "nl": "Afbeelding met tekst",
+      "pl": "Obraz z tekstem",
+      "pt-BR": "Imagem com texto",
+      "pt-PT": "Imagem com texto",
+      "sv": "Bild med text",
+      "th": "รูปภาพพร้อมข้อความ",
+      "tr": "Metin içeren görsel",
+      "vi": "Hình ảnh có chữ",
+      "zh-CN": "带文本图片",
+      "zh-TW": "附文字的圖片"
+    }
+  },
+  {
+    "type": "text",
+    "id": "sub_title",
+    "label": "Sub heading"
+  }
+  ]
+}
+{% endschema %}

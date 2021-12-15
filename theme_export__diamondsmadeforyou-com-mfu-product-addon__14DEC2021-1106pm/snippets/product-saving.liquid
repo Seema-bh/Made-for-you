@@ -1,0 +1,56 @@
+{% assign totaldiamondweightcttw = product.metafields.Product['Total Diamond Weight Cttw '] | plus:0 %}
+{% assign saveWater = totaldiamondweightcttw | times: 45 %}
+{% assign saveEarth = totaldiamondweightcttw | times: 5280 %}
+{% assign saveAir = totaldiamondweightcttw | times: 57000 %}
+{% if totaldiamondweightcttw < 0.5  %}
+{% assign saveAmount = product.price | times: 0.4 | money %}
+{% else %}
+{% assign saveAmount = product.price | times: 0.5 | money %}
+{% endif %}
+
+<div class="product-saving">
+  <p>By buying this product, you will save approx.</p>
+  <div class="saving-wrapper">
+    <div class="saving-grid">
+      <span class="number">
+        {{ saveEarth }}
+      </span>
+      <span class="text">
+        Lbs. of mineral waste
+      </span>
+    </div>
+    <div class="saving-grid">
+      <span class="number">
+        {{ saveWater }}
+      </span>
+      <span class="text">
+        Gallons of water
+      </span>
+    </div>
+    <div class="saving-grid">
+      <span class="number">
+        {{ saveAir }}
+      </span>
+      <span class="text">
+        Grams of Carbon Emissions   
+      </span>
+    </div>
+    <div class="saving-grid">
+      <span class="number">
+        {{ saveAmount }}
+      </span>
+      <span class="text">
+        Based on equiv. mined diamond cost
+      </span>
+    </div>
+  </div>
+  <div class="info-icon">
+    <a href="javascript:void(0);" class="showPopup">
+      Know more
+    </a>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="10" cy="10" r="9" stroke="#181617" stroke-width="2"></circle>
+      <path d="M8.702 12.844V15H10.9V12.844H8.702ZM6.448 8.224H8.506C8.506 7.972 8.534 7.73867 8.59 7.524C8.646 7.3 8.73 7.10867 8.842 6.95C8.96333 6.782 9.11267 6.65133 9.29 6.558C9.47667 6.45533 9.696 6.404 9.948 6.404C10.3213 6.404 10.6107 6.50667 10.816 6.712C11.0307 6.91733 11.138 7.23467 11.138 7.664C11.1473 7.916 11.1007 8.126 10.998 8.294C10.9047 8.462 10.7787 8.616 10.62 8.756C10.4613 8.896 10.2887 9.036 10.102 9.176C9.91533 9.316 9.738 9.484 9.57 9.68C9.402 9.86667 9.25267 10.0953 9.122 10.366C9.00067 10.6367 8.926 10.9727 8.898 11.374V12.004H10.788V11.472C10.8253 11.192 10.914 10.9587 11.054 10.772C11.2033 10.5853 11.3713 10.422 11.558 10.282C11.7447 10.1327 11.9407 9.988 12.146 9.848C12.3607 9.69867 12.552 9.52133 12.72 9.316C12.8973 9.11067 13.042 8.86333 13.154 8.574C13.2753 8.28467 13.336 7.916 13.336 7.468C13.336 7.19733 13.2753 6.908 13.154 6.6C13.042 6.28267 12.8507 5.98867 12.58 5.718C12.3093 5.44733 11.95 5.22333 11.502 5.046C11.0633 4.85933 10.5127 4.766 9.85 4.766C9.33667 4.766 8.87 4.85467 8.45 5.032C8.03933 5.2 7.68467 5.438 7.386 5.746C7.09667 6.054 6.868 6.418 6.7 6.838C6.54133 7.258 6.45733 7.72 6.448 8.224Z" fill="#fff"></path>
+    </svg>
+  </div>
+</div>

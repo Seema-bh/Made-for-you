@@ -1,0 +1,17 @@
+{% if settings.display_popup_newsletter %}
+<div class="wrapper-newsletter halo-modal" data-newsletter data-delay="{{settings.popup_newsletter_delay | times:1000}}" data-expire="{{ settings.popup_newsletter_expire }}">
+  <div class="modal-overlay">
+    <div class="halo-modal-content">
+      <a class="close close-window" title="{{ 'cart.ajax_cart.close' | t }}">
+        {% include 'icon-close' %}
+      </a>
+
+      <div class="halo-modal-body">
+        <div class="column-content">
+          <img src="{{settings.newsletter_img | img_url:'1000x'}}">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

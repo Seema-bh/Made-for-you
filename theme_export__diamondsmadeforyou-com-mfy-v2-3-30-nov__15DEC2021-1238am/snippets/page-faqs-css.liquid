@@ -1,0 +1,91 @@
+<style>
+  .page-faqs p {
+    color: #2A3134;
+    line-height: 18px;
+  }
+  .page-faqs p a {font-weight: 400;}
+  .page-faqs p:not(:last-of-type) {margin-bottom: 10px;}
+  .page-faqs .page-banner {margin-top: 20px;}
+  .page-faqs .section-header {
+    max-width: 1200px;
+    margin: 40px auto 75px;
+  }
+  .page-faqs .section-header h1 {
+    font-size: 42px;
+    line-height: 53px;
+    margin-bottom: 20px;
+  }
+  .page-faqs .faq-wrapper {
+    max-width: 1200px;
+    margin: 0 auto 70px;
+  }
+  .page-faqs .faqs-section .acc-block + .acc-block {border-top: 1px solid #E5E5E5;}
+  .page-faqs .faqs-section .faq-title {
+    font-size: 26px;
+    line-height: 32px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: flex-start;
+  }
+  .page-faqs .faqs-section .faq-title:not(:first-of-type) {margin-top: 80px;}
+  .page-faqs .faqs-section .faq-title svg {margin: 4px 8px 0 0;}
+  .page-faqs .faqs-section .acc-title {
+    font-family: var(--font-stack-body);
+    color: #2A3134;
+    font-size: 16px;
+    line-height: 19px;
+	font-weight: 500;
+    margin-bottom: 0;
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+  .page-faqs .faqs-section .acc-title span {
+    width: 25px;
+    height: 25px;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .page-faqs .faqs-section .acc-title .minus-icon, 
+  .page-faqs .faqs-section .acc-block.active .plus-icon {display: none;}
+  .page-faqs .faqs-section .acc-block.active .minus-icon {display: block;}
+  .page-faqs .faqs-section .acc-description {
+    display: none;
+    padding-bottom: 24px;
+  }
+  @media (max-width: 749px) {
+    .page-faqs .page-banner .page-width {padding: 0;}
+    .page-faqs .section-header h1 {
+      font-size: 32px;
+      line-height: 40px;
+      margin-bottom: 15px;
+    }
+    .page-faqs .section-header {margin: 30px auto 65px;}
+    .page-faqs .faq-wrapper {margin-bottom: 40px;}
+    .page-faqs .faqs-section .faq-title {
+      font-size: 19px;
+      line-height: 28px;
+    }
+    .page-faqs .faqs-section .faq-title svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 6px;
+    }
+    .page-faqs .faqs-section .faq-title:not(:first-of-type) {margin-top: 50px;}
+    .page-faqs .faqs-section .acc-title {
+      font-size: 15px;
+      line-height: 18px;
+      padding: 18px 0;
+    }
+    .page-faqs .faqs-section .acc-title span {
+      width: 20px;
+      height: 20px;
+    }
+    .page-faqs .faqs-section .acc-title span svg {width: 100%; height: auto;}
+    .page-faqs .faqs-section .acc-description {padding-bottom: 22px;}
+</style>

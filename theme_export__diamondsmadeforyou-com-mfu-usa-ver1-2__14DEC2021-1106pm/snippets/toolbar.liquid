@@ -1,0 +1,159 @@
+<div class="toolbar">       
+  <div class="column-left sidebar_more">
+    <div class="sidebar-label">
+      <span class="sidebar_more" {% if settings.enable_multilang %}data-translate="collections.sidebar.sidebar_more"{% endif %}>
+        FILTER
+      </span>
+    </div>
+    {% comment %}
+    <div class="filters-toolbar__view-as toolbar-col" data-view-as>
+      <div class="view-mode"> 
+        <span class="icon-mode {% if section.settings.collection_results_per_row == '2' %} grid-2 active {% elsif section.settings.collection_results_per_row == '3' %}grid-3 active {% elsif section.settings.collection_results_per_row == '4' %}grid-4 active {% elsif section.settings.collection_results_per_row == '5' %}grid-5 active{% endif %}" {% if section.settings.collection_results_per_row == '2' %}data-col="2" {% elsif section.settings.collection_results_per_row == '3' %}data-col="3" {% elsif section.settings.collection_results_per_row == '4' %}data-col="4" {% elsif section.settings.collection_results_per_row == '5' %}data-col="5"{% endif %} title="{{ 'collections.general.grid_view' | t }}" >
+          <span class="icon-grid icon-tb">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </span>
+          <span class="view-name"{% if settings.enable_multilang %}data-translate="collections.general.grid_view"{% endif %}>{{ 'collections.general.grid_view' | t }}</span>
+        </span>
+
+        <span class="icon-mode {% if section.settings.collection_results_per_row == '1' %} active{% endif %}" data-col="1" title="{{ 'collections.general.list_view' | t }}">
+          <span class="icon-list icon-tb">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </span>
+          <span class="view-name"{% if settings.enable_multilang %}data-translate="collections.general.list_view"{% endif %}>{{ 'collections.general.list_view' | t }}</span>
+        </span>
+      </div> 
+    </div>
+    {% endcomment %}
+    <span class="icon-dropdown hidden-xs">
+      <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </span>
+  </div>
+
+  {% if section.settings.sort_enable or section.settings.limited_view %}
+  <div class="column-right">
+    {% if section.settings.limited_view %}
+
+    <div class="filters-toolbar__limited-view toolbar-col" data-limited-view>
+      <label data-translate="collections.toolbar.show">
+        {{ 'collections.toolbar.show' | t}}
+      </label>
+
+      <div class="limited-view">
+        <div class="label-tab" data-toggle="dropdown" aria-expanded="false">
+          <span name="paginateBy" class="label-text">
+            {% if cart.attributes.pagination != blank and cart.attributes.pagination %}
+            {{ cart.attributes.pagination }}
+            {% else %}
+            {{ section.settings.collection_results_per_page }}
+            {% endif %}
+          </span>
+
+          <span class="icon-dropdown">
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </span>
+        </div>
+
+        <ul class="dropdown-menu">
+          <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '12'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '12' %}class="active"{% endif %}{% endif %}>
+            <span data-value="12"> 
+              12
+            </span>
+          </li>
+          <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '16'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '16' %}class="active"{% endif %}{% endif %}>
+            <span data-value="16">
+              16
+            </span>
+          </li>
+          <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '20'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '20' %}class="active"{% endif %}{% endif %}>
+            <span data-value="20">
+              20
+            </span>
+          </li>
+          <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '24'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '24' %}class="active"{% endif %}{% endif %}>
+            <span data-value="24">
+              24
+            </span>
+          </li>
+          <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '30'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '30' %}class="active"{% endif %}{% endif %}>
+            <span data-value="30">
+              30
+            </span>
+          </li>
+          <li {% if cart.attributes.pagination != blank and cart.attributes.pagination %}{% if cart.attributes.pagination == '50'%}class="active"{% endif %}{% else %}{% if section.settings.collection_results_per_page == '50' %}class="active"{% endif %}{% endif %}>
+            <span data-value="50">
+              50
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if section.settings.sort_enable %}
+    <div class="filters-toolbar__sortby toolbar-col" data-sortby>
+      <label for="sort-by" {% if settings.enable_multilang %}data-translate="collections.sorting.title"{% endif %}>
+        {{ 'collections.sorting.title' | t }}
+      </label>
+
+      <div class="filter-sortby"> 
+        <div class="label-tab" data-toggle="dropdown" aria-expanded="false">
+          <span class="label-text">
+            {{ 'collections.sorting.featured' | t }}
+          </span>
+          <span class="icon-dropdown">
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </span>
+        </div>
+
+        <ul class="dropdown-menu">
+          <li class="active">
+            <span data-href="manual" {% if settings.enable_multilang %}data-translate="collections.sorting.featured"{% endif %}>
+              {{ 'collections.sorting.featured' | t }}
+            </span>
+          </li>
+          <li>
+            <span data-href="price-ascending" {% if settings.enable_multilang %}data-translate="collections.sorting.price_ascending"{% endif %}>
+              {{ 'collections.sorting.price_ascending' | t }}
+            </span>
+          </li>
+          <li>
+            <span data-href="price-descending" {% if settings.enable_multilang %}data-translate="collections.sorting.price_descending"{% endif %}>
+              {{ 'collections.sorting.price_descending' | t }}
+            </span>
+          </li>
+<!--           <li>
+            <span data-href="title-ascending" {% if settings.enable_multilang %}data-translate="collections.sorting.az"{% endif %}>
+              {{ 'collections.sorting.az' | t }}
+            </span>
+          </li>
+          <li>
+            <span data-href="title-descending" {% if settings.enable_multilang %}data-translate="collections.sorting.za"{% endif %}>
+              {{ 'collections.sorting.za' | t }}
+            </span>
+          </li> -->
+<!--           <li>
+            <span data-href="created-ascending" {% if settings.enable_multilang %}data-translate="collections.sorting.date_ascending"{% endif %}>
+              {{ 'collections.sorting.date_ascending' | t }}
+            </span>
+          </li>
+          <li>
+            <span data-href="created-descending" {% if settings.enable_multilang %}data-translate="collections.sorting.date_descending"{% endif %}>
+              {{ 'collections.sorting.date_descending' | t }}
+            </span>
+          </li> -->
+          <li>
+            <span data-href="best-selling" {% if settings.enable_multilang %}data-translate="collections.sorting.best_selling"{% endif %}>
+              {{ 'collections.sorting.best_selling' | t }}
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>

@@ -1,0 +1,71 @@
+<div class="image-with-video-overlay">
+  <div class="">
+    {% if section.settings.spotlight_block_title != blank %}
+    <div class="widget-title{% if section.settings.title_style == 'style_2' %} not-before{% endif %}{% unless section.settings.spotlight_block_des != blank %} no-des{% endunless %}">   
+      <h3 class="box-title">
+        <span class="title"> 
+          <span>
+            {{ section.settings.spotlight_block_title }}
+          </span>
+        </span>
+      </h3>
+      {% if section.settings.spotlight_block_des != blank %}
+      <p class="banner-des">
+        {{ section.settings.spotlight_block_des }}
+      </p>        
+      {% endif %}
+    </div>
+    {% endif %}
+    <div class="first-two">
+
+      <div class="second_half_video col-sm-12">
+        <div class="video-popup">
+          <!-- Size Chart Start here -->
+           <iframe width="100%" data-video-id="{{ section.settings.video_link3 }}" height="100%" src="https://www.youtube.com/embed/{{ section.settings.video_link3 }}?enablejsapi=1&rel=0&autoplay=0" frameborder="0" allowfullscreen="" volume="0"></iframe>
+        </div>
+        <div class="video-title">
+          <span class="block-title">{{ section.settings.title3 }}</span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+"name": "banner with video",
+"settings": [
+{
+"type": "text",
+"id": "spotlight_block_title",
+"label": "Title",
+"default": "#Spotlight"
+},
+{
+"type" : "textarea",
+"id" : "spotlight_block_des",
+"label" : "Description",
+"default": "Phasellus lorem malesuada ligula pulvinar commodo maecenas"
+},
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+{
+"type": "text",
+"id": "video_link3",
+"label": "YouTube video ID",
+"default": "_9VUPq3SxOc",
+"info": "[Find your YouTube video ID](https://docs.joeworkman.net/rapidweaver/stacks/youtube/video-id)."
+}
+],
+"presets": [
+{
+"name": "banner with video",
+"category": "Advanced layout"
+}
+]
+}
+{% endschema %}
+

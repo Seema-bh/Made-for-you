@@ -1,0 +1,5 @@
+{% if settings.enable_wishlist %}
+<a class="wishlist" data-icon-wishlist href="#" data-product-handle="{{ product.handle }}" data-id="{{ product.id }}">
+    {% include 'icon-wishlist' %}
+</a>
+{% endif %} 

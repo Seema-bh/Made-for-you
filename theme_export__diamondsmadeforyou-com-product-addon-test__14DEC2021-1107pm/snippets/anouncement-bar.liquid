@@ -1,0 +1,75 @@
+{% if section.settings.display_header_top and section.settings.top_message_text != blank %}
+<div class="announcement_header_top">
+  <div class="container">
+    <div class="header_message">
+      <div class="top_header_middle_sec" id="top_header_four_block">
+        <div class="item">
+          <div class="img_n_data">
+            <span><img src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/Recycled-Metal-logo-white1.png?v=1603805286"></span>
+            <span>Recycled Metal</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="img_n_data">
+            <span><img src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/Conflict-Free-Logo-white1.png?v=1603805286"></span>
+            <span>conflict Free</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="img_n_data">
+            <span><img src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/Sustainable-Logo-White1.png?v=1603805286"></span>
+            <span>Sustainable</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="img_n_data">
+            <span><img src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/Greener-Logo-white1.png?v=1603805286"></span>
+            <span>Greener</span>
+          </div>
+        </div>
+      </div>
+
+      {% comment %}
+      <p data-toggle="modal" data-target="#myModal">{% include 'multilang' with section.settings.top_message_text %}</p>
+      {% endcomment %}
+      {% comment %}
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="key-point1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="15" viewBox="0 0 13 15"><defs><style>.a{fill:rgba(255,255,255,0);}.b{fill:#f7f7f7;}</style></defs><g transform="translate(-157 -12)"><rect class="a" width="13" height="15" transform="translate(157 12)"/><g transform="translate(159 14)"><path class="b" d="M4,10a.436.436,0,0,1-.168-.034A7.045,7.045,0,0,1,1.068,8.053,4.663,4.663,0,0,1,0,5V2.272a.453.453,0,0,1,.246-.406L3.8.048a.437.437,0,0,1,.4,0L7.754,1.866A.453.453,0,0,1,8,2.272V5A4.663,4.663,0,0,1,6.932,8.053,7.045,7.045,0,0,1,4.168,9.966.436.436,0,0,1,4,10ZM4,.963.889,2.554V5a3.715,3.715,0,0,0,.858,2.466A6.018,6.018,0,0,0,4,9.052,6.018,6.018,0,0,0,6.253,7.465,3.715,3.715,0,0,0,7.111,5V2.554L4,.963ZM3.477,6.818a.437.437,0,0,1-.311-.13L1.911,5.429a.464.464,0,0,1,0-.638.437.437,0,0,1,.624-.011l.917.92,1.991-2.36a.437.437,0,0,1,.62-.039.465.465,0,0,1,.053.633l-2.3,2.728a.442.442,0,0,1-.318.157Z" transform="translate(1)"/></g></g></svg>
+                <h2>3 Year Warranty</h2>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etaccusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.</p>
+              </div>
+              <div class="key-point1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><defs><style>.a{fill:rgba(255,255,255,0);}.b{fill:#f7f7f7;}</style></defs><g transform="translate(-417 -13)"><rect class="a" width="14" height="14" transform="translate(417 13)"/><g transform="translate(418 15)"><path class="b" d="M4.5,9A4.5,4.5,0,1,1,9,4.5,4.505,4.505,0,0,1,4.5,9ZM4.5.9A3.6,3.6,0,1,0,8.1,4.5,3.6,3.6,0,0,0,4.5.9ZM5.844,6.294a.448.448,0,0,1-.313-.126l-1.35-1.35A.447.447,0,0,1,4.05,4.5V1.8a.45.45,0,1,1,.9,0V4.314L6.168,5.532a.452.452,0,0,1-.006.631A.446.446,0,0,1,5.844,6.294Z" transform="translate(0.999 1)"/></g></g></svg>
+                <h2>Lifetime Upgradation</h2>
+                <p>We firmly believe that your diamonds and your jewellery collection should grow along with you. Whenever you purchase a piece from Made For You, we offer you the opportunity to make it worthwhile. We will accept older Made For You pieces for bigger and better ones. You can choose to get a diamond with higher clarity or even swap a smaller diamond for a bigger one. With Made For You, there’s always scope to grow.</p>
+              </div>
+
+              <div class="key-point1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 16 15"><defs><style>.a{fill:rgba(255,255,255,0);}.b{fill:#fcfcfc;}</style></defs><g transform="translate(-953 -12)"><rect class="a" width="16" height="15" transform="translate(953 12)"/><g transform="translate(-184.781 -3370)"><path class="b" d="M1143.173,3388.136l1.626,5.926-3.946-5.926Zm2.436-2.136.939,1.831h-2.993l1.07-1.831Zm.993,2.136-1.489,5.919-1.624-5.919Zm.315,0h2.469l-3.969,5.961Zm2.541-.3h-2.567l-.939-1.831h1.179Zm-6.349-1.831h1.162l-1.07,1.831h-2.42Z"/></g></g></svg>
+                <h2>Personalisation</h2>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos etaccusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.</p>
+              </div>
+              <div class="key-point1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><defs><style>.a{fill:rgba(255,255,255,0);}.b{fill:#fcfcfc;}</style></defs><g transform="translate(-723 -12)"><rect class="a" width="16" height="16" transform="translate(723 12)"/><g transform="translate(725 15)"><path class="b" d="M3.438,9.166A1.146,1.146,0,0,1,2.581,7.26a1.361,1.361,0,0,1-.289-.843V5.561L1.308,1.954l-.191-.7A.46.46,0,0,0,.675.917H.458A.458.458,0,0,1,.458,0H.675A1.378,1.378,0,0,1,2,1.013l.1.362H8.649a.917.917,0,0,1,.885,1.158l-.749,2.75a.918.918,0,0,1-.884.675H3.209v.459a.459.459,0,0,0,.458.458H7.792a.458.458,0,0,1,.376.719,1.146,1.146,0,1,1-2.187.2H4.561A1.153,1.153,0,0,1,3.9,9.068,1.136,1.136,0,0,1,3.438,9.166ZM7.1,7.792a.229.229,0,1,0,.229.229A.229.229,0,0,0,7.1,7.792Zm-3.667,0a.229.229,0,1,0,.229.229A.229.229,0,0,0,3.437,7.792ZM2.35,2.292l.75,2.75H7.9l.75-2.75H2.35Z" transform="translate(0.458 0.917)"/></g></g></svg>
+                <h2>Free Shipping</h2>
+                <p>We offer FREE shipping on every order within U.S.A. Your order will be shipped to you fully insured. We urge all customers to inspect the package for any damage or tamper before receiving or signing for receipt.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      {% endcomment %}
+    </div>
+  </div>
+</div>
+{% endif %}

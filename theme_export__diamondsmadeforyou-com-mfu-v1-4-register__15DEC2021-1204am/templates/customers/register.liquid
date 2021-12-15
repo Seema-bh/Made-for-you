@@ -1,0 +1,98 @@
+<div class="page-width">
+  <div class="customer__register">
+    <div class="register__container">
+      <div class="register__form form-vertical" id="CustomerRegisterForm">
+        <h1 class="register__heading">{{ 'customer.register.title' | t }}</h1>
+        <p class="login__subheading">Please enter your details to create a new account</p>
+
+        {%- assign formId = 'RegisterForm' -%}
+        {% form 'create_customer', id: formId, novalidate: 'novalidate' %}
+        {% include 'form-status', form: form, form_id: formId %}
+        <div class="input__group">
+          <div class="select-container">
+            <select class="" id="title-dropdown">
+              <option data-display-text="Select title">Select title</option>
+              <option value="Mr">Mr</option>
+              <option value="Mrs">Mrs</option>
+              <option value="Ms">Ms</option>
+            </select>
+          </div>
+          <div data-form-error></div>
+        </div>
+        
+        <div class="input__group">
+          <input type="text" name="customer[first_name]" placeholder="Enter your first name" id="{{ formId }}-FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocomplete="given-name">
+          <div data-form-error></div>
+        </div>
+
+        <div class="input__group">
+          <input type="text" name="customer[last_name]" placeholder="Enter your last name" id="{{ formId }}-LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocomplete="family-name">
+          <div data-form-error></div>
+        </div>
+        
+        <div class="input__group">
+          <div class="birthdate">
+            <input type="date" value="" name="customer[note][birthday]" id="birthday"  aria-required="true" placeholder="Birth Date" required>
+            <label for="birthday">Birth Date</label>
+          </div>
+          <div data-form-error></div>
+        </div>
+        
+        <div class="input__group">
+          <input
+            type="email"
+            name="customer[email]"
+            placeholder="Enter your email"
+            id="{{ formId }}-email"
+            class="{% if form.errors contains 'email' %} input--error{% endif %}"
+            {% if form.email %} value="{{ form.email }}"{% endif %}
+            autocorrect="off"
+            autocapitalize="off"
+            autocomplete="email"
+            aria-required="true"
+            {%- if form.errors contains 'email' -%}
+              class="input--error"
+              aria-invalid="true"
+              aria-describedby="{{ formId }}-email-error"
+            {%- endif -%}
+          >
+          <div data-form-error></div>
+        </div>
+
+        <div class="input__group">
+          <input
+            type="password"
+            name="customer[password]"
+            placeholder="Enter your password"
+            id="{{ formId }}-password"
+            class="{% if form.errors contains 'password' %} input--error{% endif %}"
+            aria-required="true"
+            {%- if form.errors contains 'password' -%}
+              class="input--error"
+              aria-invalid="true"
+              aria-describedby="{{ formId }}-password-error"
+            {%- endif -%}
+          >
+          <div data-form-error></div>
+        </div>
+        
+        <div class="input__group">
+          <span class="input__icon"></span>
+          <input type="password"
+                 data-password-reenter
+                 placeholder="Re-enter your password">
+          <div data-form-error></div>            
+        </div>
+		  
+        <div class="form__submission">
+          <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
+        </div>
+        
+        <div class="form__message">
+          <p>Already have an account? <a href="/account/login/">Login now</a></p>
+        </div>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>

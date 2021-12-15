@@ -1,0 +1,218 @@
+{% include 'style-header' %} 
+
+<header class="header site-header " role="banner">
+
+
+  <a href="#" class="icon-nav close-menu-mb" title="Menu Mobile Icon" data-menu-mb-toogle>
+    <span class="icon-line"></span>
+  </a>
+
+  <div class="header_main header-bottom" data-sticky-mb>
+    <div class="container">
+      <div class="wrapper-header-bt">
+        {% include 'header-mobile' %}
+
+        <div class="header-pc header-panel" id="header-pc">
+          
+          <div class="header-panel__bottom header-panel-bt">
+            
+            <div class="block">
+              {% if section.settings.display_free_shipping and section.settings.free_shipping_text1 != blank %}
+              <div class="free-shipping-text">
+                <p>{% include 'multilang' with section.settings.free_shipping_text1 %}</p>
+                {% include 'multilang' with section.settings.free_shipping_text2 %}
+              </div>
+              {% endif %}
+            </div>
+            <div class="block">
+              <div class="wrapper-top-cart header-icons">
+                {% include 'wrapper-header-cart' %}
+              </div>
+              <div class="account header-icons">
+                <div class="header-links">
+                  <div class="customer-links">
+                    <a href="/account" >
+                    {% include 'icon-user' %}
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="header-icons wrapper-top-iwish">
+              {% include 'iwish_v2' with 'iwishlink' %}
+              </div>
+              <div class="search-mb header-icons">
+                <a href="#" title="Search Icon" class="icon-search" data-search-mobile-toggle>
+                  {% include 'icon-search' %}
+                </a>
+
+                <a href="javascript:void(0)" title="close" class="close close-search">
+                  {% include 'icon-close' %}
+                </a>
+
+                {% include 'search-bar' %}
+              </div>  
+            </div>            
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+<script>
+  var appendPrependMenuMobile = function() {
+    var headerPC = $('#header-pc'),
+        wrapperHeaderBt = $('.header .wrapper-header-bt'),
+        wrapperNav = $('.wrapper-navigation'),
+        areaMb = wrapperNav.find('.mb-area');
+    if (window.innerWidth < 1200) {
+      headerPC.appendTo(areaMb);
+    } else {
+      console.log('window.innerWidth',headerPC)
+      headerPC.appendTo(wrapperHeaderBt);
+    };
+  };
+
+  $(document).ready(function() {
+    appendPrependMenuMobile();
+  });
+
+  $(window).on('resize', function () {
+    appendPrependMenuMobile();
+  });
+
+  window.dropdowncart_type = "{{ section.settings.dropdowncart_type }}";
+
+  {% if settings.enable_multilang %}
+  translator.doTranslate('.site-header');
+  {% endif %}
+</script>
+
+{% schema %}
+{
+"name": "Header",
+"settings": [
+{
+"type": "header",
+"content": "Search"
+},
+{
+"type": "color",
+"id": "bg_search_color_input",
+"label": "Background Color Input",
+"default": "#fff"
+},      
+{
+"type": "color",
+"id": "search_color_input",
+"label": "Color Input",
+"default": "#6e6e6e"
+},
+{
+"type": "color",
+"id": "bg_search_color_btn",
+"label": "Background Color Buttom",
+"default": "#9f9aab"
+},      
+{
+"type": "color",
+"id": "search_color_btn",
+"label": "Color Icon",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "search_btn_border_color",
+"label": "Borer Color",
+"default": "#8c8798"
+},
+{
+"type": "header",
+"content": "Cart Header"
+},
+{
+"type": "color",
+"id": "bg_cart_color",
+"label": "Background Color",
+"default": "#f14156"
+},
+{
+"type": "color",
+"id": "cart_border_color",
+"label": "Border Bottom Color",
+"default": "#eb2c3c",
+"info": "======================="
+},
+{
+"type": "color",
+"id": "cart_color",
+"label": "Color Items Cart",
+"default": "#fff",
+"info": "======================="
+},
+{
+"type": "radio",
+"id": "dropdowncart_type",
+"label": "How to show dropdown cart?",
+"options": [
+{
+"value": "click",
+"label": "Click on the cart"
+},
+{
+"value": "hover",
+"label": "Hover on the cart"
+}
+],
+"default": "hover"
+},
+{
+"type":"header",
+"content":" dropdown"
+},
+{
+"type": "color",
+"id": "dropdown_bck",
+"label": "Background",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "dropdown_color",
+"label": "Color",
+"default": "#34313a",
+"info": "======================="
+},
+{
+"type":"header",
+"content":" Header Mobile"
+},
+{
+"type": "color",
+"id": "bck_menu_mb",
+"label": "Background",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "text_menu_mb",
+"label": "Color",
+"default": "#4f4c56"
+},
+{
+"type":"color",
+"id":"back_item_cart",
+"label":" Background color items cart",
+"default":"#f14156"
+},
+{
+"type":"color",
+"id":"color_item_cart",
+"label":"Color items cart",
+"default":"#fff"
+}
+]
+}
+{% endschema %}

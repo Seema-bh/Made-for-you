@@ -1,0 +1,298 @@
+{% if section.blocks.size > 0 %}
+
+{% case section.settings.brand_rows %}
+{% when '1' %}
+{%- assign grid_item_width = 'col-12 col-sm-6' -%}
+{% when '2' %}
+{%- assign grid_item_width = 'col-6 col-sm-6 ' -%}
+{% when '3' %}
+{%- assign grid_item_width = 'col-6 col-sm-6 col-md-4' -%}
+{% when '4' %}
+{%- assign grid_item_width = 'col-6 col-sm-6 col-md-4 col-lg-3' -%}
+
+{% when '5' %}
+{%- assign grid_item_width = 'col-6 col-sm-6 col-md-4 col-lg-3 col5' -%}
+
+{% when '6' %}
+{%- assign grid_item_width = 'col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2' -%}
+{% endcase %}
+
+<section class="home-brands-block" id="home-brands-{{section.id}}">
+  <div class="container">
+    <div class="brands-block testimonial-slider">
+      <div class="widget-title">
+        {% if section.settings.brand_title != blank %}
+        <h3 class="box-title">
+          <span class="title">
+            {% include 'multilang' with section.settings.brand_title %}
+          </span>
+        </h3>
+        {% endif %}
+      </div>
+      <h4 class="popular-sub-head">{{ section.settings.sub_heading }}</h4>
+      {% if section.settings.view_all != blank %}
+      <a class="view_all feature btn" href="{{ section.settings.link_view_all }}" title="{{section.settings.view_all}}">
+        {% include 'multilang' with section.settings.view_all %} 
+      </a>
+      {% endif %}
+      <div class="row brands-homepage " data-brands-slider2 data-rows="{{ section.settings.brand_rows }}">
+        {% for block in section.blocks %}
+        <div class="item {{ grid_item_width }}">
+          <div class="first-testimonial">
+            {% if block.settings.des1 != blank %}
+            <div class="content rte" style="color:{{block.settings.des_color1}}">
+              {% include 'multilang' with block.settings.des1 %}
+            </div>
+            {% endif %}
+            {% if block.settings.title1 != blank %}
+            <h3 class="title" style="color:{{block.settings.title_color1}}">
+              {% include 'multilang' with block.settings.title1 %}
+            </h3>
+            {% endif %}
+            {% if block.settings.link_text1 != blank %}
+            <div class="learn-more">
+              <a href=" {{block.settings.link1}}" class="link-banner"  style="color:{{block.settings.link_color1 |color_modify: 'alpha', 0.5 }}">{% include 'multilang' with section.settings.link_text1 %}</a>
+            </div>
+            {% endif%}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<style>
+  {% assign margin_bottom =  section.settings.margin_bottom %}
+  {% assign brand_title_color =  section.settings.brand_title_color %}
+  {% assign view_all_color =  section.settings.view_all_color %}
+  {% assign border_top_color =  section.settings.border_top_color %}
+
+
+  #home-brands-{{section.id}} .brands-block{
+    border-color:{{border_top_color}};
+  }
+  #home-brands-{{section.id}} .brands-block .box-title{
+    color:{{brand_title_color}};
+  }
+  #home-brands-{{section.id}} .brands-block .view_all{
+    color:{{view_all_color}};
+  }
+
+  @media (max-width: 767px) {
+    #home-brands-{{section.id}} {
+      margin-bottom: {{ section.settings.margin_bottom_mb }}px;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    #home-brands-{{section.id}} {
+      margin-bottom: {{ section.settings.margin_bottom_tab }}px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    #home-brands-{{section.id}} {
+      margin-bottom: {{ margin_bottom }}px;
+    }
+  }
+  {% unless section.settings.enbale_border %}
+  #home-brands-{{section.id}} .brands-block {
+    border-top: none;
+  }
+  {% endunless %}
+
+</style>
+{% endif %}
+
+
+{% schema %}
+{
+"name": "Testimonial Slider",
+"class": "home-brands-sections",
+"max_blocks": 10,
+"settings": [
+
+{
+"type": "header",
+"content": "Margin Bottom:"
+},
+{
+"type": "range",
+"id": "margin_bottom_mb",
+"label": "Mobile",
+"min": 0,
+"max": 100,
+"step": 1,
+"default": 0
+},
+{
+"type": "range",
+"id": "margin_bottom_tab",
+"label": "Tablet",
+"min": 0,
+"max": 100,
+"step": 1,
+"default": 0
+},
+{
+"type": "range",
+"id": "margin_bottom",
+"label": "Margin Bottom",
+"min": 0,
+"max": 130,
+"step": 2,
+"default": 0
+},
+{
+"type": "header",
+"content": "Header"
+},
+{
+"type":"checkbox",
+"id":"enbale_border",
+"label":"Display Border Top?",
+"default":true
+},
+{
+"type":"color",
+"id":"border_top_color",
+"label":"Border Top",
+"default":"#eeeeee"
+},
+{
+"type": "text",
+"id": "brand_title",
+"label": "Title",
+"default":"Popular Brands",
+"info":"Please use the \"|\" character to translate the language following the structure of Lang1 | Lang 2"
+
+},
+{
+"type":"color",
+"id":"brand_title_color",
+"label":"Title Color",
+"default":"#34313a"
+},
+{
+"type" : "text",
+"id" : "view_all",
+"label" : "Text All Brands",
+"default":"Show All Brands",
+"info":"Please use the \"|\" character to translate the language following the structure of Lang1 | Lang 2"
+},
+{
+"type":"color",
+"id":"view_all_color",
+"label":"View All Color",
+"default":"#34313a"
+},
+{
+"type" : "url",
+"label" : "Link view all",
+"id" : "link_view_all"
+},
+{
+"type" : "text",
+"id" : "sub_heading",
+"label" : "Sub Heading",
+"default" : "Luminor Panerai"
+},
+{
+"type": "select",
+"id": "brand_rows",
+"label": "Brand per row",
+"options": [
+{
+"value": "1",
+"label": "1"
+},
+{
+"value": "2",
+"label": "2"
+},
+{
+"value": "3",
+"label": "3"
+},
+{
+"value": "4",
+"label": "4"
+},
+{
+"value": "5",
+"label": "5"
+},
+{
+"value": "6",
+"label": "6"
+}
+],
+"default": "5"
+}
+],
+"blocks": [
+{
+"type": "image",
+"name": "Image",
+"settings": [
+{
+"type" : "textarea",
+"id" : "des1",
+"label" : "testimonial 1 Description",
+"default" : "Quisque destibulum risus cosmopolis an cosmodous"
+},
+{
+"type" : "color",
+"id" : "des_color1",
+"label" : "testimonial 1 Des Color",
+"default" : "#fff"
+},
+{
+"type" : "text",
+"id" : "title1",
+"label" : "testimonial 1 Title",
+"default" : "Loremous Cosmo"
+},
+{
+"type" : "color",
+"id" : "title_color1",
+"label" : "testimonial 1 Title Color",
+"default" : "#fff"
+},
+{
+"type" : "text",
+"id" : "link_text1",
+"label" : "testimonial 1 Link",
+"default":"Quisque destibulum risus"
+},
+{
+"type" : "color",
+"id" : "link_color1",
+"label" : "testimonial 1 Link Color",
+"default" : "#fff"
+},
+{
+"type": "url",
+"id": "link1",
+"label": "testimonial 1 Add Link",
+"info":"================"
+}
+]
+}
+],
+"presets": [
+{
+"name": "Testimonial Slider",
+"category": "Brands",
+"blocks":[
+{
+"type":"image"
+}
+]
+}
+]
+}
+{% endschema %}

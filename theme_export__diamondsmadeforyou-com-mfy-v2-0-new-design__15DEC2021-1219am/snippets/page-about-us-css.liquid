@@ -1,0 +1,142 @@
+<style>
+  /**** Our values *****/
+  .page-about-us .ab-our-values .section-wrapper {
+    background: #F9F9F9;
+    padding: 20px;
+  }
+  .page-about-us .ab-our-values .image-wrapper img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  /***** Our design *****/
+  .page-about-us .ab-our-design .content {
+    background: #F6E9E1;
+    padding: 50px;
+  }
+  .page-about-us .ab-our-design .grid {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .page-about-us .ab-our-design .grid__item-images .grid {margin-left: -11px;}
+  .page-about-us .ab-our-design .grid__item-images .grid__item {padding-left: 11px;}
+  
+  /***** Our partners *****/
+  .page-about-us .ab-our-partners {padding: 65px 0;}
+  .page-about-us .ab-our-partners .section-wrapper {
+    background: #F9F9F9;
+    padding: 20px;
+  }
+  .page-about-us .ab-our-partners .grid {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .page-about-us .ab-our-partners .two-images {
+    display: flex;
+    justify-content: space-between;
+  }
+  .page-about-us .ab-our-partners .two-images .image-wrapper {flex: 0 0 calc(50% - 8px);}
+  @media screen and (min-width: 750px) {
+    .page-about-us .ab-our-values .grid {margin-left: -20px;}
+    .page-about-us .ab-our-values .grid__item {padding-left: 20px;}
+    .page-about-us .ab-our-values .section-wrapper > .grid {
+      display: flex;
+    }
+    .page-about-us .ab-our-values .grid__item-content {
+      width: 59.9%;
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
+    }
+    .page-about-us .ab-our-values .grid__item-image {width: 40.1%;}
+    .page-about-us .ab-our-values .grid__item-image * {height: 100%;}
+    .page-about-us .ab-our-values .content-wrapper {
+      display: flex;
+      align-items: center;
+    }
+    .page-about-us .ab-our-values .content-wrapper .content {
+      padding: 48px;
+      width: 50%;
+    }
+    .page-about-us .ab-our-values .grid__item-content .single-image {
+      margin-top: 17px;
+      padding-left: 196px;
+    }
+    .page-about-us .ab-our-values .content-wrapper .image-wrapper {width: 40.5%}
+    .page-about-us .ab-our-values .content-wrapper .content {width: 60.5%}
+
+    .page-about-us .ab-our-design .grid__item-content {width: 37.8%;}
+    .page-about-us .ab-our-design .grid__item-images {
+      width: 62.2%;
+      padding-left: 44px;
+    }
+    .page-about-us .ab-our-design .grid__item-images .single-image {width: 43%;}
+    .page-about-us .ab-our-design .grid__item-images .two-images {width: 57%;}
+    .page-about-us .ab-our-design .grid__item-images .image-3 {padding-left: 64px;}
+    
+    .page-about-us .ab-our-partners .grid .grid__item-images {
+      flex: 0 0 62%;
+    }
+    .page-about-us .ab-our-partners .grid .grid__item-content {
+      flex: 0 0 38%;
+      padding-right: 10px;
+    }
+    .page-about-us .ab-our-partners .two-images .image-1 {margin-bottom: -85px;}
+    .page-about-us .ab-our-partners .two-images .image-2 {margin-top: -85px;}
+  }
+  @media screen and (max-width: 749px) {
+    .page-about-us .ab-our-values .page-width, 
+    .page-about-us .ab-our-design .page-width, 
+    .page-about-us .ab-our-partners .page-width {padding: 0;}
+    
+    .page-about-us .ab-our-values .section-wrapper {padding: 27px 15px 12px;}
+    .page-about-us .ab-our-values .text {
+      max-width: 335px;
+      margin: 0 auto;
+    }
+    .page-about-us .ab-our-values .grid__item-image {margin-top: 30px;}
+    .page-about-us .ab-our-values .grid__item-image .grid {
+      display: flex;
+      margin-left: -8px;
+    }
+    .page-about-us .ab-our-values .grid__item-image .grid__item {padding-left: 8px;}
+    .page-about-us .ab-our-values .two-images {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .page-about-us .ab-our-values .two-images .image-wrapper {
+      width: 100%;
+      flex: 0 0 100%;
+      height: calc(50% - 4px);
+    }
+    .page-about-us .ab-our-values .two-images .image-1 {align-self: flex-start;}
+    .page-about-us .ab-our-values .two-images .image-2 {align-self: flex-end;}
+    .page-about-us .ab-our-values .grid__item-image .single-image .image-wrapper, 
+    .page-about-us .ab-our-values .grid__item-image .single-image .image-wrapper img, 
+    .page-about-us .ab-our-values .two-images .image-wrapper img {height: 100%;}
+    
+    .page-about-us .ab-our-design .content {padding: 29px;}
+    .page-about-us .ab-our-design .grid__item-images .two-images {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .page-about-us .ab-our-design .grid__item-images .image-2 {order: 2;}
+    
+    .page-about-us .ab-our-partners {padding: 0 0 90px;}
+    .page-about-us .ab-our-partners .section-wrapper {padding: 24px 15px 15px;}
+    .page-about-us .ab-our-partners .grid .grid__item-images {
+      order: 2;
+      margin-top: 18px;
+    }
+    .page-about-us .ab-our-partners .two-images {align-items: flex-end;}
+    .page-about-us .ab-our-partners .two-images .image-wrapper {flex: 0 0 calc(50% - 6px);}
+    .page-about-us .ab-our-partners .two-images .image-1 {
+      order: 2;
+      margin-bottom: -95px;
+    }
+    .page-about-us .ab-our-partners .two-images .image-2 {margin-bottom: -46px;}
+  }
+</style>

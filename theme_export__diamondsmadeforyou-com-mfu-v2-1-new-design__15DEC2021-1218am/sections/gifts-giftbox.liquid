@@ -1,0 +1,62 @@
+<section class="section-spacing">
+  <div class="page-width">
+    <div class="grid grid--no-gutters">
+      <div class="grid__item small--one-whole grid__item-text text-center">
+        {% include 'section-header' %}
+        {% if section.settings.text != blank %}
+        <div class="content">{{ section.settings.text }}</div>
+        {% endif %}
+      </div>
+      <div class="grid__item small--one-whole grid__item-image">
+        {% assign image = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+        <div class="image-wrapper absolute-image-wrapper" style="padding-top:{{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100}}%;">
+          <img class="lazyload"
+               data-src="{{ image }}"
+               data-widths="[180, 360, 540, 720, 900, 1080]"
+               data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+               data-sizes="auto"
+               alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Giftbox",
+	"class": "gifts-giftbox-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Title"
+      },
+	  {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Subtitle",
+        "default": "Subtitle"
+      },
+	  {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+		"default": "<p>Text goes here.</p>"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image",
+        "info": "Recommended size: 802px * 477px"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

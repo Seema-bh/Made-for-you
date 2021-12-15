@@ -1,0 +1,229 @@
+{% if section.settings.display_sub_banner and section.blocks.size > 0 %}
+<div class="home-sub-banner sub-banner-{{ section.blocks.size }}{% unless section.settings.display_padding %} no-padding{% endunless %}" id="sub-banner-{{section.id}}">
+  <div class="container">
+    <div class="row">
+      {% for block in section.blocks %}
+
+      {% case section.blocks.size %}
+      {% when 1 %}
+      {%- assign column_size = 'col-12 one-block' -%}
+      {% when 2 %}
+      {%- assign column_size = 'col-12 col-sm-6 col-xs-12 two-blocks' -%}
+      {% when 3 %}
+      {%- assign column_size = 'col-6 col-sm-4 col-xs-12  three-blocks' -%}
+      {% when 4 %}
+      {%- assign column_size = 'col-6  col-xs-12 four-blocks' -%}
+      {% endcase %}
+
+      <div class="item {{ column_size }}">
+        <div class="sub-banner banner-item">
+          <div class="img-box">
+            <a href="{{ block.settings.link }}" class="">
+              {% if block.settings.image != blank %}
+
+              {%- assign img_url = block.settings.image | img_url: 'original', crop: 'center' -%}
+
+              <img data-src="{{ img_url }}" alt="{{ block.settings.image.alt | default: shop.name }}" itemprop="logo"
+                   {% include 'lazyload' %}>
+              {% else %}
+              <div class="no-image" style="padding-top: 40%;  font-size:20px"><span>590X220px</span></div> 
+              {% endif %}
+            </a>
+          </div>
+
+          {% if block.settings.title != blank and  block.settings.image != blank  %}
+          <div class="content-box">
+            {% if block.settings.title != blank %}
+            <h3 class="banner-title" style="{% if block.settings.color_title != blank %}color: {{ block.settings.color_title }};{% endif %}">
+              {% include 'multilang' with block.settings.title %}                             
+              <span class="border-bt-hover" style="{% if block.settings.color_title != blank %}background-color: {{ block.settings.color_title }};{% endif %}"></span>
+            </h3>
+            {% endif %}
+            {% if block.settings.sub_title != blank %}
+            <p class="sub-title" style="{% if block.settings.color_sub != blank %}color: {{ block.settings.color_sub }};{% endif %}">
+              {% include 'multilang' with block.settings.sub_title %}
+            </p>
+            {% endif %}
+            {% if block.settings.content != blank %}
+            <div class="content" style="{% if block.settings.color_content != blank %}color: {{ block.settings.color_content }};{% endif %}">
+              {% include 'multilang' with block.settings.content %}
+            </div>
+
+            {% endif %}
+
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  {% assign margin_bottom =  section.settings.margin_bottom %}
+  {% assign color_border =  section.settings.color_border %}
+
+  #sub-banner-{{section.id}} .banner-item .content-box .sub-title span:before{
+    background:{{color_border}};
+  }
+
+  @media (max-width: 767px) {
+    #sub-banner-{{section.id}} {
+      margin-bottom: {{ section.settings.margin_bottom_mb }}px;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    #sub-banner-{{section.id}} {
+      margin-bottom: {{ section.settings.margin_bottom_tab }}px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    #sub-banner-{{section.id}} {
+      margin-bottom: {{ margin_bottom }}px;
+    }
+  }	
+</style>
+{% endif %}
+
+
+{% schema %}
+{
+"name": "Sub Banner",
+"class": "home-sub-banner-sections",
+"max_blocks": 4,
+"settings": [
+{
+"type": "checkbox",
+"id": "display_sub_banner",
+"label": "Enable",
+"default": true
+},
+{
+"type": "header",
+"content": "Margin Bottom:"
+},
+{
+"type": "range",
+"id": "margin_bottom_mb",
+"label": "Mobile",
+"min": 0,
+"max": 100,
+"step": 1,
+"default": 0
+},
+{
+"type": "range",
+"id": "margin_bottom_tab",
+"label": "Tablet",
+"min": 0,
+"max": 100,
+"step": 1,
+"default": 0
+},
+{
+"type": "range",
+"id": "margin_bottom",
+"label": "Margin Bottom",
+"min": 0,
+"max": 180,
+"step": 2,
+"default": 0
+},              
+{
+"type" : "color",
+"id" : "color_border",
+"label" : "Color Border",
+"default" : "#c4c2c3"
+},
+{
+"type": "checkbox",
+"id": "display_padding",
+"label": "Display padding between banner blocks",
+"default": true
+}           	
+],
+"blocks": [
+{
+"type": "image",
+"name": "Image",
+"settings": [		  	
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image",
+"info":"Recommended size 590x220px"
+},
+{
+"type" : "text",
+"id" : "sub_title",
+"label" : "Sub Title",
+"default" : "Men's Watches",
+"info":"Please use the \"|\" character to translate the language following the structure of Lang1 | Lang 2"
+},
+{
+"type" : "color",
+"id" : "color_sub",
+"label" : "Sub Title Color",
+"default" : "#fff"
+},
+
+{
+"type" : "text",
+"id" : "title",
+"label" : "Title",
+"default" : "Milancelos",
+"info":"Please use the \"|\" character to translate the language following the structure of Lang1 | Lang 2"
+},
+{
+"type" : "color",
+"id" : "color_title",
+"label" : "Title Color",
+"default" : "#fff"
+},
+{
+"type" : "textarea",
+"id" : "content",
+"label" : "Descriptions",
+"default" : "Quisque destibulum risus cosmopolis",
+"info":"Please use the \"|\" character to translate the language following the structure of Lang1 | Lang 2"
+},
+{
+"type" : "color",
+"id" : "color_content",
+"label" : "Content Color",
+"default" : "#fff"
+},
+{
+"type": "url",
+"id": "link",
+"label": "Link",
+"info": "Optional"
+}
+]
+}
+],
+"presets": [
+{
+"name": "Sub Banner",
+"category": "Block Images",
+"blocks": [
+{
+"type": "image"
+},
+{
+"type": "image"
+},
+{
+"type": "image"
+},
+{
+"type": "image"
+}
+]
+}
+]
+}
+{% endschema %}

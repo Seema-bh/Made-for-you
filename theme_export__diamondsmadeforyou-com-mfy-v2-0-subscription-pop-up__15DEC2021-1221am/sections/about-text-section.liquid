@@ -1,0 +1,40 @@
+<section class="page-width">
+  <div class="section-header text-center" {% if section.settings.bgcolor != blank %}style="background-color: {{ section.settings.bgcolor }};"{% endif %}>
+    <div class="text-section medium-up--two-thirds small--seven-eighths">
+      {% if section.settings.title != blank %}
+      <p>{{ section.settings.title | escape }}</p>
+      {% endif %}
+      {% unless section.settings.logo == blank %}
+      {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <div class="banner_logo">
+        <img class="lazyload js image_scale" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ section.settings.logo.aspect_ratio }}" data-sizes="auto" alt="{{ section.settings.banner_small.alt | escape }}">
+      </div>
+      {% endunless %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonial",
+  "class": "index-section testimonial-section",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Text",
+    "default": "Jewellery is a gift to be treasured, often bought as a token of love, so, it’s important that when we do make that investment – it is a piece of integrity."
+  },
+  {
+    "type": "image_picker",
+    "id": "logo",
+    "label": "Logo"
+  },
+  {
+    "type": "color",
+    "id": "bgcolor",
+    "label": "Background Color"
+  }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,39 @@
+<header class="collection-header">
+
+  {% if collection.metafields.global.collection_banner != blank %}
+  {%- assign img_url = collection.metafields.global.collection_banner -%}
+  {%- assign img_url_mob = collection.metafields.global.collection_banner_mob -%}	
+  {% elsif collection.image %}
+  {%- assign img_url = collection.image | img_url: 'master' -%}
+  {% elsif collection.image %}
+  {%- assign img_url = "https://cdn.shopify.com/s/files/1/0312/7689/2298/files/All_jewellery.png?v=1587280008" -%}
+  {% endif %}
+
+
+  <div class="collection-image test">
+    {% if img_url != blank %}
+    <img data-src="{{ img_url }}" src="{{ img_url }}" class="lazyautosizes lazyloaded desktop-xs" data-sizes="auto">
+    <img class="mobile-collection-banner lazyload {{ settings.image_loading_style }} mobile-xs" data-src="{{ img_url_mob }}" src="{{ img_url_mob }}"/>
+    {% else %}
+    <div class="not_img">
+      <img data-src="//cdn.shopify.com/s/files/1/0411/6437/4183/collections/1_txt.jpg?v=1596200688" src="//cdn.shopify.com/s/files/1/0411/6437/4183/collections/1_txt.jpg?v=1596200688" class="lazyautosizes lazyloaded desktop-xs" data-sizes="auto" sizes="1194px">
+    </div>
+    {% endif %}  
+  </div>
+  <div class="collection-wrapper page-header {% if collection.metafields.global.des_color != blank %} color-white {% endif %}">
+    {% if collection.title != blank %}
+    <div class="collection_title">
+      <h1>{{ collection.title }}</h1>
+    </div>
+    {% endif %}
+    {% if collection.description != '' %}
+    <div class="collection-desscription">
+      <div class="rte">
+        {% if collection.description != blank %}
+        {{ collection.description }}
+        {% endif %}
+      </div>
+    </div>      
+    {% endif %}
+  </div>
+</header>

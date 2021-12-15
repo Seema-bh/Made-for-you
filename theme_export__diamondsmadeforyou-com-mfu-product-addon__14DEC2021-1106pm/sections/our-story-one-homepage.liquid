@@ -1,0 +1,152 @@
+<div class="our-story-one-homepage container">
+  <div class="first-col">
+    <div class="first-banner-content">
+      {%if section.settings.image_first != blank%}
+      <div class="logo-banner">
+        <a href="{{ section.settings.link_first }}">
+          {%- assign url_img_logo1 = section.settings.image_first | img_url:'400x'-%}
+          <img data-src="{{url_img_logo1}}" alt="{{section.settings.image_first.alt | default: shop.name}}" class=" desktop-xs lazyload {{lazyload}}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-sizes="auto">
+          {%- assign url_img_logo_mob = section.settings.image_first_mob | img_url:'400x'-%}
+          <img data-src="{{url_img_logo_mob}}" alt="{{section.settings.image_first_mob.alt | default: shop.name}}" class="mobile-xs lazyload {{lazyload}}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-sizes="auto">
+        </a>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="second-banner-content-one">
+      {% if section.settings.image_1 != blank%}
+      <div class="mansory-item-wrapper desktop-xs">
+        <a href="{{section.settings.link_1}}" class="mansory-item">
+          {%- assign url_img_1 = section.settings.image_1 | img_url:'600x'-%}
+          <img data-src="{{url_img_1}}" alt="{{section.settings.image_1.alt | default: shop.name}}" {% include 'lazyload'%}>
+        </a>
+      </div>
+      {% endif %}
+      <img src="//cdn.shopify.com/s/files/1/0411/6437/4183/{{ section.settings.image_slide_mb }}"class="lazyautosizes lazyloaded slide-mobile mobile-xs" data-sizes="auto">
+    </div>
+  </div>
+
+  <div class="second-col">
+    <div class="second-banner-content-two">
+      {% if section.settings.image_2 != blank%}
+      <div class="mansory-item-wrapper desktop-xs">
+        <a href="{{section.settings.link_2}}" class="mansory-item">
+          {%- assign url_img_2 = section.settings.image_2 | img_url:'600x'-%}
+          <img data-src="{{url_img_2}}" alt="{{section.settings.image_2.alt | default: shop.name}}" {% include 'lazyload'%}>
+        </a>
+      </div>
+      {% endif %}
+      <img src="//cdn.shopify.com/s/files/1/0411/6437/4183/{{ section.settings.image_slide_mb2 }}"class="lazyautosizes lazyloaded slide-mobile mobile-xs" data-sizes="auto">
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "our story one homepage",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Loremous Cosmo"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#fff"
+    },
+    {
+      "type": "textarea",
+      "id": "des",
+      "label": "Description",
+      "default": "Quisque destibulum risus cosmopolis an cosmodous"
+    },
+    {
+      "type": "color",
+      "id": "des_color",
+      "label": "Des Color",
+      "default": "#fff"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link",
+      "default": "Quisque destibulum risus"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link Color",
+      "default": "#fff"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Add Link",
+      "info": "================"
+    },
+	{
+      "type": "image_picker",
+      "id": "image_first",
+      "label": "Image"
+    },
+	{
+      "type": "image_picker",
+      "id": "image_first_mob",
+      "label": "Image"
+    },
+	{
+      "type": "url",
+      "id": "link_first",
+      "label": "First image Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image"
+    },
+	 
+    {
+      "type": "image_picker",
+      "id": "image_slide_mb",
+      "label": "Select Image Mobile",
+      "info": "Recommended Image: Width x Height (450 x 300)px"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Add Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_slide_mb2",
+      "label": "Select Image Mobile",
+      "info": "Recommended Image: Width x Height (450 x 300)px"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Add Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "our story one homepage",
+      "category": "Block Images"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

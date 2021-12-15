@@ -1,0 +1,82 @@
+<section class="section-spacing">
+  <div class="page-width">
+    {% include 'section-header' %}
+    <div class="inspired-collection_slider custom-slider">
+      {% for block in section.blocks %}
+      <div class="feature-row">
+        {% capture image_layout %}
+        <div class="feature-row__item feature-row__item-image">
+          {% if block.settings.image != blank %}
+          {% capture img_id %}FeatureRowImage-{{ block.id }}{% endcapture %}
+          {% capture wrapper_id %}FeatureRowImageWrapper-{{ block.id }}{% endcapture %}
+          {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+            <div style="padding-top:{{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100}}%;" data-image-loading-animation>
+              <img id="{{ img_id }}"
+                   class="feature-row__image lazyload"
+                   data-src="{{ img_url }}"
+                   data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                   data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+                   data-sizes="auto"
+                   alt="{{ block.settings.image.alt | escape }}">
+            </div>
+          </div>
+
+          <noscript>
+            {{ block.settings.image | img_url: '600x600', scale: 2 | img_tag: block.settings.image.alt, 'feature-row__image' }}
+          </noscript>
+          {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+
+          {% if block.settings.title != blank %}
+          <h3 class="text-center">{{ block.settings.title }}</h3>
+          {% endif %}
+        </div>
+        {% endcapture %}
+
+        <div class="feature-row text_section">
+          {% if block.settings.layout == 'left' %}
+          {{ image_layout }}
+          {% endif %}
+
+          <div class="feature-row__item feature-row__text feature-row__text--{{ block.settings.layout }}">        
+            {%- assign max_height = 198 -%}
+            {%- assign product1 = all_products[block.settings.featured_product1] -%}
+            {%- assign product2 = all_products[block.settings.featured_product2] -%}
+            {%- assign product3 = all_products[block.settings.featured_product3] -%}
+            {%- assign product4 = all_products[block.settings.featured_product4] -%}
+            <ul class="grid grid--uniform">
+              <li class="grid__item medium-up--one-half grid__item--{{block.id}}">
+                {% include 'inspired-card-grid', max_height: max_height, product: product1, show_vendor: section.settings.show_vendor %}
+              </li>
+              <li class="grid__item medium-up--one-half grid__item--{{block.id}}">
+                {% include 'inspired-card-grid', max_height: max_height, product: product2, show_vendor: section.settings.show_vendor %}
+              </li>
+              <li class="grid__item medium-up--one-half grid__item--{{block.id}}">
+                {% include 'inspired-card-grid', max_height: max_height, product: product3, show_vendor: section.settings.show_vendor %}
+              </li>
+              <li class="grid__item medium-up--one-half grid__item--{{block.id}}">
+                {% include 'inspired-card-grid', max_height: max_height, product: product4, show_vendor: section.settings.show_vendor %}
+              </li>
+            </ul>
+
+            <div class="button-wrapper text-center">
+              <div class="medium-up--hide total-price">
+                Total: <span>$240.00</span>
+              </div>
+              <a href="{{ product.url | within: collection }}/" class="btn">
+                Add all to bag
+              </a>
+            </div>
+          </div>
+
+          {% if block.settings.layout == 'right' %}
+          {{ image_layout }}
+          {% endif %}
+        </div>
+      </div><!-- feature-row end -->
+      {% endfor %}
+    </div>
+  </div>  
+</section>

@@ -1,0 +1,120 @@
+<h4 class="accordion" href="#collapseOne">PRODUCT SPECIFICATIONS</h4>
+<div id="collapseOne" class="collapse show" data-parent="#accordion">
+  <div class="meta-field-des">
+    {% assign adjustable = product.metafields.Product['Adjustable'] %}
+    {% if adjustable != 0 and adjustable != blank %}
+    <p>Adjustable : {{ adjustable }}</p>
+    {% endif %}
+    {% assign centrestonecttw = product.metafields.Product['Centre Stone Cttw'] %}
+    {% if centrestonecttw != 0 and centrestonecttw != blank %}
+    <p>Centre Stone CTTW : {{ centrestonecttw }}</p>
+    {% endif %}
+    {% assign centrestoneshape = product.metafields.Product['Centre Stone Shape'] %}
+    {% if centrestoneshape != 0 and centrestoneshape != blank %}
+    <p>Centre Stone Shape : {{ centrestoneshape }}</p>
+    {% endif %}
+    {% assign stonects = product.metafields.Product['Stone 1 Cttw'] %}
+    {% if stonects != 0 and stonects != blank %}
+    <p>Stone 1 CTTW : {{ stonects }}</p>
+    {% endif %}
+    {% assign stonepcs = product.metafields.Product['Stone 1 Pcs'] %}
+    {% if stonepcs != 0 and stonepcs != blank %}
+    <p>Stone 1 PCS : {{ stonepcs }}</p>
+    {% endif %}
+    {% assign stoneshape = product.metafields.Product['Stone 1 Shape'] %}
+    {% if stoneshape != 0 and stoneshape != blank %}
+    <p>Stone 1 Shape : {{ stoneshape }}</p>
+    {% endif %}
+    {% assign centrestoneclarity = product.metafields.Product['Stone Clarity'] %}
+    {% if centrestoneclarity != 0 and centrestoneclarity != blank %}
+    <p>Stone Clarity : {{ centrestoneclarity }}</p>
+    {% endif %} 
+    {% assign centrestonecolor = product.metafields.Product['Stone Color'] %}
+    {% if centrestonecolor != 0 and centrestonecolor != blank %}
+    <p>Stone Color : {{ centrestonecolor }}</p>
+    {% endif %}
+    {% assign centrestonetype = product.metafields.Product['Stone Type'] %}
+    {% if centrestonetype != 0 and centrestonetype != blank %}
+    <p>Stone Type : {{ centrestonetype }}</p>
+    {% endif %}
+    {% assign totaldiamondweightcttw = product.metafields.Product['Total Diamond Weight Cttw'] %}
+    {% if totaldiamondweightcttw != 0 and totaldiamondweightcttw != blank %}
+    <p>Total Diamond Weight Cttw : {{ totaldiamondweightcttw }}</p>
+    {% endif %}
+    {% assign centrestone = product.metafields.Product['Centre Stone'] %}
+    {% if centrestone != 0 and centrestone != blank %}
+    <p>Centre Stone : {{ centrestone }}</p>
+    {% endif %}
+    {% assign centrestonepcs = product.metafields.Product['Centre Stone Pcs'] %}
+    {% if centrestonepcs != 0 and centrestonepcs != blank %}
+    <p>Centre Stone PCS : {{ centrestone }}</p>
+    {% endif %}
+        {% assign color = product.metafields.Product['Color'] %}
+    {% if color != 0 and color != blank %}
+    <p>Color : {{ color }}</p>
+    {% endif %}
+    {% assign gemstonetype = product.metafields.Product['Gemstone Type'] %}
+    {% if gemstonetype != 0 and gemstonetype != blank %}
+    <p>Gemstone Type : {{ gemstonetype }}</p>
+    {% endif %}   
+    {% assign sizelength = product.metafields.Product['Size/Length'] %}
+    {% if sizelength != 0 and sizelength != blank %}
+    <p>Size/Length : {{ sizelength }}</p>
+    {% endif %}   
+    {% assign stonetype = product.metafields.Product['Stone 1 Type'] %}
+    {% if stonetype != 0 and stonetype != blank %}
+    <p>Stone 1 Type : {{ stonetype }}</p>
+    {% endif %}
+    {% assign stonetwocts = product.metafields.Product['Stone 2 Cttw'] %}
+    {% if stonetwocts != 0 and stonetwocts != blank %}
+    <p>Stone 2 CTTW : {{ stonetwocts }}</p>
+    {% endif %}
+    {% assign stonetwopcs = product.metafields.Product['Stone 2 Pcs'] %}
+    {% if stonetwopcs != 0 and stonetwopcs != blank %}
+    <p>Stone 2 Pcs : {{ stonetwopcs }}</p>
+    {% endif %}
+    {% assign stonetwoshape = product.metafields.Product['Stone 2 Shape'] %}
+    {% if stonetwoshape != 0 and stonetwoshape != blank %}
+    <p>Stone 2 Shape : {{ stonetwoshape }}</p>
+    {% endif %}
+    {% assign stonetwotype = product.metafields.Product['Stone 2 Type'] %}
+    {% if stonetwotype != 0 and stonetwotype != blank %}
+    <p>Stone 2 Type : {{ stonetwotype }}</p>
+    {% endif %}
+  </div> 
+</div>
+
+<style>
+  h4.accordion {
+    margin-bottom: 0;
+    color: #676767;
+    font-size: 14px;
+    letter-spacing: 2.4px;
+    font-family: "SoleilW01-SemiBold";
+    line-height: 15px;
+    padding: 15px 30px 15px 0;
+  }
+  h4.accordion.active {
+    color: #AA7F58;
+  }
+  .meta-field-des {
+    margin-bottom: 0;
+    font-family: "SoleilW01-Regular";
+    font-size: 14px;
+    line-height: 18px;
+    color: #645E59;
+  }
+  .meta-field-des p {
+    margin-bottom: 20px;
+  }
+  .panel {
+    max-height: 0;
+    overflow: hidden;
+  }
+  @media ( max-width: 767px ) {
+    div#shopify-section-product-template {
+      border-bottom: 1px solid #e6e6e6;
+    }
+  }
+</style>
+

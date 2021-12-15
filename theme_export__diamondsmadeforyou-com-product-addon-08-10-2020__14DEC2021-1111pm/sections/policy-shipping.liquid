@@ -1,0 +1,113 @@
+{% if section.settings.enable %}
+<section class="policy-shipping" style="background:{{section.settings.back_policy}}">
+  <div class="container policy-items">
+    {% for block in section.blocks%}
+    {% if block.settings.color_icon != blank and block.settings.color_des != blank  %}
+    <ul class="item">
+      <li class="policy-icon" style="color:{{block.settings.color_icon}}">
+      	{{block.settings.icon_policy}}
+      </li>
+      <li class="policy-des" style="color:{{block.settings.color_des}}">
+        {% include 'multilang' with block.settings.des_policy %}
+      </li>
+    </ul>
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% schema %}
+  {
+    "name": "Policy Shipping",
+    "max_blocks":4,
+    "settings": [
+      {
+        "type":"checkbox",
+        "id":"enable",
+        "label":"Enable?",
+        "default":true
+      },
+      {
+        "type":"color",
+        "id":"back_policy",
+        "label":" Background",
+        "default":"#fff"
+      }
+     ],
+      "blocks":[
+        {
+          "type":"text",
+          "name":"Policy shippings",
+            "settings":[
+              {
+                "type":"text",
+                "id":"icon_policy",
+                "label":"Add icon",
+                "info":"Use awesome font icon"
+              },
+              {
+                "type":"color",
+                "id":"color_icon",
+                "label":" Color Icon",
+                "default":"#999999"
+              },
+              {
+                "type":"textarea",
+                "id":"des_policy",
+                "label":"Content",
+                "info":"Please use the \"|\" character to translate the language following the structure of Lang1 | Lang 2"
+              },
+              {
+                "type":"color",
+                "id":"color_des",
+                "label":" Color Content",
+                "default":"#646464"
+              }
+            ]
+        }
+      ]
+  }
+{% endschema %}
+<script>
+  $(document).ready(function(){
+    $('.policy-shipping .policy-items').slick({
+      dots: false,
+      infinite: false,
+      speed: 300,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      nextArrow: false,
+      prevArrow: false,
+      autoplay: false,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            autoplay: true,
+            infinite: true,
+            dots: false
+          }
+          
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            autoplay: true,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            autoplay: true,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    });
+  })
+</script>

@@ -1,0 +1,177 @@
+{%- case section.settings.height -%}
+  {%- when 'small' -%}
+    {%- assign mobile_height = 175 -%}
+    {%- assign desktop_height = 475 -%}
+  {%- when 'medium' -%}
+    {%- assign mobile_height = 270 -%}
+    {%- assign desktop_height = 650 -%}
+  {%- when 'large' -%}
+    {%- assign mobile_height = 375 -%}
+    {%- assign desktop_height = 775 -%}
+{%- endcase -%}
+
+{%- if section.settings.image == blank -%}
+  {% style %}
+    @media screen and (max-width: 749px) {
+      .video-section-wrapper--{{ section.id }} .video__image {
+        opacity: 0;
+      }
+    }
+  {% endstyle %}
+{%- endif -%}
+<div class="page-width" data-section-id="{{ section.id }}" data-section-type="video-section">
+  {%- if section.settings.video_link != blank -%}
+    <div class="video-section-wrapper
+                video-section-wrapper--{{ section.settings.height }}
+                video-section-wrapper--min-height
+                {% if section.settings.style == 'background' %} video-background-wrapper
+                  {% unless section.settings.show_overlay %} video-background-wrapper--no-overlay{% endunless %}
+                {% endif %}
+                video-section-wrapper--{{ section.id }}"
+                data-desktop-height="{{ desktop_height }}"
+                data-mobile-height="{{ mobile_height }}">
+      {%- if section.settings.show_overlay -%}<div class="video__overlay"></div>{%- endif -%}
+      <button type="button"
+              class="text-link video-control__close-wrapper
+              {% if section.settings.style == 'background' %} video-control__close-background{% endif %}"
+              data-controls="Video-{{ section.id }}">
+        <span class="video-control video-control__close">
+          {% include 'icon-close' %}
+          <span class="icon__fallback-text">{{ 'sections.video.close' | t: video_title: '[video_title]' }}</span>
+        </span>
+      </button>
+      {%- if section.settings.video_link != blank -%}
+        <div id="Video-{{ section.id }}"
+            class="video{% if section.settings.style == 'background' %} video--background{% endif %}
+            video--{{ section.settings.style }}"
+            data-id="{{ section.settings.video_link.id }}"
+            data-type="{{ section.settings.style }}"></div>
+      {%- endif -%}
+
+      {%- if section.settings.image == blank -%}
+        <div class="video__image js">
+          <div class="placeholder-background">
+            {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+            {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        </div>
+      {%- else -%}
+        <div class="video__image box ratio-container lazyload js"
+              data-bgset="{% include 'bgset', image: section.settings.image %}"
+              data-sizes="auto"
+              data-parent-fit="contain"
+              style="background-position: {{ section.settings.image_position }};"
+              data-image-loading-animation>
+        </div>
+      {%- endif -%}
+
+      <noscript>
+        <div class="video__image"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: {{ section.settings.image_position }};"{% endif %}>
+          {%- if section.settings.image == blank -%}
+            <div class="placeholder-background">
+              {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+              {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {%- endif -%}
+        </div>
+      </noscript>
+
+      <div class="video__text-content text-center">
+        <div class="page-width">
+          {%- unless section.settings.video_title == blank -%}
+            <h2 class="h1 mega-title video__title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">
+              {{ section.settings.video_title | escape }}
+            </h2>
+          {%- endunless -%}
+
+          {%- unless section.settings.style == 'background' -%}
+            <div class="video-control__play-wrapper{% if section.settings.video_title != blank %} video-control__play-wrapper--with-text{% endif %}">
+              {%- if section.settings.video_link != blank -%}
+                <div class="video-play-loader"></div>
+              {%- endif -%}
+              <button type="button" class="btn video-control video-control__play" data-controls="Video-{{ section.id }}">
+                {% include 'icon-play' %}
+                <span class="icon__fallback-text">{{ 'sections.video.play' | t: video_title: '[video_title]' }}</span>
+              </button>
+            </div>
+          {%- endunless -%}
+        </div>
+      </div>
+
+      <div class="video-control__play-wrapper-mobile">
+        {%- if section.settings.video_link != blank -%}
+          <div class="video-play-loader"></div>
+        {%- endif -%}
+        <button type="button" class="btn video-control video-control__play" data-controls="Video-{{ section.id }}">
+          {% include 'icon-play' %}
+          <span class="icon__fallback-text">{{ 'sections.video.play' | t: video_title: '[video_title]' }}</span>
+        </button>
+      </div>
+
+      <button type="button" class="video__pause{% unless section.settings.style == 'background' %} visually-hidden" tabindex="-1{% endunless %}" data-id="{{ section.id }}" aria-live="polite" aria-pressed="false" data-controls="Video-{{ section.id }}">
+        <span class="video__pause-stop">
+          {% include 'icon-pause' %}
+          <span class="icon__fallback-text">{{ 'sections.video.pause' | t: video_title: '[video_title]' }}</span>
+        </span>
+        <span class="video__pause-resume">
+          {% include 'icon-play' %}
+          <span class="icon__fallback-text">{{ 'sections.video.resume' | t: video_title: '[video_title]' }}</span>
+        </span>
+      </button>
+    </div>
+  {%- else -%}
+  <div class="small--hide" style="padding-top:{{ 1 | divided_by: section.settings.video_poster.aspect_ratio | times: 100}}%;">
+    <video width="100%" height="100%" playsinline autoplay muted loop id="myVideo">
+      <source src="{{ section.settings.video_desktop }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div class="medium-up--hide" style="padding-top:{{ 1 | divided_by: section.settings.video_poster_small.aspect_ratio | times: 100}}%;">
+    <video width="100%" height="100%" playsinline autoplay muted loop="loop" id="myVideo2">
+      <source src="{{ section.settings.video_mobile }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Video",
+  "class": "index-section video-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Cover image",
+      "info": "Always shown on mobile devices"
+    },
+	{
+      "type": "image_picker",
+      "id": "video_poster",
+      "label": "Desktop poster image"
+    },
+	{
+      "type": "image_picker",
+      "id": "video_poster_small",
+      "label": "Mobile poster image"
+    },
+	{
+      "type": "textarea",
+      "id": "video_desktop",
+      "label": "Desktop video url"
+    },
+	{
+      "type": "textarea",
+      "id": "video_mobile",
+      "label": "Mobile video url"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video",
+      "category": "Video"
+    }
+  ]
+}
+{% endschema %}

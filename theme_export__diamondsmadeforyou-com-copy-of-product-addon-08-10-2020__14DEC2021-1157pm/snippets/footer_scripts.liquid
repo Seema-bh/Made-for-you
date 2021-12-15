@@ -1,0 +1,139 @@
+<!-- Footer scripts -->
+<script src="{{ 'vendor.min.js' | asset_url }}" defer></script>
+<script src="{{ 'api.jquery.js' | shopify_asset_url }}" async></script>
+<script src="{{ 'option_selection.js' | shopify_asset_url }}" async></script>
+{%  include 'new-currency' %}
+<script src="{{ 'jquery.sticky.js' | asset_url }}" defer></script>
+<script src="{{ 'watch.min.js' | asset_url }}"></script>
+<!-- <script src="{{ 'watch.js' | asset_url }}"></script> -->
+{% if template contains 'collection' %}
+<script>
+  $(document).ready(function(){
+    $('.dropdown-cat a').each(function(){
+      if($(this).hasClass('active')) {
+      	$(this).parents('li').addClass('open');
+      }
+    });
+  })
+</script>
+{% endif %}
+<script>
+  $(document).ready(function(){
+    
+    $("#the-vault2").click(function(e){
+      if($(e.target).closest(".popup").length<1){
+        $(this).css({"visibility":"hidden","opacity":"0"});
+      }
+    });
+
+    $("#the-vault2 .close").click(function(e){
+      $("#the-vault2").css({"visibility":"hidden","opacity":"0"});
+    });
+    
+    $(".product-saving .info-icon").click(function(e){
+      $("#the-vault2").css({"visibility":"visible","opacity":"1"});
+    });
+    
+    $("#the-vault3").click(function(e){
+      if($(e.target).closest(".popup").length<1){
+        $(this).css({"visibility":"hidden","opacity":"0"});
+      }
+    });
+
+    $("#the-vault3 .close").click(function(e){
+      $("#the-vault3").css({"visibility":"hidden","opacity":"0"});
+    });
+
+    $(".monthly-payment a").click(function(e){
+      e.preventDefault();
+      $("#the-vault3").css({"visibility":"visible","opacity":"1"});
+    });
+    
+    // Accordion
+    $(".accordion .acc-title").on("click", function() {
+      $(this).parent(".acc-block").toggleClass("active").siblings().removeClass("active");
+      $(this).parent(".acc-block").siblings().children(".acc-description").slideUp();
+      $(this).siblings(".acc-description").slideToggle();
+    });
+    
+    $('.our-official-slider').slick({
+      dots: false,
+      arrows: true,
+      infinite: false,
+      speed: 300,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      prevArrow: '<button type="button" class="slick-prev"><img src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/arrow-down-sign-to-navigate_copy.png?v=1603462657" alt="" /></button>',
+      nextArrow: '<button type="button" class="slick-next"><img src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/arrow-down-sign-to-navigate.png?v=1603462657" alt="" /></button>',
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        }
+      ]
+    });
+    
+    $('.our-clients-slider').slick({
+      dots: false,
+      arrows: true,
+      infinite: false,
+      speed: 300,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      prevArrow: '<button type="button" class="slick-prev"><img src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/arrow-down-sign-to-navigate_copy.png?v=1603462657" alt="" /></button>',
+      nextArrow: '<button type="button" class="slick-next"><img src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/arrow-down-sign-to-navigate.png?v=1603462657" alt="" /></button>',
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        }
+      ]
+    });
+    
+    $('.our-brands-slider').slick({
+      dots: false,
+      arrows: true,
+      infinite: false,
+      speed: 300,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      prevArrow: '<button type="button" class="slick-prev"><img src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/arrow-down-sign-to-navigate_copy.png?v=1603462657" alt="" /></button>',
+      nextArrow: '<button type="button" class="slick-next"><img src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/arrow-down-sign-to-navigate.png?v=1603462657" alt="" /></button>',
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        }
+      ]
+    });
+    
+    $('#top_header_four_block').slick({
+      dots: false,
+      arrows: false,
+      infinite: true,
+      autoplay: true,
+      autoplaySpeed: 5000,
+      speed: 1000,
+      slidesToShow: 4,
+      slidesToScroll: 2,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        }
+      ]
+    });
+  })
+</script>

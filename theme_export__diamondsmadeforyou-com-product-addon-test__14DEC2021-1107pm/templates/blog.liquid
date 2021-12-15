@@ -1,0 +1,30 @@
+<div class="blog-template ">
+  <div class="container">
+    {% include 'breadcrumb' %}
+
+    <div class="page-header">
+      <!--       {% if current_tags %}    
+<h1>
+<a href="{{ blog.url }}">{% include 'multilang' with page_title %}</a> &raquo; {{ current_tags.first }}
+</h1>
+{% else %} 
+{% endif %}   -->
+      <div class="blog-head-info">
+         <img src="https://cdn.shopify.com/s/files/1/0411/6437/4183/files/Blog_banner_2x_0052a02e-bca6-48c5-b059-efc4e73d00ab.png?v=1593852412" class="blog-image">
+        <div class="blog-details">
+          <h1 class="blog-header">Blogs</h1>
+          <h4 class="blog-subhead">BLOGS MADE FOR YOU</h4>
+          <p class="blog-para">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</p>
+        </div>
+       
+      </div>
+    </div>
+
+    <div class="halo-blog-content">
+      <div class="row">
+        {% section 'sidebar-blog' %}
+        {% section 'blog-template' %}
+      </div>      
+    </div>   
+  </div>
+</div>

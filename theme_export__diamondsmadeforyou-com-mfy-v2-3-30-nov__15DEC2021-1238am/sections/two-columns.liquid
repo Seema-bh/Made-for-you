@@ -1,0 +1,101 @@
+<section class="section-spacing">
+  <div class="page-width">
+    {% include 'section-header' %}
+    <div class="grid">
+      {% for block in section.blocks %}
+      <div class="grid__item medium-up--one-half">
+        {% if block.settings.button_link != blank %}
+        <a {% if block.settings.btn_trackingID != blank %}id="{{ block.settings.btn_trackingID }}"{% endif %} href="{{ block.settings.button_link }}">
+          {% endif %}
+          {% assign banner_image = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+          <div class="image-wrapper absolute-image-wrapper" style="padding-top:{{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;">
+            <img class="lazyload" 
+            data-src="{{ banner_image }}" 
+            data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+            data-aspectratio="{{ block.settings.image.aspect_ratio }}" 
+            data-sizes="auto"
+            alt="" />
+            {% if block.settings.column_title != blank %}
+            <h3>{{ block.settings.column_title }}</h3>
+            {% endif %}
+          </div>
+          <div class="content text-center">
+            {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+            <span class="btn-arrow btn-arrow-small">
+              {{ block.settings.button_label }}
+              {% include 'icon-btn-arrow' %}
+            </span>
+            {% endif %}
+          </div>
+          {% if block.settings.button_link != blank %}
+        </a>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Two columns",
+  "class": "two-columns-section",
+  "max_blocks": 2,
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Title",
+    "default": "Title"
+  },
+  {
+    "type": "text",
+    "id": "sub_title",
+    "label": "Subtitle",
+    "default": "Subtitle"
+  }
+  ],
+  "blocks": [
+  {
+    "type": "column",
+    "name": "Column",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Recommended size: 610px * 580px"
+    },
+    {
+      "type": "text",
+      "id": "column_title",
+      "label": "Column title",
+      "default": "Column title"
+    },
+    {
+      "type": "text",
+      "id": "btn_trackingID",
+      "label": "Tracking ID"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Discover"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+    ]
+  }
+  ],
+  "presets": [
+  {
+    "name": "Two columns",
+    "category": "Image"
+  }
+  ]
+}
+{% endschema %}

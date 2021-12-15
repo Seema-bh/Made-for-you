@@ -1,0 +1,221 @@
+{% assign pdpProduct = product.handle %}
+{% assign mainProductVariantTitle = product.selected_or_first_available_variant.title | split:"/" | first | handle %}
+{% assign mainProductLookbookField = product.metafields.global['Lookbook Product'] | split:"," %}
+{% if mainProductLookbookField == blank %}
+{% assign mainProductLookbookField = product.metafields.Product['Lookbook Product'] | split:"," %}
+{% endif %}
+{% assign styleArr = "" %}
+{% assign LookbookProductHandleArr = "" %}
+{% assign LookbookStyleArr = "" %}
+
+{% for style in mainProductLookbookField %}
+	{% assign styleSplit = style | split:"/" | first | handle %}
+	{% assign styleArr = styleArr | append: styleSplit | append:' ' %}
+{% endfor %}
+
+
+{% paginate collections.all.products by 1000 %}
+  {% for productLook in collections.all.products %}
+	{% assign lookBookProductVariantTitle = productLook.selected_or_first_available_variant.title | split:"/" | first | handle %}
+    {% assign lookBookProductStyle = productLook.selected_or_first_available_variant.sku | split:"/" | first | handle %}
+	{% assign lookbookProductHandle = productLook.handle  %}
+	{% if styleArr contains lookBookProductStyle and lookBookProductVariantTitle == mainProductVariantTitle %}
+		{% if LookbookStyleArr contains lookBookProductStyle %}
+
+		{% else %}
+		{% assign LookbookStyleArr = LookbookStyleArr | append: lookBookProductStyle | append:"," %}
+		{% assign LookbookProductHandleArr = LookbookProductHandleArr | append: lookbookProductHandle | append:"," %}
+
+		{% endif %}
+	{% endif %}
+  {% endfor %}
+{% endpaginate %}
+
+{% if mainProductLookbookField != blank %}
+{% assign pdpLookBookImage = product.metafields.global['Lookbook Image'] %}
+{% if pdpLookBookImage == blank %}
+{% assign pdpLookBookImage = product.metafields.Product['Lookbook Image'] %}
+{% endif %}
+<section class="section-spacing">
+  <div class="page-width">
+    {% include 'section-header' %}
+    <div class="inspired-collection_slider custom-slider">
+      {% for block in section.blocks %}
+      <div class="feature-row">
+        {% capture image_layout %}
+        <div class="feature-row__item feature-row__item-image">
+          {% if block.settings.image != blank %}
+          {% capture img_id %}FeatureRowImage-{{ block.id }}{% endcapture %}
+          {% capture wrapper_id %}FeatureRowImageWrapper-{{ block.id }}{% endcapture %}
+          {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+            <div>
+              <img id="{{ img_id }}"
+                   class="feature-row__image lazyload"
+                   data-src="{{ pdpLookBookImage }}"
+                   data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                   data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+                   data-sizes="auto"
+                   alt="{{ block.settings.image.alt | escape }}">
+            </div>
+          </div>
+
+          <noscript>
+            {{ block.settings.image | img_url: '600x600', scale: 2 | img_tag: block.settings.image.alt, 'feature-row__image' }}
+          </noscript>
+          {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+
+          {% if block.settings.title != blank %}
+<!--           <h3 class="text-center">{{ block.settings.title }}</h3> -->
+          {% endif %}
+        </div>
+        {% endcapture %}
+
+        <div class="feature-row text_section">
+          {% if block.settings.layout == 'left' %}
+          {{ image_layout }}
+          {% endif %}
+
+          <div class="feature-row__item feature-row__text feature-row__text--{{ block.settings.layout }} lookbook-parent">        
+            {%- assign max_height = 198 -%}
+            <ul class="grid grid--uniform look-product-all-wrapper">
+              {% assign lookBookProductSplit = LookbookProductHandleArr | split:"," %}
+              {% for productLookHandle in lookBookProductSplit  %}
+              {% if productLookHandle == pdpProduct and productLookHandle != blank %}
+              {%- assign product1 = all_products[productLookHandle] -%}
+              <li class="grid__item medium-up--one-third grid__item--{{block.id}}">
+                {% include 'inspired-card-grid', max_height: max_height, product: product1, show_vendor: section.settings.show_vendor %}
+              </li>
+              {% endif %}
+              {% endfor %}
+              {% for productLookHandle in lookBookProductSplit  %}
+              {% if productLookHandle != pdpProduct and productLookHandle != blank %}
+              {%- assign product2 = all_products[productLookHandle] -%}
+              <li class="grid__item medium-up--one-third grid__item--{{block.id}}">
+                {% include 'inspired-card-grid', max_height: max_height, product: product2, show_vendor: section.settings.show_vendor %}
+              </li>
+              {% endif %}
+              {% endfor %}
+            </ul>
+
+            <div class="button-wrapper text-center">
+              <div class="medium-up--hide total-price">
+                <span>Total:</span> <span class="lprice"></span><span class="comparePrice"></span>
+              </div>
+              <button class="btn look-add-all">
+                Add all to bag
+              </button>
+            </div>
+          </div>
+
+          {% if block.settings.layout == 'right' %}
+          {{ image_layout }}
+          {% endif %}
+        </div>
+      </div><!-- feature-row end -->
+      {% endfor %}
+    </div>
+  </div>  
+</section>
+{% endif %}
+  
+{% schema %}
+  {
+    "name": "Inspired collection",
+    "class": "inspired-collection inspired-collection-pdp",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Collection list"
+      },
+      {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Sub Title"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show product vendors",
+        "default": false
+      }
+    ],
+	"blocks": [
+      {
+        "type": "column",
+        "name": "column",
+		"settings": [
+          {
+            "type": "header",
+            "content": "Banner"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Banner title",
+            "default": "Title"
+          },
+          {
+            "type": "select",
+            "id": "layout",
+            "label": "Image alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ]
+          },
+          {
+            "type": "header",
+            "content": "Products"
+          },
+          {
+            "type": "product",
+            "id": "featured_product1",
+            "label": "Product 1"
+          },
+          {
+            "type": "product",
+            "id": "featured_product2",
+            "label": "Product 2"
+          },
+          {
+            "type": "product",
+            "id": "featured_product3",
+            "label": "Product 3"
+          },
+          {
+            "type": "product",
+            "id": "featured_product4",
+            "label": "Product 4"
+          }
+		]
+      }
+	],
+    "presets": [
+      {
+        "name": "Inspired Collection",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}

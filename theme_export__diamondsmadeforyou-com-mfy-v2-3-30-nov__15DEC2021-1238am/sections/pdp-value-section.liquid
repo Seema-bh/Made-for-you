@@ -1,0 +1,61 @@
+{% if section.settings.enable_section %}
+{% for variant in product.variants %}
+{%- assign price = variant.price | money -%}
+{% endfor %}
+<section class="section-spacing">
+  <div id="value-icon-section" class="page-width">
+    <div class="mfu-value-section mfy-value-slider custom-slider text-center">
+      {% for block in section.blocks %}
+      <div class="value">
+        {% if block.settings.icon != blank %}
+        <div class="value_icons">
+          {{ block.settings.icon }}
+        </div>
+        {% endif %}
+        {% if block.settings.title != blank %}
+        <div class="value_text">
+          <h6>{{ block.settings.title }}</h6>
+          <span class="price_value"></span>
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "MFY Value",
+    "class": "pdp-value-section",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_section",
+        "label": "Enable section",
+        "default": true
+      }
+    ],
+	"max_blocks": 7,
+    "blocks":[
+      {
+        "type": "column",
+        "name": "Column",
+        "settings": [
+		  {
+            "type": "textarea",
+            "id": "icon",
+            "label": "Icon"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Title"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

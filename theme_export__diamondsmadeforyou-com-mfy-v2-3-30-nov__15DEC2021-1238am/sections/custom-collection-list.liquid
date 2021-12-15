@@ -1,0 +1,100 @@
+<section class="section-spacing">
+  <div class="page-width">
+    {% include 'section-header' %}
+    <div class="collection-list-slider custom-slider">
+      {% for block in section.blocks %}
+      <div class="list-item text-center">
+        {% if block.settings.button_link != blank %}
+        <a {% if block.settings.linkTracking_ID != blank %}id="{{ block.settings.linkTracking_ID }}"{% endif %} href="{{ block.settings.button_link }}">
+          {% endif %}
+          {% assign collection_image = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+          <div class="image-wrapper absolute-image-wrapper" style="padding-top:{{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;">
+            <img class="lazyload" 
+            data-src="{{ collection_image }}" 
+            data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+            data-aspectratio="{{ block.settings.image.aspect_ratio }}" 
+            data-sizes="auto"
+            alt="" />
+          </div>
+          <div class="content">
+            {% if block.settings.collection_title != blank %}
+            <h3>{{ block.settings.collection_title }}</h3>
+            {% endif %}
+            {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+            <span class="btn-arrow btn-arrow-small">
+              {{ block.settings.button_label }}
+              {% include 'icon-btn-arrow' %}
+            </span>
+            {% endif %}
+          </div>
+          {% if block.settings.button_link != blank %}
+        </a>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection list",
+  "class": "custom-collection-list",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Title",
+    "default": "Title"
+  },
+  {
+    "type": "text",
+    "id": "sub_title",
+    "label": "Subtitle",
+    "default": "Subtitle"
+  }
+  ],
+  "blocks": [
+  {
+    "type": "collection_block",
+    "name": "Column",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Recommended size: 373px * 466px"
+    },
+    {
+      "type": "text",
+      "id": "collection_title",
+      "label": "Collection title",
+      "default": "Collection title"
+    },
+    {
+      "type": "text",
+      "id": "linkTracking_ID",
+      "label": "Link Tracking ID"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Discover"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+    ]
+  }
+  ],
+  "presets": [
+  {
+    "name": "Custom collection list",
+    "category": "Text"
+  }
+  ]
+}
+{% endschema %}

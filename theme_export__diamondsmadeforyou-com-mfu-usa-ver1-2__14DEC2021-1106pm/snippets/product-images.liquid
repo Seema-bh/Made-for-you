@@ -1,0 +1,76 @@
+                                                                                                                                                                                                                                                           
+<div class="col-md-6 product-photos" data-more-view-product>
+  <div {% if section.settings.show_tab == 'vertical' %} data-sticky-product-img{% endif %} class="product-img-box{% if section.settings.style_moreview == 'horizontal' %} horizontal-moreview{% elsif section.settings.style_moreview == 'left_vertical' %} left-vertical-moreview vertical-moreview{% else %} right-vertical-moreview vertical-moreview{% endif %}{% if settings.product_image_border%} grid-item-border{% endif %}">
+    <div style="position: relative;" class="wrapper-images">
+      <div class="product-photo-container slider-for">
+        {% for media in product.media %}
+        
+        {% case media.media_type %}
+        {% when 'image' %}
+        <div class="thumb filter-{{ image.alt | handle }}">
+          <a href="javascript:void(0)">
+            <img id="product-featured-image-{{media.id}}" src="{{ media | img_url: 'original' }}" alt="{{ media.alt | escape }}"
+                 class="lazyload"
+                 data-src="{{ media | img_url: 'original' }}"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-aspectratio="{{ media | img_url: 'original' }}"
+                 data-sizes="auto">
+          </a>
+        </div>
+        {% when 'video' %}
+        <div class="thumb filter-{{ image.alt | handle }}">
+          <a href="javascript:void(0)">
+            <div class="video-responsive">
+              {{ media | video_tag: controls: true }}
+            </div>
+          </a>
+        </div>
+        {% endcase %}
+        {% endfor %}
+      </div>
+      {% include 'product-label' %}
+      {% if section.settings.video_product and product.description contains 'iframe' %}
+      {% include 'video-product' %}
+      {% endif %}
+    </div>
+
+    <div class="slider-nav" data-rows="5" data-vertical="{% if section.settings.style_moreview == 'horizontal' %}false{% else %}true{% endif %}">
+      {% for media in product.media %}
+      <div class="item filter-{{ media.alt | handle }}">
+        <a href="javascript:void(0)" class="thumb-img" data-image="{{ media.src | product_img_url: 'original' }}">
+          <img src="{{ media | img_url: '110x110', scale: 2 }}" alt="{{ media.alt | escape }}">
+          {% if image.alt contains "video:" %}
+          	{% include "icons"%}
+          {% endif %}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .slider-nav .item{
+    position:relative;
+  }
+  .thumb-img svg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    transform: translate(0,-50%);
+    width: 30px;
+    height: 30px;
+  }
+  .video-container iframe,
+  .video-container object,
+  .video-container embed {
+    margin-top: -10px
+  }
+  img.play-icon {
+    position: absolute;
+    top: 20%;
+    left: 24%;
+ }
+</style>

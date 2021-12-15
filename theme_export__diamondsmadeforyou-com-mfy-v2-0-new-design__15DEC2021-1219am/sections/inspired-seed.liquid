@@ -1,0 +1,165 @@
+{%- assign collection = collections[section.settings.collection] -%}
+<section class="section-spacing">
+  <div class="page-width anika_collection_list collection_list {{ collection.title | handleize }}-collection">
+    {% include 'section-header' %}
+
+    <div class="title-btn-wrapper">
+      <h3>{{ collection.title }} <span>Collection</span></h3>
+      {% if section.settings.show_shop_all != blank and section.settings.shop_all_txt != blank %}
+      <a href="{{ collection.url }}" class="btn-arrow btn-arrow-small">
+        {{ section.settings.shop_all_txt }}
+        {% include 'icon-btn-arrow' %}
+      </a>
+      {% endif %}
+    </div>
+    
+    <div class="collection-image-wrapper">
+      {% unless section.settings.collection_image_desk == nil %}
+      {%- assign img_url = section.settings.collection_image_desk | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <div class="collection-image small--hide">
+        <div class="absolute-image-wrapper" style="padding-top:{{ 1 | divided_by: section.settings.collection_image_desk.aspect_ratio | times: 100}}%;">
+          <img id="{{ img_id }}" class="custom__image lazyload js image_scale" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ section.settings.collection_image_desk.aspect_ratio }}" data-sizes="auto" alt="{{ section.settings.collection_image_desk.alt | escape }}">
+        </div>
+        <noscript>
+          {% capture image_size %}{{ max_height }}x{% endcapture %}
+          {{ section.collection_image_desk.image | img_url: image_size, scale: 2, crop: 'top' | img_tag: section.collection_image_desk.image.alt, 'custom__image' }}
+        </noscript>
+      </div>
+      {% endunless %}
+
+      {% unless section.settings.collection_image_mob == nil %}
+      {%- assign img_url = section.settings.collection_image_mob | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <div class="collection-image medium-up--hide">
+        <div class="absolute-image-wrapper" style="padding-top:{{ 1 | divided_by: section.settings.collection_image_mob.aspect_ratio | times: 100}}%;">
+          <img id="{{ img_id }}" class="custom__image lazyload js image_scale" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ section.settings.collection_image_mob.aspect_ratio }}" data-sizes="auto" alt="{{ section.settings.collection_image_mob.alt | escape }}">
+        </div>
+        <noscript>
+          {% capture image_size %}{{ max_height }}x{% endcapture %}
+          {{ section.collection_image_mob.image | img_url: image_size, scale: 2, crop: 'top' | img_tag: section.collection_image_mob.image.alt, 'custom__image' }}
+        </noscript>
+      </div>
+      {% endunless %}
+    </div>
+    
+    {% if section.settings.collection_info != blank %}
+    <div class="collection-info text-center">{{ section.settings.collection_info }}</div>
+    {% endif %}
+    
+    {% case section.settings.grid %}
+    {% when 2 %}
+    {%- assign max_height = 530 -%}
+    {%- assign grid_item_width = 'medium-up--one-half' -%}
+    {% when 3 %}
+    {%- assign max_height = 345 -%}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+    {% when 4 %}
+    {%- assign max_height = 250 -%}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
+    {% when 5 %}
+    {%- assign max_height = 195 -%}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
+    {% endcase %}
+
+    {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
+
+    <ul class="grid grid--uniform grid-slider custom-slider">
+      {% for product in collection.products limit:8 %}
+      <li class="grid__item small--one-half medium-up--one-quarter grid__item--{{section.id}}">
+        {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+      </li>
+      {% else %}
+
+      {% for i in (1..product_limit) %}
+      <li class="grid__item grid__item--{{section.id}}">
+        <div class="grid-view-item product-card">
+          <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="#">
+            <span class="visually-hidden">{{ 'homepage.onboarding.product_title' | t }}</span>
+          </a>
+          <div class="grid-view-item__image-wrapper">
+            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+          <div class="h4 grid-view-item__title" aria-hidden="true">{{ 'homepage.onboarding.product_title' | t }}</div>
+          {% include 'product-price' %}
+        </div>
+      </li>
+      {% endfor %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "class": "anika-featured-collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+    {
+      "id": "collection",
+      "type": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+	  "id": "collection_image_desk",
+      "label": "Collection image (Desktop)",
+	  "info": "Recommended size: 1240px * 452px"
+    },
+    {
+      "type": "image_picker",
+	  "id": "collection_image_mob",
+      "label": "Collection image (Mobile)",
+	  "info": "Recommended size: 360px * 362px"
+    },
+	{
+      "type": "richtext",
+      "id": "collection_info",
+      "label": "Collection info",
+	  "default": "<p>Collection info goes here.</p>"
+    },
+    {
+      "type": "range",
+      "id": "grid",
+      "label": "Products per row",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "label": "Rows",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show product vendors",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shop_all",
+      "label": "Show 'Shop all' button",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "shop_all_txt",
+      "label": "Button Text",
+      "default": "SHOP ALL"
+    }
+  ]
+}
+{% endschema %}

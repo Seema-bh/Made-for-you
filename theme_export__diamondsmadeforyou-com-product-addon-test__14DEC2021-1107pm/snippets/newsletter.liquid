@@ -1,0 +1,65 @@
+{% if settings.display_popup_newsletter %}
+
+<style>
+  .newslettermodel {
+    position: relative;
+  }
+  .shopbtn {
+    display: block;
+    width: 124px;
+    padding: 8px 0px;
+    position: absolute;
+    bottom: 186px;
+    right: 38px;
+    background: #beccc4;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: italic;
+    text-transform: uppercase;
+  }
+  .shopbtn:hover {
+    opacity: 0.8;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .shopbtn{bottom: 292px;
+      right: 52px;}
+  }
+
+  @media only screen and (max-width: 425px) {
+    .shopbtn {
+      bottom: 136px;
+      right: 30px;
+    }
+
+  }
+  @media only screen and (max-width: 375px) {
+    .shopbtn {
+      bottom: 118px;
+      right: 24px;
+      width: 120px;
+      font-size: 14px;
+    }
+
+  }
+</style>
+<div class="wrapper-newsletter halo-modal" data-newsletter data-delay="{{settings.popup_newsletter_delay | times:1000}}" data-expire="{{ settings.popup_newsletter_expire }}">
+  <div class="modal-overlay">
+    <div class="halo-modal-content">
+      <a class="close close-window" title="{{ 'cart.ajax_cart.close' | t }}">
+        {% include 'icon-close' %}
+      </a>
+
+      <div class="halo-modal-body">
+        <div class="column-content newslettermodel">
+          <a href="/collections/jewelry">
+            <img src="{{settings.newsletter_img | img_url:'1000x'}}">
+          </a>
+          <a href="/collections/jewelry" class="shopbtn">SHOP NOW</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}

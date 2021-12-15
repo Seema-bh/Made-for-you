@@ -1,0 +1,41 @@
+<div class="impresee-form" style="position:relative;padding: 0 10px; margin: 5px 0;">
+  <style>
+    .impresee-desktop {
+      display: none;
+    }
+    .impresee-form input:focus {
+      outline: none;
+    }
+    .impresee-photo img{
+      min-height: 30px;
+      height: 100%;
+    }
+    @media only screen and (min-width: 768px) {
+      .impresee-form,.impresee-form input {
+        min-width: 200px;
+      }
+      .impresee-form {
+        width: 100%;
+      }
+      .impresee-desktop {
+        display: inline-block;
+      }
+    }
+  </style>
+  <input autocomplete="off" style="text-indent: 35px; width: 100%; background-color: white; border-color: rgb(204, 204, 204);height:40px;" type="text" placeholder="Search" name="q">
+  <div class="impresee-icon" style="display: flex; position: absolute; right: 22px; top: 5px;">
+    {% comment %}
+    <div class="impresee-sketch" style="margin-right:10px;" >
+      <img src="https://api.impresee.com/icons/paint-gray.svg" height=30>
+    </div>
+    {% endcomment %}
+    <div class="impresee-photo" >
+      <img src="https://api.impresee.com/icons/camera_grey.svg" height=30>
+    </div>
+  </div>
+  {% comment %}
+  <button class="impresee-submit-button" type="button" style="position:absolute; left: 12px; top:5px; border:none; background-color:transparent;">
+    <img src="https://api.impresee.com/icons/search.svg" height=30>
+  </button>
+  {% endcomment %}
+</div>

@@ -1,0 +1,50 @@
+<div class="header-mb">          
+  <div class="header-mb-left header-mb-items">
+    <div class="hamburger-icon svg-mb">
+      <a href="#" class="icon-nav" title="Menu Mobile Icon" data-menu-mb-toogle>
+        <span class="icon-line"></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="header-mb-middle header-mb-items">
+    <a class="logo-img" href="{{ shop.url }}" title="Logo">
+      <img data-src="//cdn.shopify.com/s/files/1/0411/6437/4183/files/Logo-_1.png?v=1593158461"
+           src="//cdn.shopify.com/s/files/1/0411/6437/4183/files/Logo-_1.png?v=1593158461"
+           alt="//cdn.shopify.com/s/files/1/0411/6437/4183/files/Logo-_1.png?v=1593158461" 
+           itemprop="logo" class="lazyautosizes lazyloaded" data-sizes="auto">
+    </a>
+  </div>
+
+  <div class="header-mb-right header-mb-items">
+    <div class="search-mb svg-mb">
+      <a href="#" title="Search Icon" class="icon-search" data-search-mobile-toggle>
+        {% include 'icon-search' %}
+      </a>
+
+      <a href="javascript:void(0)" title="close" class="close close-search">
+        {% include 'icon-close' %}
+      </a>
+
+      {% include 'search-bar' %}
+    </div>
+    {% comment %}
+    {% if shop.customer_accounts_enabled %}
+    <div class="acc-mb svg-mb">
+      <a href="/account" title="User Icon" class="icon-user">
+        {% include 'icon-user' %}
+      </a>
+    </div>
+    {% endif %}
+    {% endcomment %}
+    <div class="cart-icon svg-mb">
+      <a href="#" title="Cart Icon" data-cart-toggle>       
+        {% include 'icon-cart' %}
+
+        <span class="cartCount" data-cart-count>
+          {{ cart.item_count }}
+        </span>
+      </a>
+    </div>
+  </div>          
+</div>

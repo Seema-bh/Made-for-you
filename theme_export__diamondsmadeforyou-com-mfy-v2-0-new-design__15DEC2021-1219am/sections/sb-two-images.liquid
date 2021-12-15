@@ -1,0 +1,81 @@
+<div class="section-spacing">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item grid__item-content">
+        <div class="content small--text-center">
+          {% if section.settings.title != blank %}
+          <h2>{{ section.settings.title }}</h2>
+          {% endif %}
+          {% if section.settings.text != blank %}
+          <div class="text">{{ section.settings.text }}</div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="grid__item grid__item-images">
+        <div class="two-images">
+          {% assign banner_1 = section.settings.banner_1 | img_url: 'master' %}
+          <div class="image-wrapper image-1">
+            <img class="lazyload" 
+                 src="{{ banner_1 }}"
+                 data-src="{{ banner_1 }}" 
+                 data-sizes="auto" 
+                 alt="" />
+          </div>
+          {% assign banner_2 = section.settings.banner_2 | img_url: 'master' %}
+          <div class="image-wrapper image-2">
+            <img class="lazyload" 
+                 src="{{ banner_2 }}"
+                 data-src="{{ banner_2 }}" 
+                 data-sizes="auto" 
+                 alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Two images with text",
+	"class": "sb-two-images",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_section",
+        "label": "Enable section",
+		"default": true
+      },
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+		"default": "<p>Description goes here.</p>"
+      },
+      {
+        "type": "image_picker",
+        "id": "banner_1",
+        "label": "Banner 1",
+        "info": "Recommended size 360x510 (px)"
+      },
+      {
+        "type": "image_picker",
+        "id": "banner_2",
+        "label": "Banner 2",
+        "info": "Recommended size 360x510 (px)"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

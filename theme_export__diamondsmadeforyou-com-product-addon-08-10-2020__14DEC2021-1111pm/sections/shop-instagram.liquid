@@ -1,0 +1,167 @@
+{% if section.settings.show_instagram %}
+
+{{ 'instafeed.min.js' | asset_url | script_tag }}
+
+<section class="instagram-page" id="new-instagram-{{section.id}}">
+  <div id="instafeed" class="row" data-instagram-feed data-accessToken="{{ section.settings.accessToken }}" data-limit="{{ section.settings.limit }}" data-resolution-images="standard_resolution" data-rows="4"></div>  
+  <div class="clear_both"></div>
+  <div class="instagram-bottom">
+    {% if section.settings.show_load_more %}  
+    <div class="infinite-scrolling">
+      <a class="btn" href="javascript:void(0)">
+        {% include 'multilang' with section.settings.instagram_load_text  %}
+      </a>
+    </div>
+    {% endif %}
+    {% if section.settings.display_instagram_button and section.settings.instagram_button_text != blank %}
+    <div class="fllow-instagram">
+      <a href="{{ section.settings.instagram_button_link }}" target="_balnk" title="{{ section.settings.instagram_button_text | split: '|' | first }}" class="btn btn-two">
+        {% include 'multilang' with section.settings.instagram_button_text %}
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+<script>
+    $(document).ready(function() {
+        var instagramBlock = $('[data-instagram-feed]');
+        var toshow = 14;
+        var infiniteScroll = $('.instagram-page .instagram-bottom .infinite-scrolling a');
+        var fullWidth =  $('.instagram-bottom .fllow-instagram');
+        var hideDiv = $('.instagram-page .instagram-bottom .infinite-scrolling');
+
+      function showLoading () {
+        $('.loading-modal').show();
+      };
+      function hideshowLoading () {
+        $('.loading-modal').hide();
+      };
+        instagramBlock.each(function() {
+            var self = $(this),
+                dataResolutionImages = self.data('resolution-images'),
+                dataRows = self.data('rows'),
+                dataLimit = self.data('limit');           
+            
+          //infinite scrolling instagram
+          infiniteScroll.click(function (e) {   
+            e.preventDefault();
+            showLoading();
+            setTimeout(function(){ 
+              if (self.find('.item:hidden').length > 0) {
+                self.find('.item:hidden:lt(' + toshow + ')').each(function () {
+                  $(this).show();
+                  hideshowLoading();
+                });
+              };
+              if(!self.find('.item:hidden').length){
+                hideshowLoading();
+                infiniteScroll.hide();
+                fullWidth.addClass('full-width');
+                hideDiv.addClass('hide');
+              };
+            }, 500);
+          });   
+            var feed = new Instafeed({
+                get: "user",   
+                {% if section.settings.accessToken != blank %}
+                userId: {{ section.settings.accessToken | split: '.' | first  }},
+                accessToken: '{{ section.settings.accessToken }}', 
+                {% else %}
+                accessToken: '19471762279.1677ed0.c56f7c2423fa4d2684d2afc612941493',
+                userId: 8944927192,
+                {% endif %}
+                resolution: dataResolutionImages,
+                clientId: "c6e4c736e82345a3898a0e299daa00fb",
+                get limit() {
+                    return limit = dataLimit.toString();          
+                },                           
+                {% if section.settings.crop_image %}
+             		template: '<div class="item"><a style="background-image: url({%raw%}{{image}}{%endraw%})" href="{% raw %}{{link}}{%endraw%}" target="_blank"></a></div>',    
+            	{% else %}   
+            		template: '<a class="item" href="{% raw %}{{link}}{%endraw%}" target="_blank"><img src="{%raw%}{{image}}{%endraw%}"  data-sizes="auto"/></a>',
+                {% endif %}
+                                  
+                    after: function() {
+                      self.find('a').attr({
+                        target: "_blank",
+                        class: "item  animate-hvr"
+                      });  
+                      self.find('a').hide();
+                      self.find('a').each(function(i) {
+                        if(i < toshow){
+                          $(this).show();   
+                        }
+                      });
+                    }
+            });
+
+            feed.run();
+        });
+    });
+</script>
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Instagram Shop",
+    "class": "instagram-shop",
+    "settings": [   
+        {
+            "type": "checkbox",
+            "id": "show_instagram",
+            "label": "Enable",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "crop_image",
+            "label": "Crop image? (Resize Image First)",
+            "default": true,
+            "info":"All instagram images will have same height"
+        },
+       {
+            "type": "checkbox",
+            "id": "show_load_more",
+            "label": "Display Button Load More?",
+            "default": true
+        },
+         {
+            "type": "text",
+            "id": "instagram_load_text",
+            "label": "Load More...",
+            "default": "Load More..."
+        },
+        {
+            "type": "checkbox",
+            "id": "display_instagram_button",
+            "label": "Display Button Instagram?",
+            "default": true
+        },
+        {
+            "type": "text",
+            "id": "instagram_button_text",
+            "label": "Button Instagram Text",
+            "default": "Follow @Watchtica"
+        },
+        {
+            "type": "text",
+            "id": "instagram_button_link",
+            "label": "Button Instagram Link"
+        },
+        {
+            "type": "text",
+            "id": "accessToken",
+            "label": "Access Token",
+            "default": "19471762279.1677ed0.c56f7c2423fa4d2684d2afc612941493",
+            "info": "Required to use when Get Image from: 'User'.[Where do I find Access Token?](http:\/\/instagram.pixelunion.net/)"
+        },
+        {
+            "type": "text",
+            "id": "limit",
+            "label": "Limit the number of images to show",
+            "default": "21"
+        }
+    ]
+  }
+{% endschema %}

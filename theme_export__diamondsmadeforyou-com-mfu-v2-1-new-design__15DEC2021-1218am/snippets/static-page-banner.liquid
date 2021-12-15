@@ -1,0 +1,50 @@
+{% if section.settings.enable_section %}
+<section>
+  <div class="page-width">
+    <div class="banner-wrapper">
+      {% assign banner_image = section.settings.banner_large | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      <div class="image-wrapper absolute-image-wrapper small--hide" style="padding-top:{{ 1 | divided_by: section.settings.banner_large.aspect_ratio | times: 100 }}%;">
+        <img class="lazyload" 
+             data-src="{{ banner_image }}" 
+             data-widths="[180, 360, 375, 414, 540, 800, 1024, 1280, 1340, 1920 ]" 
+             data-aspectratio="{{ section.settings.banner_large.aspect_ratio }}" 
+             data-sizes="auto"
+             alt="" />
+      </div>
+
+      {% assign banner_image = section.settings.banner_small | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      <div class="image-wrapper absolute-image-wrapper medium-up--hide" style="padding-top:{{ 1 | divided_by: section.settings.banner_small.aspect_ratio | times: 100 }}%;">
+        <img class="lazyload" 
+             data-src="{{ banner_image }}" 
+             data-widths="[180, 360, 375, 414, 540, 800]" 
+             data-aspectratio="{{ section.settings.banner_small.aspect_ratio }}" 
+             data-sizes="auto"
+             alt="" />
+      </div>
+
+      <div class="banner-text small--text-center {% if section.settings.text != blank %}has-text{% endif %}">
+        {% if section.settings.title != blank %}
+        <h1>{{ section.settings.title }}</h1>
+        {% else %}
+        <h1>{{ page.title }}</h1>
+        {% endif %}
+        {% if section.settings.text != blank %}
+        {{ section.settings.text }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<style>
+  @media (min-width: 750px) {
+    .static-page-banner .banner-text h1, 
+    .static-page-banner .banner-text p {color: {{ section.settings.color }};}
+  }
+  @media (max-width: 749px) {
+    .static-page-banner .banner-text {background-color: {{ section.settings.bg_color }};}
+    .static-page-banner .banner-text h1 {color: {{ section.settings.title_color_mob }};} 
+    .static-page-banner .banner-text p {color: {{ section.settings.text_color_mob }};}
+  }
+</style>

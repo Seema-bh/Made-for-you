@@ -1,0 +1,55 @@
+{% paginate collections.all.products by 1000 %}
+{% for product in collections.all.products %}
+{% assign variantTitle = product.selected_or_first_available_variant.title | handle %}
+{% assign variantSku = product.selected_or_first_available_variant.sku | split:"/" | first | handle %}
+
+{% if currentProductSku == variantSku and variantTitle contains 'silver'  %}
+{% assign sliverProductVariant = product.handle %}
+{% endif %}
+{% if currentProductSku == variantSku and variantTitle contains 'rose'  %}
+{% assign roseProductVariant = product.handle %}
+{% endif %}
+{% if currentProductSku == variantSku and variantTitle contains 'yellow'  %}
+{% assign goldProductVariant = product.handle %}
+{% endif %}
+{% endfor %}
+{% endpaginate %}
+
+<div class="swatch clearfix metal " data-option-index="{{ option_index }}">
+  <div class="header">{{ swatch }}</div>
+  {% if roseProductVariant != blank %}
+  <div data-value="{{ value | escape }}" class="swatch-element {% if product.handle == roseProductVariant %}active{% endif %}">
+    <div class="tooltip hide">{{ value }}</div>
+    <a href="/products/{{ roseProductVariant }}" class="sku-product-link">
+      <label data-colorName="{{ value }}" style="background: #EACDB8; background-repeat: no-repeat; background-size: cover;">
+        {% include 'variant-select-tick' %}
+      </label>
+    </a>
+  </div>
+  {% endif %}
+  {% if sliverProductVariant != blank %}
+  <div data-value="{{ value | escape }}" class="swatch-element {% if product.handle == sliverProductVariant %}active{% endif %}">
+    <div class="tooltip hide">{{ value }}</div>
+    <a href="/products/{{ sliverProductVariant }}" class="sku-product-link">
+      <label data-colorName="{{ value }}" style="background: #DBDADA; background-repeat: no-repeat; background-size: cover;">
+        {% include 'variant-select-tick' %}
+      </label>
+    </a>
+  </div>
+  {% endif %}
+  {% if goldProductVariant != blank %}
+  <div data-value="{{ value | escape }}" class="swatch-element {% if product.handle == goldProductVariant %}active{% endif %}">
+    <div class="tooltip hide">{{ value }}</div>
+    <a href="/products/{{ goldProductVariant }}" class="sku-product-link">
+      <label data-colorName="{{ value }}" style="background: #F4E4BB; background-repeat: no-repeat; background-size: cover;">
+        {% include 'variant-select-tick' %}
+      </label>
+    </a>
+  </div>
+  {% endif %}
+
+  <div class="header selected-swatch">Selected - <span class="metalName">{{ product.selected_or_first_available_variant.title }}</span></div>
+</div>
+{% comment %}
+{{ sliverProductVariant }}/{{ roseProductVariant }}/{{ goldProductVariant }}
+{% endcomment %}

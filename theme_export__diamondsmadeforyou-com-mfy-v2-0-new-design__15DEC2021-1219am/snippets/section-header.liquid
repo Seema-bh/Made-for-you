@@ -1,0 +1,8 @@
+{% if section.settings.title != blank %}
+<div class="section-header">
+  {% if section.settings.sub_title != blank %}
+  <span class="subtitle">{{ section.settings.sub_title }}</span>
+  {% endif %}
+  <h1 class="title">{{ section.settings.title }}</h1>
+</div>
+{% endif %}

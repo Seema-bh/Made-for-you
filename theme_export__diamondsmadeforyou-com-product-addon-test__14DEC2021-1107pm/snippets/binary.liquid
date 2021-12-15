@@ -1,0 +1,13 @@
+{% if template contains 'index' %}
+{{ 'homepage.scss.css' | asset_url | stylesheet_tag }}
+{% endif %}
+{% if template contains 'page' %}
+{{ 'static_pages.scss.css' | asset_url | stylesheet_tag }}
+{% endif %}
+{% if template contains 'product' %}
+{{ 'product_detail.scss.css' | asset_url | stylesheet_tag }}
+{{ 'product_detail.js' | asset_url | script_tag }}
+{% endif %}
+{% if template contains 'collection' %}
+{{ 'collection.scss.css' | asset_url | stylesheet_tag }}
+{% endif %}

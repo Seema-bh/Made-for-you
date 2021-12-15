@@ -1,0 +1,68 @@
+{% if section.settings.enable_section %}
+<div class="section-spacing">
+  <div class="page-width">
+    <div class="grid grid--no-gutters">
+      <div class="grid__item grid__item-content">
+        <div class="content small--text-center">
+          {% if section.settings.title != blank %}
+          <h2>{{ section.settings.title }}</h2>
+          {% endif %}
+          {% if section.settings.text != blank %}
+          <div class="text">{{ section.settings.text }}</div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="grid__item grid__item-image">
+        {% assign banner = section.settings.banner | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+        <div class="image-wrapper absolute-image-wrapper" style="padding-top:{{ 1 | divided_by: section.settings.banner.aspect_ratio | times: 100 }}%;">
+          <img class="lazyload" 
+               data-src="{{ banner }}" 
+               data-widths="[180, 360, 375, 414, 540, 800 ]" 
+               data-aspectratio="{{ section.settings.banner.aspect_ratio }}" 
+               data-sizes="auto"
+               alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "About Anika",
+	"class": "oc-about-anika",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_section",
+        "label": "Enable section",
+		"default": true
+      },
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+		"default": "<p>Description goes here.</p>"
+      },
+      {
+        "type": "image_picker",
+        "id": "banner",
+        "label": "Banner",
+        "info": "Recommended size 670x471 (px)"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

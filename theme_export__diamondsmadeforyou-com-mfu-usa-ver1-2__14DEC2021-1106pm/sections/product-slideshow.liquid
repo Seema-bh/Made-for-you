@@ -1,0 +1,120 @@
+<div class="about-us-slideshow">
+  <div class="container">
+    {% if section.settings.title != blank %}
+    <h2 class="title">{% include 'multilang' with section.settings.title %}</h2>
+    {% endif %}
+    <div class="slideshow">
+      {% for block in section.blocks %}
+      <div class="slider-item">
+        <div class="person">
+          <div class="info">
+            {% if block.settings.image != blank %}
+            <div class="profile-picture">
+              <img src="{{ block.settings.image | img_url:'master' }}">
+            </div>
+            {% endif %}
+          </div>
+
+          {% if block.settings.button_text != blank %}
+          <a href="{{block.settings.button_link}}" class="btn">{% include 'multilang' with block.settings.button_text %} <span class="pdp-arrow">&#8594;</span></a>
+          {% endif %}
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<script>
+  var slideshow = function(){
+    $('.slideshow').slick({
+      autoplay:true,
+      infinite: true,
+      slidesToShow: 3.5,
+      slidesToScroll: 1,
+      arrows: false,
+      dots:false,
+      responsive: [
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: false,
+            arrows: false
+          }
+        }, 
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 1.1,
+            slidesToScroll: 1,
+            dots: false,
+           arrows: false
+          }
+        }, 
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1.1,
+            slidesToScroll: 1,
+            dots: false,
+            arrows: false
+          }
+        }
+      ]
+    })
+  }
+
+  $(document).ready(function(){
+    slideshow();
+  })
+
+  $(document)
+  .on('shopify:section:load', slideshow)
+  .on('shopify:section:unload', slideshow)
+</script>
+{% schema %}
+{
+"name": "Content Slideshow",
+"class": "about-us-1-slideshow",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Title",
+"default": "Cosmopolis de Milance"
+}
+],
+"blocks": [
+{
+"type": "content",
+"name": "Content",
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "image"
+},
+{
+"type": "text",
+"id": "button_text",
+"label": "Button Text",
+"default":"Meet The Team"
+},
+{
+"type": "url",
+"id": "button_link",
+"label": "Button Link"
+}
+]
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

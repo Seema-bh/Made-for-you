@@ -1,0 +1,161 @@
+<style>
+  .page-sustainability .sb-two-images .grid {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .page-sustainability .sb-two-images .two-images {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .page-sustainability .sb-mfy-jewelry .section-wrapper {
+    background: #F9F9F9;
+    padding: 34px;
+  }
+  .page-sustainability .sb-mfy-jewelry .grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .page-sustainability .sb-text-over-image .banner-wrapper {position: relative;}
+  .page-sustainability .sb-text-over-image .banner-text {
+    position: absolute;
+    left: 32px;
+    bottom: 28px;
+  }
+  
+  .page-sustainability .sb-one-tree .grid {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .page-sustainability .sb-one-tree .two-images {
+    display: flex;
+    justify-content: space-between;
+  }
+  .page-sustainability .sb-one-tree .image-wrapper {
+    flex: 0 0 calc(50% - 9px);
+  }
+  .page-sustainability .sb-one-tree .icons-wrapper svg, 
+  .page-sustainability .sb-one-tree .icons-wrapper img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .page-sustainability .sb-one-tree .icons-wrapper svg {margin-top: 18px;}
+  .page-sustainability .sb-packaging .section-spacing {background: #F9F9F9;}
+  .page-sustainability .sb-packaging .wrapper:first-child h2 {
+    font-size: 44px;
+    line-height: 54px;
+    margin-bottom: 10px;
+  }
+  .page-sustainability .sb-packaging p:not(:last-child) {margin-bottom: 28px;}
+  .page-sustainability .sb-packaging p:last-of-type {margin-bottom: 0;}
+  .page-sustainability .sb-packaging ul {padding-left: 15px;}
+  .page-sustainability .sb-packaging p, 
+  .page-sustainability .sb-packaging li {
+    color: #2a3134;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .page-sustainability .sb-packaging li {list-style: disc;}
+  @media screen and (min-width: 750px) {
+    .page-sustainability .sb-two-images .grid__item-content {flex: 0 0 39.7%;}
+    .page-sustainability .sb-two-images .grid__item-images {flex: 0 0 60.3%;}
+    .page-sustainability .sb-two-images .text {padding-right: 72px;}
+    .page-sustainability .sb-two-images .image-wrapper {flex: 0 0 calc(50% - 8px);}
+
+    .page-sustainability .sb-mfy-jewelry .grid__item-content {
+      order: 2;
+      flex: 0 0 41%;
+    }
+    .page-sustainability .sb-mfy-jewelry .grid__item-image {flex: 0 0 59%;}
+    .page-sustainability .sb-mfy-jewelry .content {
+      max-width: 400px;
+      margin-left: 9%;
+    }
+
+    .page-sustainability .sb-one-tree {padding-top: 64px;}
+    .page-sustainability .sb-one-tree .grid__item-images {flex: 0 0 63.6%;}
+    .page-sustainability .sb-one-tree .grid__item-content {flex: 0 0 36.4%;}
+    .page-sustainability .sb-one-tree .image-1 {margin-top: -64px;}
+    .page-sustainability .sb-one-tree .text {
+      padding: 0 15px;
+      margin-top: 43px;
+    }
+    .page-sustainability .sb-packaging .section-spacing {padding: 60px 0;}
+    .page-sustainability .sb-packaging .section-wrapper {padding: 0 50px;}
+    .page-sustainability .sb-packaging .wrapper {
+      display: flex;
+      align-items: center;
+    }
+    .page-sustainability .sb-packaging .wrapper:not(:last-child) {margin-bottom: 30px;}
+    .page-sustainability .sb-packaging .col-image {
+      width: 56.1%;
+      flex: 0 0 56.1%;
+    }
+    .page-sustainability .sb-packaging .col-content {
+      width: 43.9%;
+      flex: 0 0 43.9%;
+    }
+    .page-sustainability .sb-packaging .wrapper:first-child .col-content {padding-right: 50px;}
+    .page-sustainability .sb-packaging .wrapper:last-child .col-content {padding-left: 50px;}
+  }
+  @media screen and (max-width: 749px) {
+    .page-sustainability .sb-mfy-jewelry .page-width, 
+    .page-sustainability .sb-text-over-image .page-width {padding: 0;}
+
+    .page-sustainability .sb-two-images .two-images {margin-top: 22px;}
+    .page-sustainability .sb-two-images .text {padding: 0 13px;}
+    .page-sustainability .sb-two-images .image-wrapper {flex: 0 0 calc(50% - 3px);}
+
+    .page-sustainability .sb-mfy-jewelry .section-wrapper {padding: 24px 15px 15px;}
+    .page-sustainability .sb-mfy-jewelry .image-wrapper {margin-top: 22px;}
+
+    .page-sustainability .sb-text-over-image .banner-text {
+      width: 100%;
+      padding: 13px 18px;
+      left: 0;
+      bottom: 0;
+    }
+    
+    .page-sustainability .sb-one-tree .grid__item-images {order: 2;}
+    .page-sustainability .sb-one-tree .icons-wrapper img {width: 151px;}
+    .page-sustainability .sb-one-tree .icons-wrapper svg.svg-x {
+      width: 15px;
+      height: 15px;
+      margin-top: 5px;
+    }
+    .page-sustainability .sb-one-tree .icons-wrapper svg.svg-mfy {
+      width: 189px;
+      height: 20px;
+      margin-top: 16px;
+    }
+    .page-sustainability .sb-one-tree .text {
+      padding: 0 5px;
+      margin-top: 16px;
+    }
+    .page-sustainability .sb-one-tree .two-images {margin-top: 60px;}
+    .page-sustainability .sb-one-tree .image-wrapper {flex: 0 0 calc(50% - 5px);}
+    .page-sustainability .sb-one-tree .image-1 {margin-top: -35px;}
+    .page-sustainability .sb-packaging .section-spacing {padding: 40px 0;}
+    .page-sustainability .sb-packaging .wrapper:first-child h2 {
+      font-size: 34px;
+      line-height: 42px;
+      margin-bottom: 22px;
+    }
+    .page-sustainability .sb-packaging p:not(:last-child) {margin-bottom: 10px;}
+    .page-sustainability .sb-packaging .mobile-images {
+      margin: 40px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+    .page-sustainability .sb-packaging .image-wrapper {
+      width: calc(50% - 4px);
+      flex: 0 0 calc(50% - 4px);
+    }
+    .page-sustainability .sb-packaging .image-wrapper:last-child {margin-top: 35px;}
+  }
+</style>

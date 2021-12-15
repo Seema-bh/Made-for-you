@@ -1,0 +1,31 @@
+<header class="collection-header">
+
+  {% if section.settings.collection_image != blank %}
+  {%- assign img_url = section.settings.collection_image | img_url: 'master' -%}
+  {% elsif collection.image %}
+  {%- assign img_url = collection.image | img_url: 'master' -%}
+  {% elsif collection.image %}
+  {%- assign img_url = "https://cdn.shopify.com/s/files/1/0312/7689/2298/files/All_jewellery.png?v=1587280008" -%}
+  {% endif %}
+
+  <div class="collection-image test">
+    {% if img_url != blank %}
+    <img data-src="{{ img_url }}" src="{{ img_url }}" class="lazyautosizes lazyloaded desktop-xs" data-sizes="auto">
+    {% include 'mobile-collection-image', id:collection.handle %}
+    {% else %}
+    <div class="not_img">
+      <img data-src="//cdn.shopify.com/s/files/1/0411/6437/4183/collections/1_txt.jpg?v=1596200688" src="//cdn.shopify.com/s/files/1/0411/6437/4183/collections/1_txt.jpg?v=1596200688" class="lazyautosizes lazyloaded desktop-xs" data-sizes="auto" sizes="1194px">
+    </div>
+    {% endif %}  
+  </div>
+  <div class="collection-wrapper page-header">
+    {% if collection.description != '' %}
+    <div class="collection-desscription">
+      <div class="rte">
+        <h1>{{ collection.title }}</h1>
+        {{ collection.description | split: '</h1>' | last }}
+      </div>
+    </div>      
+    {% endif %}
+  </div>
+</header>

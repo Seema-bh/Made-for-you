@@ -1,0 +1,550 @@
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    /*   font-family: "Montserrat", sans-serif; */
+    color: #5b5b5b;
+    line-height: normal;
+    font-size: 14px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+
+  .clear {
+    clear: both;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    height: 0;
+  }
+
+  .reset {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+
+
+  .MainWrapper {
+    position: relative;
+  }
+
+  .Headerposition {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+  }
+  .headerBg {
+    background: #2c453b;
+    position: relative;
+    height: 336px;
+    overflow: hidden;
+  }
+
+  .headerBg::after {
+    content: "/";
+    width: 100%;
+    height: 88%;
+    border-radius: 100% 100% 0 0;
+    position: absolute;
+    bottom: 0%;
+    left: 0;
+    background: #fff;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .RingImg {
+    width: 130px;
+  }
+
+  .headings {
+    font-size: 27px;
+    color: #32453c;
+    font-style: italic;
+    font-family: "Baskerville";
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .text_desc {
+    font-size: 14px;
+    color: #32453c;
+    font-weight: 500;
+    font-family: "Montserrat";
+    text-align: center;
+    padding-bottom: 25px;
+    padding-top: 5px;
+  }
+
+  .text_desc abbr {
+    display: block;
+  }
+
+  .Img-text-sec {
+    padding-top: 50px;
+  }
+
+  .LabGrownContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .LabImg {
+    z-index: 1;
+    width: 460px;
+  }
+
+  .ImgRes {
+    width: 100%;
+  }
+  .LabImgcontent {
+    width: 370px;
+    background: #32453c;
+    margin-top: 6px;
+    padding: 20px 20px 20px 0px;
+    box-sizing: border-box;
+    margin-left: -20px;
+    z-index: 0;
+  }
+
+  .LabImgcontent p {
+    font-size: 14px;
+    line-height: 30px;
+    color: #fff;
+    font-weight: 500;
+    font-family: "Montserrat";
+    padding-left: 35px;
+    border-bottom: 4px double #fff;
+  }
+
+  .boldtxt {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 500;
+    font-family: "Montserrat";
+    padding-left: 35px;
+    display: block;
+    line-height: 26px;
+    padding-top: 8px;
+  }
+
+  .RedSecMainDiv {
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .lftContent {
+    width: 313px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 14px;
+  }
+
+  .smalltxt {
+    font-size: 30px;
+    color: #bf613d;
+    font-weight: normal;
+    font-family: "Baskerville";
+    display: block;
+  }
+  .BigTxt {
+    font-size: 74px;
+    display: block;
+    color: #bf613d;
+    font-family: "Baskerville";
+  }
+  .rytContent {
+    width: 62%;
+    border-left: 3px solid #bf613d;
+    padding: 14px;
+  }
+  .redparagraph {
+    font-size: 16px;
+    line-height: 25px;
+    color: #bf613d;
+    font-weight: 500;
+    font-family: "Montserrat";
+  }
+
+  .MinedContentMainDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .MinedMidImg {
+    width: 80px;
+  }
+
+  .MinedDiamondImg {
+    width: 100%;
+  }
+
+  .padding0 {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .MinewdTitle {
+    font-size: 25px;
+    color: #2c463b;
+    font-weight: 500;
+    font-family: "Montserrat";
+    text-align: center;
+    font-style: italic;
+    padding-bottom: 50px;
+    text-transform: uppercase;
+  }
+
+  .padding0 li {
+    font-size: 12px;
+    line-height: 40px;
+    color: #2c463b;
+    font-weight: 500;
+    font-family: "Montserrat";
+    text-align: center;
+  }
+
+  .ryt_li {
+    padding-right: 60px;
+  }
+
+  .paddinglft {
+    padding-left: 60px;
+  }
+
+  .breakborderdiv {
+    padding: 50px 0;
+  }
+
+  .bordercontentsec {
+    border-bottom: 4px double #be603e;
+    display: block;
+    position: relative;
+  }
+
+  .borderparagraph {
+    margin-top: -12px;
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    padding: 0px 12px;
+    font-size: 16px;
+    color: #be603e;
+    font-weight: 500;
+    font-family: "Montserrat";
+    text-align: center;
+    width: 416px;
+    line-height: 22px;
+  }
+
+  .borderbottomtxt .bordernone {
+    border-bottom: none;
+  }
+
+  .amezingwidth {
+    width: 40%;
+  }
+
+  .StepMainDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .step_border {
+    border: 2px solid #42625a;
+    padding: 20px;
+    border-radius: 4px;
+    width: 300px;
+    margin-left: 40px;
+  }
+  .cylinderContenttxt {
+    width: 172px;
+    padding-left: 30px;
+  }
+
+  .cylinderImgDiv {
+    width: 100px;
+  }
+
+  .cylinderimgwidth {
+    width: 126px;
+  }
+  .cylinderimg {
+    width: 100%;
+  }
+
+  .ProgressTitle {
+    font-size: 50px;
+
+    line-height: 37px;
+    color: #42625a;
+    font-weight: bold;
+    font-style: italic;
+    font-family: "Baskerville";
+    position: relative;
+  }
+  .ProgressTitle::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    width: 80%;
+    border-bottom: 3px solid #42625a;
+    right: 0;
+  }
+  .stepspn {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    line-height: 8px;
+    color: #42625a;
+    font-weight: 500;
+    font-family: "Montserrat";
+    text-transform: uppercase;
+  }
+
+  .cylinderParentdiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 14px;
+  }
+
+  .cylinderContenttxt p {
+    font-size: 14px;
+    color: #42625a;
+    font-family: "Montserrat";
+    font-weight: 500;
+  }
+  .Nowtxt {
+    text-align: center;
+    padding-bottom: 14px;
+    font-size: 16px;
+    color: #be603e;
+    font-weight: 500;
+    font-family: "Montserrat";
+  }
+
+  .borderparagraph .capstxt {
+    text-transform: uppercase;
+    display: block;
+    font-style: italic;
+    font-size: 18px;
+  }
+
+  .customborder {
+    width: auto;
+  }
+  .marginbtm {
+    margin-bottom: 20px;
+  }
+
+
+  @media screen and (max-width: 1024px) {
+    .smalltxt {
+      font-size: 20px;
+    }
+    .amezingwidth {
+      width: 30%;
+    }
+    .amezingtxt {
+      font-size: 50px;
+    }
+    .amezingsmalltxt {
+      font-size: 20px;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .LabImgcontent {
+      width: 300px;
+    }
+    .marginlft {
+      margin-left: 20px;
+    }
+    .lftContent {
+      padding-right: 6px;
+    }
+    .amezingtxt {
+      font-size: 45px;
+    }
+    .amezingsmalltxt {
+      font-size: 16px;
+    }
+    .step_border:first-child {
+      margin-left: 0px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .RedSecMainDiv {
+      flex-direction: column;
+    }
+    .smalltxt {
+      font-size: 30px;
+    }
+    .rytContent {
+      border-top: 3px solid #bf613d;
+      text-align: center;
+      border-left: none;
+    }
+
+    .LabImg {
+      width: 440px;
+    }
+    .text_desc abbr {
+      display: inline;
+    }
+    .amezingwidth {
+      padding-bottom: 10px;
+    }
+    .amezingsmalltxt {
+      font-size: 24px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+
+    .MainWrapper {
+      margin-top: 40px;
+    }
+    .amezingwidth {
+      width: 47%;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .LabGrownContent {
+      margin-right: 0;
+    }
+    .ImgRes {
+      height: 440px;
+    }
+    .LabImgcontent p {
+      line-height: 22px;
+    }
+    .boldtxt {
+      line-height: 22px;
+    }
+    .lftContent {
+      width: 47%;
+    }
+    .rytContent {
+      width: 70%;
+    }
+    .MinewdTitle {
+      font-size: 20px;
+    }
+    .borderbottomtxt {
+      width: 330px;
+      margin-left: 20px;
+    }
+    .marginlft {
+      margin-left: 0px;
+    }
+    .handimgsec {
+      width: 470px;
+    }
+    .StepMainDiv{
+      flex-direction: column;
+    }
+    .step_2 {
+      margin-left: 0;
+      margin-top: 20px;
+    }
+    .borderparagraph {
+      font-size: 14px;
+    }
+    .borderparagraph .capstxt {
+      font-size: 14px;
+    }
+    .RedSecMainDiv{
+      padding: 50px 0 0;
+    }
+  }
+  @media screen and (max-width: 640px) {
+    .lftContent {
+      width: 74%;
+    }
+    .MinewdTitle {
+      font-size: 15px;
+      padding-bottom: 10px;
+    }
+    .padding0 li {
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .LabGrownContent{    flex-direction: column;}
+    .LabImg {
+      width: 100%;
+    }
+    .ImgRes {
+      height: 320px;
+    }
+    .LabImgcontent {
+      width: 100%;
+      margin-left: 0;
+    }
+    .borderbottomtxt {
+      width: 100%;
+      margin-left: 0;
+    }
+    .handimgsec {
+      width: 100%;
+    }
+
+
+  }
+
+  @media screen and (max-width:414px) {
+    .lftContent {
+      width: 100%;
+    }
+    .rytContent {
+      width: 100%;
+    }
+    .MinedLfttxt {
+      width: 100%;
+    }
+    /*     .MinedContentMainDiv{flex-direction: column;} */
+    .MinedLfttxt,.MinedRyttxt{
+      flex:1
+    }
+    .padding0 li {
+      font-size: 12px;
+      line-height: 24px;
+    }
+    .MinewdTitle {
+      font-size: 14px;
+      padding-bottom: 10px;
+      margin: 0;
+    }
+    .paddinglft {
+      padding-left: 0px;
+    }
+    .ryt_li {
+      padding-right: 0;
+    }
+    .borderparagraph{width: 80%;}
+  }
+
+</style>

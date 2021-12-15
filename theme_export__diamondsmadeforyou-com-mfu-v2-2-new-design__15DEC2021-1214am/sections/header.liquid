@@ -1,0 +1,472 @@
+{% include 'search-drawer' %}
+
+<div data-section-id="{{ section.id }}" data-section-type="header-section" data-header-section class="header-wrapper">  
+  <header class="site-header{% if section.settings.align_logo == 'left' %} logo--left{% else %} logo--center{% endif %}" role="banner">
+    <div class="page-width">
+      <div class="grid grid--no-gutters grid--table site-header__mobile-nav">
+        {% if section.settings.align_logo == 'center' %}
+        {%- assign logo_classes = 'medium-up--one-third logo-align--center' -%}
+        {% else %}
+        {%- assign logo_classes = 'medium-up--one-quarter logo-align--left' -%}
+        {% endif %}
+
+        <div class="grid__item {% if section.settings.align_logo == 'left' %}medium-up--one-quarter{% else %}medium-up--one-third{% endif %} text-left site-header__icons{% if shop.customer_accounts_enabled %} site-header__icons--plus{% endif %}">
+          {% unless linklists[section.settings.main_linklist] == blank %}
+          <button type="button" class="btn--link site-header__icon site-header__menu js-mobile-nav-toggle mobile-nav--open hamburger_menu" aria-controls="MobileNav"  aria-expanded="false" aria-label="{{ 'layout.navigation.menu' | t }}">
+            {% include 'icon-hamburger' %}
+            {% include 'icon-close' %}
+          </button>
+          {% endunless %}
+          <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
+            {% include 'icon-search' %}
+            <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
+          </button>
+        </div>
+
+        <div class="grid__item {{ logo_classes }}">
+          {% comment %}
+          Use the uploaded logo from theme settings if enabled.
+          Site name gets precedence with H1 tag on homepage, div on other pages.
+          {% endcomment %}
+          {% if request.page_type == 'index' %}
+          <h1 class="h2 site-header__logo">
+            {% else %}
+            <div class="h2 site-header__logo">
+              {% endif %}
+              {% if section.settings.logo %}
+              {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+              <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}" data-image-loading-animation>
+                {% include 'logo-svg' %}
+              </a>
+              {% else %}
+              <a class="site-header__logo-link" href="{{ routes.root_url }}">{% include 'logo-svg' %}</a>
+              {% endif %}
+              {% if request.page_type == 'index' %}
+              </h1>
+            {% else %}
+            </div>
+          {% endif %}
+        </div>
+
+        {% if section.settings.align_logo == 'left' %}
+        <nav class="grid__item medium-up--one-half small--hide" id="AccessibleNav" role="navigation">
+          {% include 'site-nav', linklist: section.settings.main_linklist %}
+        </nav>
+        {% endif %}
+
+        <div class="grid__item {% if section.settings.align_logo == 'left' %}medium-up--one-quarter{% else %}medium-up--one-third{% endif %} text-right site-header__icons{% if shop.customer_accounts_enabled %} site-header__icons--plus{% endif %}">
+          <div class="site-header__icons-wrapper">
+
+            {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+            <a href="{{ routes.account_url }}/" class="site-header__icon site-header__account small--hide">
+              {% include 'icon-login' %}
+              <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
+            </a>
+            {% else %}
+            <a href="{{ routes.account_login_url }}/" class="site-header__icon site-header__account small--hide">
+              {% include 'icon-login' %}
+              <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
+            </a>
+            {% endif %}
+            {% endif %}
+
+            <a class="site-header__icon site-header__wishlist">
+              {% include 'icon-wishlist' %}
+            </a>
+
+            <a href="{{ routes.cart_url }}/" class="site-header__icon site-header__cart">
+              {% include 'icon-cart' %}
+              <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+              <div id="CartCount" class="site-header__cart-count{% if cart.item_count == 0 %} hide{% endif %} critical-hidden" data-cart-count-bubble>
+                <span data-cart-count>{{ cart.item_count }}</span>
+                <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {% if section.settings.align_logo == 'center' %}
+  <nav class="small--hide site-navigation" id="AccessibleNav" role="navigation">
+    {% include 'site-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
+  </nav>
+  {% endif %}
+</div>
+
+{% if customer %}
+{% assign firstName = customer.first_name %}
+{% assign lastName = customer.last_name %}
+<div class="mobile__menu">
+  <span class="mobile__menu-close">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30.966" height="30.966" viewBox="0 0 30.966 30.966"><defs><style>.menu-icon-close-a{opacity:0;}.menu-icon-close-b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-352.92 -1390.879) rotate(45)"><rect class="menu-icon-close-a" width="21.896" height="21.896" transform="translate(1244 723)"/><g transform="translate(1245.714 724.739)"><line class="menu-icon-close-b" y2="17.517" transform="translate(8.758)"/><line class="menu-icon-close-b" x2="17.517" transform="translate(0 8.758)"/></g></g></svg>
+  </span>
+  <a href="javascript:void(0);" class="profile" id="loged-in">
+    <span class="profile_pic">{{ firstName | slice: 0 | upcase }}</span>
+    <span class="profile_text">{{ firstName }} {{ lastName }} ></span>
+  </a>
+  <div class="mob_search">
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search">
+      <div aria-live="polite" class="form-message form-message--error search-result-error-message hide" data-search-error-message>
+        <ul id="error-search-form">
+          <li>{{ 'general.search.empty_search_message' | t }}</li>
+        </ul>
+      </div>
+
+      <div class="input-group">
+        <input type="search"
+               id="SearchInput"
+               class="input-group__field search__input"
+               name="q"
+               value="{{ search.terms | escape }}"
+               placeholder="{{ 'general.search.placeholder' | t }}"
+               aria-label="{{ 'general.search.placeholder' | t }}"
+               >
+        <span class="input-group__btn">
+          <button id="SearchResultSubmit" class="btn search__submit" type="submit">{{ 'general.search.submit' | t }}</button>
+        </span>
+      </div>
+    </form>
+  </div>
+  <ul>
+    {% for link in mobile-menu.links %}
+    {% assign dataMenu = link.title | handleize  %}
+
+    {% if link.links != blank %}
+    <li class="{% if link.current %}active{% endif %}">
+      <a href="{{ link.url }}" data-menu="{{ dataMenu }}">{{ link.title }}</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+<div class="account__menu">
+  <span class="back-to-mainmenu">&lt; GO BACK</span>
+  <a href="javascript:void(0);" class="profile" id="loged-in">
+    <span class="profile_pic">{{ firstName | slice: 0 | upcase }}</span>
+    <span class="profile_text">{{ firstName }} {{ lastName }}</span>
+  </a>
+  <ul>
+    <li><a href="/account/">MY PROFILE</a></li>
+    <li><a href="javascript:void(0);">MY WISHLIST</a></li>
+    <li><a href="/account/addresses/">MY SAVED ADDRESSES</a></li>
+    <li><a href="/account/">MY ORDERS</a></li>
+  </ul>
+  <div class="account_logout">
+    {{ 'layout.customer.log_out' | t | customer_logout_link }}
+  </div>
+</div>
+{% else %}
+<div class="mobile__menu">
+  <span class="mobile__menu-close">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30.966" height="30.966" viewBox="0 0 30.966 30.966"><defs><style>.menu-icon-close-a{opacity:0;}.menu-icon-close-b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-352.92 -1390.879) rotate(45)"><rect class="menu-icon-close-a" width="21.896" height="21.896" transform="translate(1244 723)"/><g transform="translate(1245.714 724.739)"><line class="menu-icon-close-b" y2="17.517" transform="translate(8.758)"/><line class="menu-icon-close-b" x2="17.517" transform="translate(0 8.758)"/></g></g></svg>
+  </span>
+  <ul data-level="1">
+    {% for link in linklists[section.settings.main_linklist].links %}
+    {% assign dataMenu = link.title | handleize  %}
+    {% if link.links != blank %}
+    <li class="{% if link.current %}active{% endif %}" >
+      <div class="has-submenu">
+        <a href="{{ link.url }}" data-menu="{{ dataMenu }}">
+          {{ link.title }}
+        </a>
+        <span class="toggle-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="accordion-header-icon-plus plus" viewBox="0 0 15 15"><defs><style>.accordion-header-icon-plus .a{opacity:0;}.accordion-header-icon-plus .b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-1244 -723)"><rect class="a" width="15" height="15" transform="translate(1244 723)"></rect><g transform="translate(1245.174 724.191)"><line class="b" y2="12" transform="translate(6)"></line><line class="b" x2="12" transform="translate(0 6)"></line></g></g></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="accordion-header-icon-minus minus" viewBox="0 0 15 15"><defs><style>.accordion-header-icon-minus .a{opacity:0;}.accordion-header-icon-minus .b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-1244 -586)"><rect class="a" width="15" height="15" transform="translate(1244 586)"></rect><g transform="translate(1245.174 587.5)"><line class="b" x2="12" transform="translate(0 6)"></line></g></g></svg>
+        </span>
+      </div>
+      <ul class="mobile-nav__dropdown" data-parent="{{ dataMenu }}">
+        {% for childlink in link.links %}
+        {% assign child_list_handle = childlink.title | handleize  %}
+        {% if childlink.links != blank %}
+        <li class="mobile-nav__item">
+          <div class="has-submenu">
+            <a href="{{ childlink.url }}" data-menu="{{ child_list_handle }}">
+              {{ childlink.title }}
+            </a>
+            <span class="toggle-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="accordion-header-icon-plus plus" viewBox="0 0 15 15"><defs><style>.accordion-header-icon-plus .a{opacity:0;}.accordion-header-icon-plus .b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-1244 -723)"><rect class="a" width="15" height="15" transform="translate(1244 723)"></rect><g transform="translate(1245.174 724.191)"><line class="b" y2="12" transform="translate(6)"></line><line class="b" x2="12" transform="translate(0 6)"></line></g></g></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="accordion-header-icon-minus minus" viewBox="0 0 15 15"><defs><style>.accordion-header-icon-minus .a{opacity:0;}.accordion-header-icon-minus .b{fill:none;stroke:#2b3134;stroke-linecap:round;}</style></defs><g transform="translate(-1244 -586)"><rect class="a" width="15" height="15" transform="translate(1244 586)"></rect><g transform="translate(1245.174 587.5)"><line class="b" x2="12" transform="translate(0 6)"></line></g></g></svg>
+            </span>
+          </div>
+          <ul class="mobile-nav__dropdown" data-parent="{{ child_list_handle }}">
+            {% for grandchildlink in childlink.links %}
+            <li class="{% if grandchildlink.current %}active{% endif %}" >
+              <a href="{{ grandchildlink.url }}" data-menu="{{ dataMenu }}">
+                {{ grandchildlink.title }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% else %}
+        <li class="{% if childlink.current %}active{% endif %}" >
+          <a href="{{ childlink.url }}" data-menu="{{ dataMenu }}">
+            {{ childlink.title }}
+          </a>
+        </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </li>
+    {% else %}
+    <li class="{% if link.current %}active{% endif %}" >
+      <a href="{{ link.url }}" data-menu="{{ dataMenu }}">
+        {{ link.title }}
+      </a>
+    </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+  <div class="customer-login">
+    <span class="profile_text">
+      {% include 'icon-login' %}
+      <a href="/account/login/">Sign In</a>/<a href="/account/register/">Sign Up</a>
+    </span>
+  </div>
+</div>
+{% endif %}
+<div class="dark_overlay"></div>
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {% if section.settings.logo %}
+    {% assign image_size = section.settings.logo.width | append:'x' %}
+    "logo": {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},
+    {% endif %}
+    "sameAs": [
+    {{ settings.social_twitter_link | json }},
+    {{ settings.social_facebook_link | json }},
+    {{ settings.social_pinterest_link | json }},
+    {{ settings.social_instagram_link | json }},
+    {{ settings.social_tumblr_link | json }},
+    {{ settings.social_snapchat_link | json }},
+    {{ settings.social_youtube_link | json }},
+    {{ settings.social_vimeo_link | json }}
+    ],
+    "url": {{ shop.url | append: page.url | json }}
+  }
+</script>
+
+{% if request.page_type == 'index' %}
+{% assign potential_action_target = shop.url | append: routes.search_url | append: "?q={search_term_string}" %}
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": {{ shop.name | json }},
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {{ potential_action_target | json }},
+      "query-input": "required name=search_term_string"
+    },
+    "url": {{ shop.url | append: page.url | json }}
+  }
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": {
+    "cs": "Záhlaví",
+    "da": "Overskrift",
+    "de": "Titel",
+    "en": "Header",
+    "es": "Encabezado",
+    "fi": "Ylätunniste",
+    "fr": "En-tête",
+    "it": "Header",
+    "ja": "ヘッダー",
+    "ko": "헤더",
+    "nb": "Header",
+    "nl": "Koptekst",
+    "pl": "Nagłówek",
+    "pt-BR": "Cabeçalho",
+    "pt-PT": "Cabeçalho",
+    "sv": "Rubrik",
+    "th": "ส่วนหัว",
+    "tr": "Üstbilgi",
+    "vi": "Đầu trang",
+    "zh-CN": "标头",
+    "zh-TW": "標頭"
+  },
+  "settings": [
+  {
+    "type": "radio",
+    "id": "align_logo",
+    "label": {
+      "cs": "Zarovnání loga",
+      "da": "Logojustering",
+      "de": "Logo-Ausrichtung",
+      "en": "Logo alignment",
+      "es": "Alineación de logo",
+      "fi": "Logon tasaus",
+      "fr": "Alignement du logo",
+      "it": "Allineamento logo",
+      "ja": "ロゴアラインメント",
+      "ko": "로고 정렬",
+      "nb": "Logojustering",
+      "nl": "Logo-uitlijning",
+      "pl": "Wyrównanie logo",
+      "pt-BR": "Alinhamento do logo",
+      "pt-PT": "Alinhamento do logótipo",
+      "sv": "Logojustering",
+      "th": "การจัดวางโลโก้",
+      "tr": "Logo hizalaması",
+      "vi": "Căn chỉnh logo",
+      "zh-CN": "logo 对齐方式",
+      "zh-TW": "商標對齊"
+    },
+    "default": "left",
+    "options": [
+    {
+      "value": "left",
+      "label": {
+        "cs": "Doleva",
+        "da": "Venstre",
+        "de": "Links",
+        "en": "Left",
+        "es": "Izquierda",
+        "fi": "Vasen",
+        "fr": "Gauche",
+        "it": "Sinistra",
+        "ja": "左",
+        "ko": "왼쪽",
+        "nb": "Venstre",
+        "nl": "Links",
+        "pl": "Do lewej",
+        "pt-BR": "Esquerda",
+        "pt-PT": "Esquerda",
+        "sv": "Vänster",
+        "th": "ด้านซ้าย",
+        "tr": "Sol",
+        "vi": "Bên trái",
+        "zh-CN": "左侧",
+        "zh-TW": "左方"
+      }
+    },
+    {
+      "value": "center",
+      "label": {
+        "cs": "Na střed",
+        "da": "Centreret",
+        "de": "Mittig",
+        "en": "Centered",
+        "es": "Centrada",
+        "fi": "Keskitetty",
+        "fr": "Centré",
+        "it": "Centrato",
+        "ja": "中央揃え",
+        "ko": "센터 맞추기",
+        "nb": "Sentrert",
+        "nl": "Gecentreerd",
+        "pl": "Wyśrodkowane",
+        "pt-BR": "Centralizado",
+        "pt-PT": "Centrado",
+        "sv": "Centrera",
+        "th": "ตรงกลาง",
+        "tr": "Orta",
+        "vi": "Giữa",
+        "zh-CN": "居中",
+        "zh-TW": "置中"
+      }
+    }
+    ]
+  },
+  {
+    "type": "image_picker",
+    "id": "logo",
+    "label": {
+      "cs": "Obrázek loga",
+      "da": "Logobillede",
+      "de": "Logo-Foto",
+      "en": "Logo image",
+      "es": "Logo",
+      "fi": "Logokuva",
+      "fr": "Image du logo",
+      "it": "Immagine del logo",
+      "ja": "ロゴ画像",
+      "ko": "로고 이미지",
+      "nb": "Logobilde",
+      "nl": "Afbeelding van logo",
+      "pl": "Obraz logo",
+      "pt-BR": "Imagem do logo",
+      "pt-PT": "Imagem do logótipo",
+      "sv": "Logobild",
+      "th": "รูปภาพโลโก้",
+      "tr": "Logo görseli",
+      "vi": "Hình ảnh logo",
+      "zh-CN": "logo 图片",
+      "zh-TW": "標誌圖片"
+    }
+  },
+  {
+    "type": "range",
+    "id": "logo_max_width",
+    "label": {
+      "cs": "Šířka vlastního loga",
+      "da": "Tilpasset logobredde",
+      "de": "Logobreite",
+      "en": "Custom logo width",
+      "es": "Ancho del logo personalizado",
+      "fi": "Mukautetun logon leveys",
+      "fr": "Largeur personnalisée du logo",
+      "it": "Larghezza logo personalizzato",
+      "ja": "ロゴの幅をカスタマイズする",
+      "ko": "사용자 지정 로고 폭",
+      "nb": "Tilpasset logobredde",
+      "nl": "Aangepaste logo-breedte",
+      "pl": "Niestandardowa szerokość logo",
+      "pt-BR": "Largura do logo personalizado",
+      "pt-PT": "Largura de logótipo personalizada",
+      "sv": "Anpassad logotypsbredd",
+      "th": "ความกว้างของโลโก้แบบกำหนดเอง",
+      "tr": "Özel logo genişliği",
+      "vi": "Chiều rộng logo tùy chỉnh",
+      "zh-CN": "自定义 logo 宽度",
+      "zh-TW": "自訂商標寬度"
+    },
+    "min": 50,
+    "max": 250,
+    "step": 5,
+    "unit": "px",
+    "default": 100
+  },
+  {
+    "type": "link_list",
+    "id": "main_linklist",
+    "label": {
+      "cs": "Nabídka",
+      "da": "Menu",
+      "de": "Menü",
+      "en": "Menu",
+      "es": "Menú",
+      "fi": "Valikko",
+      "fr": "Menu",
+      "it": "Menu",
+      "ja": "メニュー",
+      "ko": "메뉴",
+      "nb": "Meny",
+      "nl": "Menu",
+      "pl": "Menu",
+      "pt-BR": "Menu",
+      "pt-PT": "Menu",
+      "sv": "Meny",
+      "th": "เมนู",
+      "tr": "Menü",
+      "vi": "Menu",
+      "zh-CN": "菜单",
+      "zh-TW": "選單"
+    },
+    "default": "main-menu"
+  }
+  ]
+}
+{% endschema %}

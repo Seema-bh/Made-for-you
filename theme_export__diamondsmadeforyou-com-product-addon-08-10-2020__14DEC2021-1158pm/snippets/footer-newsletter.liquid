@@ -1,0 +1,13 @@
+<section class="newsletter footer__newletter">
+  <div class="block-content container row">
+    <div class="newsletter-item col-12 col-md-12 col-lg-6 col-xl-6">
+      {% assign footer_newsletter_title		= section.settings.footer_newsletter_title %}
+      {% assign footer_newsletter_des			= section.settings.footer_newsletter_des %}
+      <h3 class="newsletter-title">{{ footer_newsletter_title }}</h3>
+      <p class="newsletter-des">{{ footer_newsletter_des }}</p>
+    </div>
+    <div class=" newsletter-item col-12 col-md-12 col-lg-6 col-xl-6">
+      {% include 'newsletter-form' %}
+    </div>
+  </div>
+</section>

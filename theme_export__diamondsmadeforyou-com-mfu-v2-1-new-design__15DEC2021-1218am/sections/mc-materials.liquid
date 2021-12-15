@@ -1,0 +1,74 @@
+<div class="section-spacing">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item grid__item-content">
+        <div class="content small--text-center">
+          {% if section.settings.title != blank %}
+          <h2>{{ section.settings.title }}</h2>
+          {% endif %}
+          {% if section.settings.sub-title != blank %}
+          <h3>{{ section.settings.sub-title }}</h3>
+          {% endif %}
+          {% if section.settings.text != blank %}
+          <div class="text">{{ section.settings.text }}</div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="grid__item grid__item-image">
+        {% assign banner = section.settings.banner | img_url: 'master' %}
+        <div class="image-wrapper">
+          <img class="lazyload" 
+               src="{{ banner }}"
+               data-src="{{ banner }}" 
+               data-sizes="auto" 
+               alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Materials",
+	"class": "mc-materials",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_section",
+        "label": "Enable section",
+		"default": true
+      },
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Title"
+      },
+	  {
+        "type": "text",
+        "id": "sub-title",
+        "label": "Sub title",
+        "default": "Sub title"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+		"default": "<p>Description goes here.</p>"
+      },
+      {
+        "type": "image_picker",
+        "id": "banner",
+        "label": "Banner",
+        "info": "Recommended size 735x540 (px)"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

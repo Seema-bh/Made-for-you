@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/***** Common CSS starts here *****/
+h1, h2, h3, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    letter-spacing: normal;
+    text-transform: none;
+}
+h1 span, h2 span, h3 span, h4 span, h5 span, h6 span {font-style: italic;}
+b, strong {font-weight: 500;}
+select:focus-visible {outline: none;}
+input[type='number'] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+td, th {border-color: var(--color-body-text);}
+th {font-family: 'Cormorant Garamond', serif;}
+.section-header {margin-bottom: 20px;}
+.section-header .subtitle {
+    font-family: "Work Sans",sans-serif;
+    display: block;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+.section-header .title {
+    font-size: 48px;
+    line-height: 52px;
+    text-transform: capitalize;
+    margin-bottom: 0;
+}
+.btn-arrow {
+    font-family: "Work Sans",sans-serif;
+    color: #2A3134;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    padding: 0;
+    border: none;
+}
+.btn-arrow svg {
+    width: 15px;
+    height: 15px;
+    margin-left: 6px;
+}
+.btn-arrow.btn-arrow-white {color: #FFF;}
+.btn-arrow.btn-arrow-white svg .icon-btn-arrow-b {fill: #FFF;}
+.btn-arrow.btn-arrow-brown {color: #726156;}
+.btn-arrow.btn-arrow-brown svg .icon-btn-arrow-b {fill: #726156;}
+.btn {
+    font-family: "Work Sans",sans-serif;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    letter-spacing: 1.4px;
+    border-radius: 0;
+}
+.section-spacing {margin-top: 80px;}
+.breadcrumb {line-height: normal;}
+.breadcrumb a, .breadcrumb span, .breadcrumb span[aria-hidden="true"] {
+    color: #39342F;
+    font-size: 10px;
+    line-height: normal;
+    font-weight: 300;
+    letter-spacing: normal;
+    text-transform: none;
+}
+.breadcrumb span {font-weight: 500;}
+.custom-slider .slick-arrow {
+    top: -46px;
+    transform: none;
+}
+.custom-slider .slick-arrow svg {
+    width: 26px;
+    height: 26px;
+}
+.custom-slider .slick-prev {
+    left: auto;
+    right: 32px;
+}
+.custom-slider .slick-next {right: 0;}
+.custom-slider .slick-disabled svg {
+    fill: #000;
+    opacity: 1;
+    cursor: default;
+}

@@ -1,0 +1,215 @@
+{% assign heart-empty = '<svg class="heart-icon" id="lnr-heart" viewBox="0 0 1024 1024" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path class="path1" d="M486.4 972.8c-4.283 0-8.566-1.074-12.434-3.222-4.808-2.67-119.088-66.624-235.122-171.376-68.643-61.97-123.467-125.363-162.944-188.418-50.365-80.443-75.901-160.715-75.901-238.584 0-148.218 120.582-268.8 268.8-268.8 50.173 0 103.462 18.805 150.051 52.952 27.251 19.973 50.442 44.043 67.549 69.606 17.107-25.565 40.299-49.634 67.55-69.606 46.589-34.147 99.878-52.952 150.050-52.952 148.218 0 268.8 120.582 268.8 268.8 0 77.869-25.538 158.141-75.901 238.584-39.478 63.054-94.301 126.446-162.944 188.418-116.034 104.754-230.314 168.706-235.122 171.376-3.867 2.149-8.15 3.222-12.434 3.222zM268.8 153.6c-119.986 0-217.6 97.614-217.6 217.6 0 155.624 120.302 297.077 221.224 388.338 90.131 81.504 181.44 138.658 213.976 158.042 32.536-19.384 123.845-76.538 213.976-158.042 100.922-91.261 221.224-232.714 221.224-388.338 0-119.986-97.616-217.6-217.6-217.6-87.187 0-171.856 71.725-193.314 136.096-3.485 10.453-13.267 17.504-24.286 17.504s-20.802-7.051-24.286-17.504c-21.456-64.371-106.125-136.096-193.314-136.096z"></path></svg>' %}
+{% assign heart-fill = '<svg class="heart-icon heart-fill-icon" height="448pt" viewBox="0 -21 448 448" width="448pt" xmlns="http://www.w3.org/2000/svg"><path d="m224 406.902344c29.382812-16.214844 224-129.496094 224-282.902344 0-66.054688-54.199219-124-116-124-41.867188.0742188-80.460938 22.660156-101.03125 59.128906-1.539062 2.351563-4.160156 3.765625-6.96875 3.765625s-5.429688-1.414062-6.96875-3.765625c-20.570312-36.46875-59.164062-59.0546872-101.03125-59.128906-61.800781 0-116 57.945312-116 124 0 153.40625 194.617188 266.6875 224 282.902344zm0 0"/></svg>' %}
+
+{% if iwish_v2 == 'iwishlink' %}
+	<a class="iWishView" href="/apps/iwish"> {% include 'icon-heart' %} <span class="iWishCount">0</span></a>
+{% elsif iwish_v2 == 'iwishproduct' %}
+<div class="iwishAddWrap pdp-wishlist">
+  <a class="iWishAdd wishlist " href="#" data-product="{{ product.id }}" data-pTitle="{{ product.title | escape }}">{{ heart-empty }} <span class="desktop-xs iwish-text">Add to Wishlist</span></a>
+</div>
+{% elsif iwish_v2 == 'iwishproduct_mob' %}
+<div class="iwishAddWrap next-to-title mobile-xs">
+	<a class="iWishAdd wishlist " href="#" data-product="{{ product.id }}" data-pTitle="{{ product.title | escape }}">{{ heart-empty }}</a>
+</div>
+{% elsif iwish_v2 == 'iwishproduct-iwishlogin-msg' %}
+{% unless customer %}<p class="iWishLoginMsg" style="display: none;">Your wishlist has been temporarily saved. Please <a href="/account/login">Log in</a> to save it permanently.</p>{% endunless %}
+{% elsif iwish_v2 == 'iwishCollection' %}
+	<a class="iWishAddColl iwish-coll wishlist iwishcheck" href="#" data-variant="{{ product.variants.first.id }}" data-product="{{ product.id }}" data-pTitle="{{ product.title | escape }}">{{ heart-empty }}</a>
+{% elsif iwish_v2 == 'iwishCart' %}
+		<a class="iWishAddColl iwish-cart wishlist iwishcheck" href="#" data-variant="{{ item.variant.id }}" data-product="{{ item.product_id }}" data-pTitle="{{ item.title | escape }}">{{ heart-empty }} <span class="iwish-cart-coll-text"> MOVE TO WISHLIST</span></a>
+{% elsif iwish_v2 == 'iwishfooter' %}
+<script type="text/javascript">
+var iwish_shop = "{{ shop.permanent_domain }}";
+var iwish_pro_template = {% if template contains 'product' %}true{% else %}false{% endif %};
+var iwish_cid = "{{ customer.id }}";
+//Add to Wishlist - Product Page Text
+var iwish_added_txt = '{{ heart-fill }} <span class="desktop-xs iwish-text">Remove from Wishlist</span>';
+var iwish_add_txt = '{{ heart-empty }} <span class="desktop-xs iwish-text">Add to Wishlist</span>';
+//Add to Wishlist - Collection Page Text
+var iwish_added_txt_col = '{{ heart-fill }} <span class="iwish-cart-coll-text">REMOVE FROM WISHLIST</span>';
+var iwish_add_txt_col = '{{ heart-empty }} <span class="iwish-cart-coll-text">MOVE TO WISHLIST</span>';
+//Quick View - Classes
+//var iwish_qvButton = '.quick_view';
+//var iwish_qvWrapper = '.reveal-modal';
+var iwishWrapperClass = '.product';
+</script>
+<script src="https://cdn.myshopapps.com/iwish/iwishlist.js"></script>
+<script type="text/javascript">
+jQuery( document ).ready(function() {
+  iwishshowestimatedata();
+	jQuery("a[href='/apps/iwish']").click(function(e) {
+		if(typeof(Storage) !== "undefined") {
+			e.preventDefault();
+			iWishPost('/apps/iwish',{iwishlist:JSON.stringify(iWishlistmain),cId:iwish_cid});
+		}
+	});
+	jQuery("body").on("click",".iWishAdd",function() {										
+      var iWishvId = jQuery(this).parents(iwishWrapperClass).find(iWishVarSelector).val();
+      var iWishpId=jQuery(this).attr('data-product');
+      var c_title = jQuery(this).attr('data-pTitle');
+      if(isInWishlist(iWishpId,iWishvId)){        
+        jQuery(".iwish-add-remove-msg .iwishproduct-title").text(c_title); 
+        jQuery(".iwish-message").text("was successfully removed from");
+        iwish_remove(jQuery(this), iWishvId, false);
+        jQuery(this).html(iwish_add_txt);        
+        setTimeout(function(){        
+          jQuery(".iwish-add-remove-msg").css("display", "block");
+        }, 700);
+      }
+      else {
+        jQuery(".iwish-add-remove-msg .iwishproduct-title").text(c_title);
+        jQuery(".iwish-message").text("was successfully added to");
+        iwish_add(jQuery(this), iWishvId);
+         setTimeout(function(){        
+          jQuery(".iwish-add-remove-msg").css("display", "block");
+        }, 700); 
+      }
+      return false;
+    });	    
+    jQuery("body").on("click",".iwish-coll",function() {
+      var iWishvId = jQuery(this).attr("data-variant");
+      var iWishpId=jQuery(this).attr('data-product');
+      var c_title = jQuery(this).attr('data-pTitle');
+      if(isInWishlist(iWishpId,iWishvId)){        
+        jQuery(".iwish-add-remove-msg .iwishproduct-title").text(c_title); 
+        jQuery(".iwish-message").text("was successfully removed from");
+        iwish_remove(jQuery(this), iWishvId, false);
+        jQuery(this).html(iwish_add_txt_col);
+        setTimeout(function(){        
+          jQuery(".iwish-add-remove-msg").css("display", "block");
+        }, 700);
+      }
+      else {
+        jQuery(".iwish-add-remove-msg .iwishproduct-title").text(c_title);
+        jQuery(".iwish-message").text("was successfully added to");
+        iwish_addCollection(jQuery(this),iWishvId);
+        setTimeout(function(){        
+          jQuery(".iwish-add-remove-msg").css("display", "block");
+        }, 700); 
+      }
+      return false;
+    }); 
+  
+    jQuery("body").on("click",".iwish-cart",function() { 
+       jQuery(this).addClass("iwishcheck");
+      var c_vid = jQuery(this).attr("data-variant");
+      var c_pid = jQuery(this).attr('data-product');
+      var c_title = jQuery(this).attr('data-pTitle');
+
+      jQuery(".iwish-cart-add").attr({ "data-variant":c_vid, "data-product":c_pid, "data-pTitle":c_title });
+      jQuery(".iwish_ptitle").text(c_title);
+      
+      if(isInWishlist(c_pid,c_vid)){        
+        jQuery(".iwish-heading").text("REMOVE FROM WISHLIST");
+        jQuery(".iwish-confirm-msg1").text("Are you sure that you want to remove.");
+        jQuery(".iwish-confirm-msg2").text("from My Wishlist?");        
+      }
+      else{      
+        jQuery(".iwish-heading").text("MOVE TO WISHLIST");
+        jQuery(".iwish-confirm-msg1").text("Are you sure that you want to move.");
+        jQuery(".iwish-confirm-msg2").text("to My Wishlist?");        
+      }   
+
+      setTimeout(function(){        
+        $(".iwish-msg-cart").css("display", "block");
+      }, 700);   
+
+      return false;
+    });
+  
+  
+  jQuery("body").on("click",".iwish-cart-add",function() {
+    var element = $(this);    
+    //addRemoveWishlist(element); 
+    jQuery.ajax({
+      type: "post",
+      url: "https://mfu-usa.myshopify.com/cart",
+      data: {},
+      success: function(data){
+
+        var iWishvId = element.attr("data-variant");
+        var iWishpId = element.attr('data-product'); 
+        var c_title = element.attr('data-pTitle');
+        if(isInWishlist(iWishpId,iWishvId)){         
+          iwish_remove(element, iWishvId, false);
+          element.html("Yes, I’m sure!");
+           
+          setTimeout(function(){        
+            $(".iwish-msg-cart").css("display", "none");
+           iwishCheckColl();
+          }, 500); 
+          jQuery(".iwish-add-remove-msg .iwishproduct-title").text(c_title);
+          element.removeClass("iwishAdded");
+          jQuery(".iwish-message").text("was successfully removed from");
+          setTimeout(function(){        
+            jQuery(".iwish-add-remove-msg").css("display", "block");
+          }, 900);
+        }
+        else {
+          iwish_addCollection(element,iWishvId);
+          element.html("Yes, I’m sure!");
+          setTimeout(function(){        
+            $(".iwish-msg-cart").css("display", "none");
+            iwishCheckColl();
+          }, 500); 
+          jQuery(".iwish-add-remove-msg .iwishproduct-title").text(c_title);
+          element.removeClass("iwishAdded");
+          jQuery(".iwish-message").text("was successfully added to");
+          setTimeout(function(){        
+            jQuery(".iwish-add-remove-msg").css("display", "block");
+          }, 900);
+        }
+      }
+    });
+    return false;
+  });
+  
+  jQuery("body").on("click",".popupclose",function() {
+    jQuery(".iwish-msg-cart, .iwish-add-remove-msg, .iwishengravemodal").css("display", "none");
+    
+  });
+  
+ jQuery(".iwishengravemodal").hide();
+  
+  jQuery("body").on("click",".iwishengrave",function() {    
+    var thisvar = $(this);
+    setTimeout(function(){        
+      thisvar.parents(".iwishItem").find(".iwishengravemodal").show();
+    }, 700); 
+  });
+  
+  iwishCheckColl();
+  
+  jQuery(".iwish-product-form.soldout").each(function(){
+    jQuery(this).parents(".iwishItem").find(".estimate-data").hide();
+    jQuery(this).parents(".iwishItem").find(".iwishengrave").css("padding-top","15px");
+  });
+});
+  
+function iWishRemoveFn() { iwishshowestimatedata(); }
+  
+function iwishshowestimatedata(){  
+if(parseInt(iWishCnt)==1) {
+$(".iwishItem .estimate-data").text("ESTIMATED DELIVERY DATE : 4 TO 5 Week");
+}
+else{
+$(".iwishItem .estimate-data").text("ESTIMATED DELIVERY DATE :  4 TO 5 Days");
+}
+}
+function iwishCheckColl(){ 
+	if(jQuery(".iwishcheck").length > 0) {
+	jQuery(".iwishcheck").each(function() {
+		var iWishvId = jQuery(this).attr("data-variant");
+		var iWishpId = jQuery(this).attr("data-product");
+		if(isInWishlist(iWishpId,iWishvId)){ 
+          jQuery(this).addClass("iwishAdded").html(iwish_added_txt_col);
+        }
+      else{
+        jQuery(this).removeClass("iwishAdded").html(iwish_add_txt_col);
+      }
+		jQuery(this).removeClass("iwishcheck");
+	});
+	}
+}  
+</script>
+{% endif %}

@@ -1,0 +1,73 @@
+{% if section.settings.enable %}
+<div class="container">
+  <div class="row align-items-center desktop-xs">
+    {% if section.settings.footer_address_code != blank %}
+    <div class="col-12 col-md-12 col-lg-3 col-xl-4">
+      <address>
+        {% if settings.enable_multilang %}
+        <div class="lang1">
+          <p> © {{ 'now' | date: "%Y" }} {{ section.settings.footer_address_code | split: '[lang2]' | first }}</p>
+        </div>
+        <div class="lang2">
+          <p>{{ section.settings.footer_address_code | split: '[lang2]' | last }}</p>
+        </div>
+        {% else %}
+        <div>
+          {{ section.settings.footer_address_code | split: '[lang2]' | first }}
+        </div>
+        {% endif %}
+      </address>
+    </div>
+    {% endif %}
+    <div class="col-12 col-md-12 col-lg-6 col-xl-4">
+      <div class="social_pages">
+        <a href="/pages/site-map/" class="social_data">SITE MAP •</a> <a href="/pages/privacy-policy/" class="social_data">PRIVACY POLICY •</a> <a href="/pages/terms-conditions/" class="social_data">Terms & Conditions</a>
+      </div>
+    </div>
+    <div class="col-12 col-md-12 col-lg-3 col-xl-4">
+      <div class="social-right">
+        {% if section.settings.footer_social_enable %}
+        <span>Connect with us</span> {% include 'social-media' %} 
+        {% endif %}
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="row align-items-center mobile-xs">
+    <div class="col-12 col-md-12 col-lg-6 col-xl-4">
+      <div class="social_pages">
+        <a href="/pages/site-map/" class="social_data">SITE MAP •</a> <a href="/pages/privacy-policy/" class="social_data">PRIVACY POLICY •</a> <a href="/pages/terms-conditions/" class="social_data">Terms & Conditions</a>
+        
+      </div>
+    </div>
+    
+    <div class="col-12 col-md-12 col-lg-6 col-xl-4">
+      <div class="social-right">
+        {% if section.settings.footer_social_enable %}
+        <span>Connect with us</span> {% include 'social-media' %} 
+        {% endif %}
+      </div>
+    </div>
+    
+    {% if section.settings.footer_address_code != blank %}
+    <div class="col-12 col-md-12 col-lg-6 col-xl-4">
+      <address>
+        {% if settings.enable_multilang %}
+        <div class="lang1">
+          <p> © {{ 'now' | date: "%Y" }} {{ section.settings.footer_address_code | split: '[lang2]' | first }}</p>
+        </div>
+        <div class="lang2">
+          <p>{{ section.settings.footer_address_code | split: '[lang2]' | last }}</p>
+        </div>
+        {% else %}
+        <div>
+          {{ section.settings.footer_address_code | split: '[lang2]' | first }}
+        </div>
+        {% endif %}
+      </address>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}

@@ -1,0 +1,20 @@
+/* Please use this file to customize the syles of the custom product builder */
+
+#product-builder {
+    width: 100%;
+    min-height: 600px;
+    position: relative;
+    border: none;
+    margin-top: -60px;
+}
+
+.cpb-option__wrapper {
+  display: flex;
+}
+
+.cpb-category-title {
+  display: none;
+}
+#product-builder .cpb-preview-elements .cpb-swiper-thumbnails .swiper-slide .cpb-swiper-thumbnails-viewkey{
+  display: none;
+}

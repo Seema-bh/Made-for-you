@@ -1,0 +1,144 @@
+<style>
+  .header_top {
+    background-color: #645E59;
+    color: #F7F7F7;
+}
+  /*  Header Top  */
+  {% assign bg_header_top 				=  section.settings.bg_header_top %}
+  {% assign text_header_top_color 		= section.settings.text_header_top_color %}
+
+  /*  Header Bottom  */
+  {% assign bg_header_bottom_color 		= section.settings.bg_header_bottom_color %}
+  {% assign header_bottom_color 	    = section.settings.header_bottom_color %}
+  {% assign border_freeshipping         = section.settings.color_border_freeshipping%}
+
+  /*  Cart  */
+  {% assign bg_cart_color 				= section.settings.bg_cart_color %}
+  {% assign cart_color 					= section.settings.cart_color %}
+  {% assign cart_border_color 			= section.settings.cart_border_color %}
+
+  /*  Search  */
+  {% assign bg_search_color_input 		= section.settings.bg_search_color_input %}
+  {% assign search_color_input 			= section.settings.search_color_input %}
+  {% assign bg_search_color_btn 		= section.settings.bg_search_color_btn %}
+  {% assign search_color_btn 			= section.settings.search_color_btn %}
+  {% assign search_btn_border_color 	= section.settings.search_btn_border_color %}
+  /*  dropdown */
+  {% assign bg_color_dropdown           = section.settings.dropdown_bck %}
+  {% assign color_dropdow               = section.settings.dropdown_color %}
+  
+  /* logo */
+  {% assign height_logo_mb              = section.settings.max_height_logo_mb %}
+  {% assign height_logo_dk              = section.settings.max_height_logo_pc %}
+  
+  /* headar logo text*/
+    {% assign logo_text_color = section.settings.logo_text_color %}
+    {% assign logo_text_color_mb = section.settings.logo_text_color_mb %}
+    {% assign logo_text_size = section.settings.logo_text_size %}
+    {% assign logo_text_size_mb = section.settings.logo_text_size_mb %}
+  
+  /* headar logo svg*/
+    {% assign logo_svg_color = section.settings.logo_svg_color %}
+    {% assign logo_svg_color_mb = section.settings.logo_svg_color_mb %}
+    {% assign logo_svg_size = section.settings.logo_svg_size %}
+    {% assign logo_svg_size_mb = section.settings.logo_svg_size_mb %}
+  
+  
+  /* header mobile */
+  {% assign back_header_mb              = section.settings.bck_menu_mb %}
+  {% assign color_header_mb             = section.settings.text_menu_mb %}
+  {% assign back_item_cart              = section.settings.back_item_cart %}
+  {% assign color_item_cart              = section.settings.color_item_cart %}
+  .header-search__form .input-group-field::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #b1b1b1!important;
+    font-weight: 400;
+    opacity: 1; /* Firefox */
+  }
+  .header-logo {
+  	position:relative;
+  }
+	.header-logo .logo-title{
+      color:{{logo_text_color}};
+      font-size:{{logo_text_size}};
+      text-transform:uppercase;
+    } 
+   .header-logo .logo-title svg{
+      fill:{{logo_svg_color}};
+      width:{{logo_svg_size}};
+      height:auto;
+   }
+  .header_top {background-color: {{ bg_header_top }}; color: {{ text_header_top_color }} }
+  .header_message, .header_message .close {color: {{ text_header_top_color }} }
+
+  .btn-cart { background:{{bg_cart_color}}; color: {{ cart_color }}!important; border-bottom: 2px solid {{ cart_border_color }}; padding: 8px 22px }
+  .btn-cart span {color: {{ cart_color }}}
+  .btn-cart .cart-text {font-weight: 700}
+  .btn-cart.cart-icon > * {display: inline-block; vertical-align: middle; line-height: 1}
+  .free-shipping-text p{border-bottom: 1px solid {{border_freeshipping}};}
+  .header .dropdown-menu, .wrapper-top-cart .dropdown-cart{
+    background:{{bg_color_dropdown}};
+      color:{{color_dropdow}}!important;
+    -webkit-box-shadow: 3px 3px 0 #afafaf;
+    -moz-box-shadow: 3px 3px 0 #afafaf;
+    box-shadow: 3px 3px 0 #afafaf;
+  }
+  .header .dropdown-menu a span, .wrapper-top-cart .dropdown-cart a:not(.btn){color:{{color_dropdow}}!important;}
+  @media(max-width:1199px){
+    .hdtop-active.search-open .wrapper-header-bt .search-form {
+      top: 90px;
+    }
+    .search-open .wrapper-header-bt .search-form, .search-open .is-sticky .wrapper-header-bt .search-form  {
+      top: 50px;
+    }
+    .cart-icon .cartCount{
+      background:{{back_item_cart}};
+      color:{{color_item_cart}};
+      line-height: 20px;
+    }
+    .header-bottom{background:{{back_header_mb}}}
+    .header-bottom svg {fill:{{color_header_mb}}}
+    .icon-nav .icon-line:before, .icon-nav .icon-line:after,.icon-nav .icon-line{background-color:{{color_header_mb}}}
+  }
+  @media (min-width:1200px) {
+    .text-hover:before { background-color: {{ header_bottom_color }} }
+
+    .header_main { background-color: {{ bg_header_bottom_color }}; color: {{ header_bottom_color  | color_modify: 'alpha', 0.9}} }
+    .header_main a, .dropdown-label  { color: {{ header_bottom_color  | color_modify: 'alpha', 0.9  }} }
+    .header_main a:hover { color: currentcolor; text-decoration: none }
+    .header-panel__bottom .block {display: flex; flex-direction: column;}
+
+    .nav-search { margin-left: 0; margin-right: -60px }
+
+    .nav-search .close-search {display: none}
+    .nav-search .search-bar > * { max-height: 40px }
+    
+  }
+  @media (max-width:767px) {
+        
+      .header-logo .logo-title{
+        font-size:{{logo_text_size_mb}};
+          color:{{logo_text_color_mb}};
+      } 
+      .header-logo .logo-title svg{
+        width:{{logo_svg_size_mb}}!important;
+        fill:{{logo_svg_color_mb}};
+        height:auto!important;
+      } 
+    }
+  .nav-search .input-group-field { width: 345px; line-height: 22px; background-color: {{ bg_search_color_input }}; color: {{ search_color_input }}; font-weight: 600; letter-spacing: 0.05em }
+
+  .nav-search .btn-search { background-color: {{ bg_search_color_btn }}; color: {{ search_color_btn }}; border-bottom: 2px solid {{ search_btn_border_color }} }
+
+  
+  .header-mb .logo-img img, .logo-fixed .logo-img img{
+    max-height:{{height_logo_mb}};
+  }
+  .header-pc .logo-img img{
+    max-height:{{height_logo_dk}};
+  }
+  .nav-search .input-group-field::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: {{ search_color_input }};
+      opacity: 1; /* Firefox */
+    }
+    
+</style>

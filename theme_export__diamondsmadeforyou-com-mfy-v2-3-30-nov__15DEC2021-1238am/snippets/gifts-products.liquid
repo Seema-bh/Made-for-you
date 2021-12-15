@@ -1,0 +1,53 @@
+{%- assign collection = collections[section.settings.collection] -%}
+<section class="section-spacing">
+  <div class="page-width collection_list {{ section.settings.title | strip_html | handleize }}">
+    {% include 'section-header' %}
+
+    {% case section.settings.grid %}
+    {% when 2 %}
+    {%- assign max_height = 530 -%}
+    {%- assign grid_item_width = 'medium-up--one-half' -%}
+    {% when 3 %}
+    {%- assign max_height = 345 -%}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+    {% when 4 %}
+    {%- assign max_height = 250 -%}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
+    {% when 5 %}
+    {%- assign max_height = 195 -%}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
+    {% endcase %}
+
+    {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
+
+    <ul class="grid grid--uniform grid-slider custom-slider">
+      {% for product in collection.products limit:8 %}
+      <li class="grid__item small--one-half {{ grid_item_width }} grid__item--{{section.id}}">
+        {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+      </li>
+      {% else %}
+
+      {% for i in (1..product_limit) %}
+      <li class="grid__item grid__item--{{section.id}}">
+        <div class="grid-view-item product-card">
+          <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="#">
+            <span class="visually-hidden">{{ 'homepage.onboarding.product_title' | t }}</span>
+          </a>
+          <div class="grid-view-item__image-wrapper">
+            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+          <div class="h4 grid-view-item__title" aria-hidden="true">{{ 'homepage.onboarding.product_title' | t }}</div>
+          {% include 'product-price' %}
+        </div>
+      </li>
+      {% endfor %}
+      {% endfor %}
+    </ul>
+    {% if section.settings.show_view_all != blank and section.settings.view_all_txt != blank %}
+    <div class="collection_btn text-center">
+      <a class="btn" href="{{ collection.url }}">{{ section.settings.view_all_txt }}</a>
+    </div>
+    {% endif %}
+  </div>
+</section>

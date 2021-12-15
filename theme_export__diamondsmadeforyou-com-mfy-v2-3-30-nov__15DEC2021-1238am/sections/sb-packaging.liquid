@@ -1,0 +1,130 @@
+{% if section.settings.enable_section %}
+<div class="section-spacing">
+  <div class="page-width">
+    <div class="section-wrapper">
+      <div class="wrapper">
+        <div class="col-content">
+          <div class="content small--text-center">
+            {% if section.settings.title != blank %}
+            <h2>{{ section.settings.title }}</h2>
+            {% endif %}
+            {% if section.settings.text_1 != blank %}
+            <div class="text">{{ section.settings.text_1 }}</div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-image small--hide">
+          {% assign image_1_desk = section.settings.image_1_desk | img_url: 'master' %}
+          <div class="image-wrapper">
+            <img class="lazyload" 
+                 src="{{ image_1_desk }}"
+                 data-src="{{ image_1_desk }}" 
+                 data-sizes="auto" 
+                 alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="mobile-images medium-up--hide">
+        {% assign image_1_mob = section.settings.image_1_mob | img_url: 'master' %}
+        <div class="image-wrapper">
+          <img class="lazyload" 
+               src="{{ image_1_mob }}"
+               data-src="{{ image_1_mob }}" 
+               data-sizes="auto" 
+               alt="" />
+        </div>
+        {% assign image_2_mob = section.settings.image_2_mob | img_url: 'master' %}
+        <div class="image-wrapper">
+          <img class="lazyload" 
+               src="{{ image_2_mob }}"
+               data-src="{{ image_2_mob }}" 
+               data-sizes="auto" 
+               alt="" />
+        </div>
+      </div>
+      <div class="wrapper">
+        <div class="col-image small--hide">
+          {% assign image_2_desk = section.settings.image_2_desk | img_url: 'master' %}
+          <div class="image-wrapper">
+            <img class="lazyload" 
+                 src="{{ image_2_desk }}"
+                 data-src="{{ image_2_desk }}" 
+                 data-sizes="auto" 
+                 alt="" />
+          </div>
+        </div>
+        <div class="col-content">
+          <div class="content small--text-center">
+            {% if section.settings.text_2 != blank %}
+            <div class="text">{{ section.settings.text_2 }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "MFY Packaging",
+	"class": "sb-packaging",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_section",
+        "label": "Enable section",
+		"default": true
+      },
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "text_1",
+        "label": "Text 1",
+		"default": "<p>Description goes here.</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "text_2",
+        "label": "Text 2",
+		"default": "<p>Description goes here.</p>"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_1_desk",
+        "label": "Image 1 (Desktop)",
+        "info": "Recommended size 640x480 (px)"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_1_mob",
+        "label": "Image 1 (Mobile)",
+        "info": "Recommended size 175x234 (px)"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_2_desk",
+        "label": "Image 2 (Desktop)",
+        "info": "Recommended size 640x480 (px)"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_2_mob",
+        "label": "Image 2 (Mobile)",
+        "info": "Recommended size 175x234 (px)"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

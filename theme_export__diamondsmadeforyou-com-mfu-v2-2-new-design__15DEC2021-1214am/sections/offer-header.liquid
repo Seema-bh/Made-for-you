@@ -1,0 +1,52 @@
+{% if section.settings.show_offer %}
+<div class="offer-header text-center" style="background-color: {{ section.settings.bg_color }};">
+  <div class="page-width">
+    {% if section.settings.text %}
+    <p style="color: {{ section.settings.text_color }};">{{ section.settings.text }}</p>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Offer header",
+	"class": "offer-header-section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Offer"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_offer",
+        "label": "Show offer",
+        "default": false
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text",
+        "default": "Offer text goes here."
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Bar",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label":  "Text",
+        "default": "#000"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

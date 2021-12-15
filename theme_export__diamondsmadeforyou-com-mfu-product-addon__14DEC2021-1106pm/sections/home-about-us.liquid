@@ -1,0 +1,100 @@
+<div class="home-custom-text" id="custom-text-{{ section.id }}">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+      	{% if section.settings.title != blank %}
+        <h4 class="title">
+          {% include 'multilang' with section.settings.title %}
+        </h4>
+        {% endif %}
+        
+        {% if section.settings.des != blank %}
+        <p class="des rte">
+          {% include 'multilang' with section.settings.des %}
+        </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  {% assign margin_bottom =  section.settings.margin_bottom %}  
+  
+    #custom-text-{{ section.id }} .title {
+        color: {{ section.settings.color_title }};
+    }
+    
+    #custom-text-{{ section.id }} .des {
+        color: {{ section.settings.color_des | color_modify: 'alpha', 0.9 }};
+    }
+    
+    @media (min-width: 1200px) {
+        #custom-text-{{ section.id }} {
+        margin-bottom: {{ margin_bottom }}px;
+        }
+    }	
+
+    {% unless section.settings.display_border_top %}
+    #custom-text-{{ section.id }} .container {
+        border-top: none;
+    }
+    {% endunless %}
+</style>
+
+
+
+{% schema %}
+    {
+        "name": "Custom Block Text",
+        "class": "home-about-us-sections",
+        "settings": [
+            {
+                "type": "checkbox",
+                "id": "display_border_top",
+                "label": "Display Border Top?",
+                "default": true,
+                "info":"Please use the \"|\" character to translate the language following the structure of Lang1 | Lang 2"
+            },
+            {
+                "type": "textarea",
+                "id": "title",
+                "label": "Title",
+                "default": "About Watchtica Shopify Template"
+            },
+            {
+                "type" : "color",
+                "id" : "color_title",
+                "label" : "Title Color",
+                "default" : "#34313a"
+            },
+            {
+                "type": "textarea",
+                "id": "des",
+                "label": "Descriptions"
+            },
+            {
+                "type" : "color",
+                "id" : "color_des",
+                "label" : "Description Color",
+                "default" : "#34313a"
+            },
+            {
+                "type": "range",
+                "id": "margin_bottom",
+                "label": "Margin Bottom",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "default": 54
+            }	      
+        ],
+
+        "presets": [
+            {
+                "name": "Custom Block Text",
+                "category": "Custom text"
+            }
+        ]
+    }
+{% endschema %}

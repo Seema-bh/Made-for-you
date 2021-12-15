@@ -1,0 +1,40 @@
+ <div class="container">
+   <div class="grown-diamond">
+    <div class="grown-diamond-image">
+      <img src="{{section.settings.image_picker | img_url:'master' }}" class="lazyload">
+    </div>
+    <div class="gron-diamond-info">
+      <div class="inner-diamond">
+      <h2 class="title">{% include 'multilang' with section.settings.title %}</h2>
+      <div class="content">
+        {% include 'multilang' with section.settings.content %}
+      </div>
+    </div>
+     </div>
+  </div>
+</div>
+{% schema %}
+{
+"name": "Grown Diamond",
+"class": "grown-diamond-info",
+"settings": [
+{
+"type": "image_picker",
+"id": "image_picker",
+"label": "Profile Picture"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title",
+"default": "Cosmopolis de Milance"
+},
+{
+"type": "textarea",
+"id": "content",
+"label": "Content",
+"default": "Quisquemos sodales suscipit tortor ditaemcos condimentum de cosmo lacus meleifend menean diverra loremous. Nullam sit amet orci rutrum risus laoreet semper vel non magna. Mauris vel sem a lectus vehicula ultricies. Etiam semper sollicitudin lectus indous scelerisque. Curabitur vel tristique lacus. Nam risus mauris, accumsan et eleifend vitae, dignissim at eros. Vivamus pellentesque dui ex, a interdum orci dignissim vel."
+}
+]
+}
+{% endschema %}

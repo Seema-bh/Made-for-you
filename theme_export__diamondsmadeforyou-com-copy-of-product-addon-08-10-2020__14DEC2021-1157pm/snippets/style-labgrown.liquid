@@ -1,0 +1,810 @@
+
+
+<style>
+  /* * {
+  box-sizing: border-box;
+  } */
+  body {
+    margin: 0;
+    padding: 0;
+    /* font-family: "Montserrat", sans-serif; */
+    color: #5b5b5b;
+    line-height: normal;
+    font-size: 14px;
+  }
+
+  .clear {
+    clear: both;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    height: 0;
+  }
+
+  .reset {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+
+
+
+  #wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .page-tpl {
+    position: relative;
+  }
+
+  .header_sec {
+    background: #f6ddda;
+    padding: 8px 0;
+  }
+
+  .header_content p {
+    text-align: center;
+    width: 30%;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #000;
+  }
+
+  .top_header_sec {
+    background: #42625a;
+    padding: 14px 0;
+  }
+
+  .top_header_content {
+    text-align: center;
+  }
+  .top_header_content ul li {
+    display: inline-block;
+  }
+  .top_header_content ul li span {
+    text-align: center;
+    padding-right: 20px;
+    /* display: block; */
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+  .recycleimg {
+    width: 24px;
+    margin-right: 10px;
+    margin-top: -5px;
+  }
+
+  .navigation_sec {
+    padding: 30px 0;
+  }
+  .logo_sec {
+    float: left;
+    width: 300px;
+  }
+
+  .nav_sec {
+    float: left;
+    width: 450px;
+  }
+
+  .nav_sec ul li {
+    float: left;
+  }
+
+  .nav_sec ul li a {
+    padding: 0px 20px;
+    color: #000;
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+
+  .icon_sec {
+    float: right;
+    background: #000;
+    width: 250px;
+  }
+
+  .icon_sec ul li {
+    float: left;
+  }
+
+  .icon_sec ul li a {
+    padding: 0px 20px;
+  }
+
+  /* TabsCss************************************************* */
+
+  /* .tabs-wrapper {
+  margin: 5% 10% 0 10%;
+  } */
+  .tabs-wrapper input[type="radio"] {
+    display: none;
+  }
+  .tabs-wrapper {
+    background: #38635a;
+  }
+
+  .tabs-wrapper label {
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+    cursor: pointer;
+    color: #000;
+
+    width: 33%;
+    height: 3em;
+    /* background: #525252; */
+    text-align: center;
+    line-height: 49px;
+    letter-spacing: 2px;
+  }
+
+  .tabs-wrapper .tabwidth {
+    width: 35%;
+  }
+
+  .tab-body-wrapper {
+    background: #fff;
+  }
+
+  .tabs-wrapper label:last-of-type {
+    border-bottom: none;
+  }
+  .tabs-wrapper label:hover {
+    color: #fff;
+  }
+  /* .tabs-wrapper input[type="radio"]:checked + label {
+  background: #b8b63e;
+  color: #f2f2f2;
+  } */
+  .tabs-wrapper .tab-body {
+    position: absolute;
+    top: -9999px;
+    opacity: 0;
+    padding: 10px;
+    transition: opacity 0.5s ease-in;
+  }
+
+  /* .tab-body-wrapper {
+  background: #f7eec6;
+  border-top: #b8b63e 5px solid;
+  } */
+
+  #tab1:checked ~ .tab-body-wrapper #tab-body-1,
+  #tab2:checked ~ .tab-body-wrapper #tab-body-2,
+  #tab3:checked ~ .tab-body-wrapper #tab-body-3,
+  #tab4:checked ~ .tab-body-wrapper #tab-body-4 {
+    position: relative;
+    top: 0px;
+    opacity: 1;
+  }
+
+  #tab1:checked + label,
+  #tab2:checked + label,
+  #tab3:checked + label,
+  #tab4:checked + label {
+    color: #fff;
+  }
+
+  .tab-content {
+    text-align: center;
+    /* width: 80%; */
+    margin: 0 auto;
+    padding: 30px 0;
+  }
+
+  .imgdiv {
+    margin: 60px 0;
+  }
+
+  .imgdiv ul li {
+    float: left;
+    width: 25%;
+  }
+
+  .tabimg {
+    width: 30%;
+  }
+
+  .imgdiv ul li span {
+    display: block;
+    font-size: 16px;
+    color: #38635a;
+    font-weight: normal;
+    text-align: center;
+    font-style: italic;
+    padding-top: 10px;
+  }
+  .imgdiv ul li span abbr {
+    display: block;
+  }
+
+  .labtitle {
+    color: #38635a;
+    font-size: 36px;
+    margin-bottom: 18px;
+    font-family: "Baskerville";
+  }
+
+  .whyheadingtitle {
+    text-align: left;
+  }
+
+  .tabtxt {
+    font-size: 14px;
+    font-style: italic;
+    color: #38635a;
+    line-height: 18px;
+    padding-bottom: 12px;
+    font-family: "Montserrat Medium";
+  }
+
+  .tabtxt abbr {
+    display: block;
+  }
+
+  
+  .borderdiv {
+    background-color: #8f6836;
+    background-image: linear-gradient(to right, #8f6836, #c9af73);
+    height: 3px;
+    margin-bottom: 22px;
+  }
+
+  .paragraph {
+    color: #38635a;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+  }
+  
+  #tab-body-2 .paragraph {
+    max-width: 850px;
+    margin: 0 auto; 
+  }
+
+  .widthtxt {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .communitybenefit_sec {
+    float: left;
+    width: 33.33%;
+  }
+
+  .ringImg_sec {
+    float: left;
+    width: 33.33%;
+  }
+  .ringimg {
+    width: 180px;
+  }
+
+  .benefits_sec {
+    margin: 50px 0;
+  }
+  .environmentalbenifit_sec {
+    float: left;
+    width: 33.33%;
+  }
+
+  .rjlogo {
+    margin: 50px 0 30px 0px;
+  }
+  .rjlogoimg {
+    width: 22%;
+  }
+
+  .txtlft {
+    text-align: left;
+  }
+
+  .txtryt {
+    text-align: right;
+  }
+
+  .headingsec {
+    text-transform: capitalize;
+    font-size: 22px;
+    font-style: italic;
+    padding-bottom: 10px;
+    font-weight: normal;
+    color: #38635a;
+  }
+
+  .recyclemetallftcontent {
+    float: left;
+    width: 50%;
+  }
+  .recyclemetalryt {
+    float: right;
+    width: 45%;
+  }
+
+  .metalimg {
+    width: 100%;
+  }
+
+  .infinitycontent {
+    position: relative;
+    z-index: 0;
+    padding: 100px 0;
+  }
+
+  .InfiniteContentWrap {
+    z-index: 1;
+    position: absolute;
+  }
+  .infinityimg {
+    width: 50%;
+  }
+
+  .infinitycontent_1 {
+    top: 0px;
+    left: -10px;
+    text-align: right;
+  }
+
+  .InfiniteContentWrap {
+    z-index: 1;
+    position: absolute;
+    width: 350px;
+  }
+  .infiniteTitle {
+    font-size: 20px;
+    color: #000000;
+    position: relative;
+    padding-bottom: 8px;
+    font-family: "Baskerville";
+  }
+  .infiniteTitle::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #8f6836;
+    background-image: linear-gradient(to right, #8f6836, #c9af73);
+  }
+
+  .InfiniteContentWrap p {
+    font-size: 14px;
+    line-height: 19px;
+    margin-top: 10px;
+  }
+  .infinitycontent_3 {
+    top: 0px;
+    right: 0;
+    text-align: left;
+  }
+
+  .infinitycontent_4 {
+    position: absolute;
+    left: 0;
+    text-align: right;
+  }
+
+  .infinitycontent_2 {
+    position: absolute;
+    right: 0;
+    text-align: left;
+  }
+
+  .whysec {
+    padding-top: 120px;
+    text-align: right;
+  }
+
+  .why_txtryt {
+    float: right;
+    max-width: 670px;
+    margin-bottom: 40px;
+  }
+  .whysec_imgsec_Maindiv {
+    text-align: center;
+    margin-top: 70px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .communitiessec {
+    /*   width: 180px; */
+    padding: 0px 30px;
+  }
+
+  .whysecImgDiv {
+    border: 2px solid #416159;
+    border-radius: 50%;
+    width: 180px;
+    margin: 0 auto;
+    height: 180px;
+  }
+  .communitiesimg {
+    width: 100px;
+    padding-top: 40px;
+  }
+
+  .communitiestxt {
+    display: block;
+    padding-top: 8px;
+    font-size: 16px;
+    line-height: 22px;
+    color: #416159;
+    max-width: 220px;
+  }
+
+  .bottomtext {
+    padding-top: 28px;
+    font-size: 18px;
+    line-height: 22px;
+    color: #38635a;
+    font-weight: 500;
+    font-family: "Montserrat";
+    text-align: center;
+  }
+
+  .footertxt {
+    font-size: 12px;
+    color: #38635a;
+    font-weight: 500;
+    font-family: "Montserrat";
+    margin-top: 45px;
+  }
+
+  .purchaseImg {
+    width: 60%;
+    margin: 50px auto;
+  }
+
+  .CountryImg {
+    width: 140px;
+  }
+
+  .countryDiv {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    padding: 30px 0;
+  }
+
+  .AsiaImg {
+    width: 290px;
+  }
+
+  .countryImgs {
+    padding-left: 40px;
+  }
+
+  .clicklink {
+    display: block;
+    text-decoration: underline;
+    color: #38635a;
+  }
+
+  .paddingbootom {
+    padding-bottom: 20px;
+  }
+
+  .tabs-wrapper_main {
+    position: relative;
+  }
+
+  .rytleafimg {
+    position: absolute;
+    width: 80px;
+    right: 0px;
+    bottom: 100vh;
+  }
+
+  .lftleafimg {
+    position: absolute;
+    width: 80px;
+    left: 0px;
+    top: 60vh;
+  }
+
+  .desk_view {
+    display: block;
+  }
+  .mobile_view {
+    display: none;
+  }
+  
+
+
+
+
+
+  @media screen and (max-width: 1024px) {
+
+    .infinitycontent {
+      padding: 125px 0;
+    }
+  }
+
+  @media screen and (max-width: 980px) {
+    .tabs-wrapper label {
+      padding-left: 18px;
+    }
+
+
+  }
+  @media screen and (max-width: 900px) {
+    .communitiessec {
+      padding: 0px 20px 20px;
+    }
+    .whysecImgDiv{   
+      width: 120px;
+      height: 120px;
+    }
+    .communitiesimg {
+      width: 60px;
+      padding-top: 31px;
+    }
+
+  }
+
+  @media screen and (max-width: 800px) {
+    .tabs-wrapper label {
+      padding-left: 13px;
+      width: 32%;
+    }
+    .whyheadingtitle {
+      text-align: center;
+    }
+    .txtlft {
+      text-align: center;
+    }
+    .recyclemetalryt {
+      float: none;
+      width: 60%;
+      margin: 0 auto;
+    }
+    .infinityimg {
+      width: 46%;
+    }
+    .whysecImgDiv {
+      width: 128px;
+      height: 128px;
+    }
+    .communitiesimg {
+      width: 60px;
+      padding-top: 32px;
+    }
+    .recyclemetallftcontent {
+      float: none;
+      width: auto;
+    }
+    .CountryImg {
+      width: 110px;
+    }
+    .AsiaImg {
+      width: 240px;
+    }
+    .header_sec {
+      display: none;
+    }
+    .top_header_sec {
+      display: none;
+    }
+    .navigation_sec {
+      display: none;
+    }
+    .imgdiv ul li {
+      float: none;
+      width: 34%;
+      display: inline-block;
+    }
+    .headingsec {
+      font-size: 20px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .tabs-wrapper label {
+      font-size: 13px;
+    }
+    .tabs-wrapper_main {
+      position: static;
+    }
+    .lftleafimg {
+      display: none;
+    }
+    .rytleafimg {
+      display: none;
+    }
+    .desk_view {
+      display: none;
+    }
+    .mobile_view {
+      display: block;
+    }
+    .rjlogoimg {
+      width: 32%;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .tabs-wrapper_main .container {
+      padding: 0px;
+    }
+
+
+    .tabs-wrapper_main {
+      position: static;
+    }
+    .lftleafimg {
+      display: none;
+    }
+    .rytleafimg {
+      display: none;
+    }
+    .desk_view {
+      display: none;
+    }
+    .mobile_view {
+      display: block;
+    }
+
+    .whysecImgDiv {
+      width: 124px;
+      height: 124px;
+    }
+    .communitiestxt {
+      font-size: 14px;
+    }
+
+    .about-fifth-sec img {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .tabs-wrapper label {
+      display: inline;
+    }
+    .infinitycontent {
+      padding: 165px 0;
+    }
+    .infinityimg {
+      width: 38%;
+    }
+    .InfiniteContentWrap {
+      width: 245px;
+    }
+    .whysecImgDiv {
+      width: 90px;
+      height: 90px;
+    }
+    .communitiesimg {
+      width: 40px;
+      padding-top: 26px;
+    }
+    .bottomtext {
+      font-size: 16px;
+    }
+    .ringimg {
+      width: 150px;
+    }
+    .headingsec {
+      font-size: 17px;
+    }
+    .purchaseImg {
+      width: 80%;
+    }
+    .tabs-wrapper [name="tab"] + label{
+      margin:0;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .tabs-wrapper label {
+      width: 100%;
+      display: block;
+      border-bottom: 2px solid #4d4c47;
+    }
+    .tab-body-wrapper {
+      border: none;
+    }
+    .tabs-wrapper {
+      margin: 0;
+    }
+  }
+
+  @media screen and (max-width: 568px) {
+    .tabs-wrapper label{
+      line-height: 35px;
+    }
+
+  }
+  @media screen and (max-width: 480px) {
+    .recyclemetalcontent {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    .whysec_imgsec_Maindiv{
+      flex-wrap: wrap;
+      margin-top: 0;
+    }
+    .communitiessec {
+      width: 50%;
+    }
+    .infinitycontent {
+      padding: 10px 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .infinityimg {
+      width: 70%;
+    }
+    .InfiniteContentWrap {
+      width: 100%;
+      padding: 20px 0;
+      position: relative;
+    }
+    .infinitycontent_1{text-align: center;order: 1;}
+    .infinitycontent_2{text-align: center;position: relative;order: 2;}
+    .infinitycontent_3{text-align: center;order: 3;}
+    .infinitycontent_4{text-align: center;    position: relative;order: 4;}
+
+    .whysec {
+      padding-top: 10px;
+      text-align: center;
+    }
+    .communitybenefit_sec {
+      float: none;
+      width: 100%;
+    }
+    .ringImg_sec {
+      float: none;
+      width: 100%;
+      padding: 20px 0;
+    }
+    .environmentalbenifit_sec {
+      float: none;
+      width: 100%;
+    }
+    .headingsec {
+      font-size: 20px;
+      text-align: center;
+      margin: 0;
+    }
+    .txtryt {
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 414px) {
+    .imgdiv ul li {
+      float: none;
+      width: 48%;
+      display: inline-block;
+    }
+    .tabimg {
+      width: 50%;
+    }
+    .rjlogoimg {
+      width: 50%;
+    }
+    .purchaseImg {
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    .labtitle{ font-size: 30px;}
+    .infiniteTitle {
+      font-size: 18px;}
+  }
+
+
+
+</style>

@@ -1,0 +1,77 @@
+{% comment %}
+This template will be automatically generated for you if the file doesn't exist,
+but where's the fun in having no control? Define your layout below.
+
+The 'layout settings.customer_layout' line is inserted at the top of every customer account template.
+Your theme's settings determine to use the 'default' or 'theme' customer templates.
+More info:
+- http://www.tetchi.ca/shopify-theme-from-scratch-part-11/
+{% endcomment %}
+
+<div class="custom-acc-page">
+  <div class="container">
+
+    {% include 'breadcrumb' %}
+
+    <div class="create-an-account">
+      <header class="page-header">
+        <h1 {% if settings.enable_multilang %} data-translate="customer.register.title"{% endif %}>
+          {{ 'customer.register.title' | t }}
+        </h1>
+      </header>
+
+      {% if settings.enable_multilang %}
+      <p class="des lang1">
+        {{ settings.register_text_desc | split: '|' | first }}
+      </p>
+      <p class="des lang2">
+        {{ settings.register_text_desc | split: '|' | last }}
+      </p>
+      {% else %}
+      <p class="des">
+        Save time during checkout, view your shopping bag & saved items from any device and access your order history.
+      </p>
+      {% endif %}
+      <div class="last">
+        <span>Already Registered?</span> <a href="/account/login">SIGN IN</a>
+      </div>
+      {% comment %}
+      This form must use 'create_customer'
+      {% endcomment %}
+
+      {% form 'create_customer' %}
+
+      {% include 'form-errors-custom' %}
+
+      <div class="form-group">
+        <input type="text" value="" name="customer[first_name]" id="first_name" {% if form.errors contains "first_name" %}class="error"{% endif %} placeholder="First Name">
+      </div>
+
+      <div class="form-group">   
+        <input type="text" value="" name="customer[last_name]" id="last_name" {% if form.errors contains "last_name" %}class="error"{% endif %} placeholder="Last Name">
+      </div>
+
+      <div class="form-group">   
+        <input type="email" value="" name="customer[email]" id="email" {% if form.errors contains "email" %}class="error"{% endif %}  placeholder="Email*">
+      </div>
+
+<!--       <div class="form-group">
+      <input type="tel" value="" id="tel" name="customer[phone]" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="Phone Number">
+      </div> -->
+      
+      <div class="form-group">     
+        <input type="password" value="" name="customer[password]" id="create_password" {% if form.errors contains "password" %}class="error"{% endif %} placeholder="password">
+      </div>
+
+      <div class="form-group">     
+        <input type="password" value="" name="customer[cppassword]" id="confirm_password" {% if form.errors contains "password" %}class="error"{% endif %} placeholder="Confirm Password">
+      </div>
+
+
+      <div class="action-btn ">
+        <input type="submit" {% if settings.enable_multilang %}data-translate="customer.register.submit"{%endif%} value="{{ 'customer.register.submit' | t }}" class="btn btn-two">
+      </div>
+      {% endform %}
+    </div>
+  </div>
+</div>

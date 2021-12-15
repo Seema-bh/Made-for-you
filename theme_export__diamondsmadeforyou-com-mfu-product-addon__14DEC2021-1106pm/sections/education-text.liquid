@@ -1,0 +1,38 @@
+<div class="education-para">
+  {% if section.settings.banner_des != blank %}
+  <div class="des rte">
+    {% include 'multilang' with section.settings.banner_des %}
+  </div>
+  {% endif %}
+</div>
+<style>
+  {% assign des_color =  section.settings.des_color %}
+  #banner-{{section.id}} .custom-content .des{
+    color:{{des_color}};
+  }
+</style>
+{% schema %}
+{
+"name": "Full width text",
+"class": "education-para",
+"settings": [
+{
+"type":"textarea",
+"id":"banner_des",
+"label":"Descriptions"
+},
+{
+"type":"color",
+"id":"des_color",
+"label":" Descriptions Color",
+"default":"#34313a"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

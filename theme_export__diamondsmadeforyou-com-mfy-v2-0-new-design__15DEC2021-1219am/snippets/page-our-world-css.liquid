@@ -1,0 +1,152 @@
+<style>
+  /***** Our World page CSS starts here *****/
+  /* OW About us */
+  .page-our-world .ow-about-us .grid {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .page-our-world .ow-about-us .section-wrapper {background: #F9F9F9;}
+  .page-our-world .ow-about-us .content {padding: 27px 27px 27px 37px;}
+  .page-our-world .ow-about-us h2 {
+    font-size: 50px;
+    line-height: 60px;
+    text-transform: capitalize;
+    margin-bottom: 2px;
+  }
+  /* OW Feature row */
+  .page-our-world .ow-image-with-text .featured-row__subtext p strong {text-decoration: underline 3px;}
+  /* OW three columns */
+  .page-our-world .ow-three-columns-section h6 {
+    font-size: 38px;
+    line-height: 45px;
+  }
+  .page-our-world .ow-three-columns-section .image-wrapper {
+    background: #FEFBFA;
+    padding: 20px 10px 28px;
+  }
+  .page-our-world .ow-three-columns-section img {
+    display: block;
+    margin: 0 auto;
+  }
+  .page-our-world .ow-three-columns-section p {
+    color: #2A3134;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 400;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
+  .page-our-world .ow-three-columns-section li {
+    color: #2A3134;
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: capitalize;
+    background: #FBF6F4;
+    padding: 19.5px 10px;
+  }
+  .page-our-world .ow-three-columns-section li:nth-child(2n) {background: #FFFDFD;}
+
+  .page-our-world .ow-image-with-content .grid {background: none;}
+  .page-our-world .ow-image-with-content .grid-content {padding: 0 58px 0 0;}
+  .page-our-world .ow-image-with-content .grid-content > img {display: block;}
+  .page-our-world .ow-image-with-content svg {margin-top: 20px;}
+  .page-our-world .ow-image-with-content h6 {
+    font-size: 30px;
+    line-height: 40px;
+    margin: 28px 0 0;
+  }
+  @media screen and (min-width: 750px) {
+    .page-our-world .ow-about-us .grid__item-content {flex: 0 0 31.2%;}
+    .page-our-world .ow-about-us .grid__item-image {flex: 0 0 68.8%;}
+
+    .page-our-world .ow-image-with-text .feature-row__item-image {flex: 0 0 49%;}
+    .page-our-world .ow-image-with-text .feature-row__text {
+      flex: 0 0 51%;
+      padding: 35px 46px;
+    }
+    .page-our-world .ow-image-with-text .featured-row__subtext {max-width: 516px;}
+
+    .page-our-world .ow-three-columns-section .grid {margin-left: -20px;}
+    .page-our-world .ow-three-columns-section .grid__item {padding-left: 20px;}
+  }
+  @media screen and (max-width: 749px) {
+    .page-our-world .ow-about-us .content {padding: 22px 28px 31px;}
+    .page-our-world .ow-about-us h2 {
+      font-size: 35px;
+      line-height: 42px;
+      margin-bottom: 7px;
+    }
+    .page-our-world .ow-about-us p {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    
+    .page-our-world .ow-image-with-text .feature-row__text h2 {margin-bottom: 6px;}
+    .page-our-world .ow-image-with-text .featured-row__subtext p strong {
+      text-decoration: underline 2px;
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .page-our-world .ow-three-columns-section .grid {margin-left: -10px;}
+    .page-our-world .ow-three-columns-section .grid__item {padding-left: 10px;}
+    .page-our-world .ow-three-columns-section h6 {
+      font-size: 22px;
+      line-height: 28px;
+      margin-bottom: 16px;
+    }
+    .page-our-world .ow-three-columns-section .image-wrapper {padding: 17px 10px 19px;}
+    .page-our-world .ow-three-columns-section img {width: 94px;}
+    .page-our-world .ow-three-columns-section p {
+      font-size: 12px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      max-width: 132px;
+      margin: 9px auto 0;
+    }
+    .page-our-world .ow-three-columns-section li {
+      font-size: 12px;
+      line-height: 14px;
+      padding: 13px 5px;
+    }
+    .page-our-world .ow-three-columns-section li span {
+      color: #726156;
+      font-size: 10px;
+      line-height: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .page-our-world .ow-image-with-content .page-width {padding: 0 15px;}
+    .page-our-world .ow-image-with-content .grid {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .page-our-world .ow-image-with-content .grid-content {
+      padding: 20px 0 0;
+      order: 2;
+    }
+    .page-our-world .ow-image-with-content .grid-content > img {
+      width: 151px;
+      margin: 0 auto;
+    }
+    .page-our-world .ow-image-with-content svg {margin-top: 10px;}
+    .page-our-world .ow-image-with-content .grid-content svg.svg-x {
+      width: 15px;
+      height: 15px;
+    }
+    .page-our-world .ow-image-with-content .grid-content svg.svg-mfy {
+      width: 189px;
+      height: 20px;
+    }
+    .page-our-world .ow-image-with-content h6 {
+      font-size: 22px;
+      line-height: 28px;
+      max-width: 349px;
+      margin: 16px auto 0;
+    }
+  }
+</style>

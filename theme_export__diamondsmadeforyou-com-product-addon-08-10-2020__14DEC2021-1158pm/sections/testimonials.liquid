@@ -1,0 +1,223 @@
+<div class="container">
+  <div class="testimonial-main data-brands-slider">
+    <h2 class="testimonial-heading">
+      {% include 'multilang' with section.settings.heading  %}
+    </h2>
+    <h4 class="testimonial-sub-heading"> {% include 'multilang' with section.settings.sub_heading %}</h4>
+    <div class="testimonial">
+      <div class="first-testimonial">
+        {% if section.settings.des1 != blank %}
+        <div class="content rte" style="color:{{section.settings.des_color1}}">
+          {% include 'multilang' with section.settings.des1 %}
+        </div>
+        {% endif %}
+        {% if section.settings.title1 != blank %}
+        <h3 class="title" style="color:{{section.settings.title_color1}}">
+          {% include 'multilang' with section.settings.title1 %}
+        </h3>
+        {% endif %}
+        {% if section.settings.link_text1 != blank %}
+        <div class="learn-more">
+          <a href=" {{section.settings.link1}}" class="link-banner"  style="color:{{section.settings.link_color1 |color_modify: 'alpha', 0.5 }}">{% include 'multilang' with section.settings.link_text1 %}</a>
+        </div>
+        {% endif%}
+      </div>
+
+      <div class="second-testimonial">
+        {% if section.settings.des2 != blank %}
+        <div class="content rte" style="color:{{section.settings.des_color2}}">
+          {% include 'multilang' with section.settings.des2 %}
+        </div>
+        {% endif %}
+        {% if section.settings.title2 != blank %}
+        <h3 class="title" style="color:{{section.settings.title_color2}}">
+          {% include 'multilang' with section.settings.title2 %}
+        </h3>
+        {% endif %}
+        {% if section.settings.link_text2 != blank %}
+        <div class="learn-more">
+          <a href=" {{section.settings.link2}}" class="link-banner"  style="color:{{section.settings.link_color2 |color_modify: 'alpha', 0.5 }}">{% include 'multilang' with section.settings.link_text2 %}</a>
+        </div>
+        {% endif%}
+      </div>
+      <div class="third-testimonial">
+        {% if section.settings.des3 != blank %}
+        <div class="content rte" style="color:{{section.settings.des_color3}}">
+          {% include 'multilang' with section.settings.des3%}
+        </div>
+        {% endif %}
+        {% if section.settings.title3 != blank %}
+        <h3 class="title" style="color:{{section.settings.title_color3}}">
+          {% include 'multilang' with section.settings.title3%}
+        </h3>
+        {% endif %}
+        {% if section.settings.link_text3 != blank %}
+        <div class="learn-more">
+          <a href=" {{section.settings.link3}}" class="link-banner"  style="color:{{section.settings.link_color3 |color_modify: 'alpha', 0.5 }}">{% include 'multilang' with section.settings.link_text3 %}</a>
+        </div>
+        {% endif%}
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+"name": "Testimonial",
+"settings": [
+{
+"type" : "text",
+"id" : "heading",
+"label" : "Testimonial Heading",
+"default" : "Loremou'r"
+},
+{
+"type" : "text",
+"id" : "sub_heading",
+"label" : "Testimonial Sub Heading",
+"default" : "Luminor Panerai"
+},
+{
+"type" : "textarea",
+"id" : "des1",
+"label" : "testimonial 1 Description",
+"default" : "Quisque destibulum risus cosmopolis an cosmodous"
+},
+{
+"type" : "color",
+"id" : "des_color1",
+"label" : "testimonial 1 Des Color",
+"default" : "#fff"
+},
+{
+"type" : "text",
+"id" : "title1",
+"label" : "testimonial 1 Title",
+"default" : "Loremous Cosmo"
+},
+{
+"type" : "color",
+"id" : "title_color1",
+"label" : "testimonial 1 Title Color",
+"default" : "#fff"
+},
+{
+"type" : "text",
+"id" : "link_text1",
+"label" : "testimonial 1 Link",
+"default":"Quisque destibulum risus"
+},
+{
+"type" : "color",
+"id" : "link_color1",
+"label" : "testimonial 1 Link Color",
+"default" : "#fff"
+},
+{
+"type": "url",
+"id": "link1",
+"label": "testimonial 1 Add Link",
+"info":"================"
+},
+
+
+{
+"type" : "textarea",
+"id" : "des2",
+"label" : "testimonial 2 Description",
+"default" : "Quisque destibulum risus cosmopolis an cosmodous"
+},
+{
+"type" : "color",
+"id" : "des_color2",
+"label" : "testimonial 2 Des Color",
+"default" : "#fff"
+},
+{
+"type" : "text",
+"id" : "title2",
+"label" : "testimonial 2 Title",
+"default" : "Loremous Cosmo"
+},
+{
+"type" : "color",
+"id" : "title_color2",
+"label" : "testimonial 2 Title Color",
+"default" : "#fff"
+},
+{
+"type" : "text",
+"id" : "link_text2",
+"label" : "testimonial 2 Link",
+"default":"Quisque destibulum risus"
+},
+{
+"type" : "color",
+"id" : "link_color2",
+"label" : "testimonial 2 Link Color",
+"default" : "#fff"
+},
+{
+"type": "url",
+"id": "link2",
+"label": "testimonial 2 Add Link",
+"info":"================"
+},
+
+
+{
+"type" : "textarea",
+"id" : "des3",
+"label" : "testimonial 3 Description",
+"default" : "Quisque destibulum risus cosmopolis an cosmodous"
+},
+{
+"type" : "color",
+"id" : "des_color3",
+"label" : "testimonial 3 Des Color",
+"default" : "#fff"
+},
+{
+"type" : "text",
+"id" : "title3",
+"label" : "testimonial 3 Title",
+"default" : "Loremous Cosmo"
+},
+{
+"type" : "color",
+"id" : "title_color3",
+"label" : "testimonial 3 Title Color",
+"default" : "#fff"
+},
+{
+"type" : "text",
+"id" : "link_text3",
+"label" : "testimonial 3 Link",
+"default":"Quisque destibulum risus"
+},
+{
+"type" : "color",
+"id" : "link_color3",
+"label" : "testimonial 3 Link Color",
+"default" : "#fff"
+},
+{
+"type": "url",
+"id": "link",
+"label": "Add Link",
+"info":"================"
+}
+],
+"presets": [
+{
+"name": "Testimonial",
+"category": "Block Images"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

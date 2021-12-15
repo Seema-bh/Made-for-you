@@ -1,0 +1,93 @@
+.template-product {
+  .price-quickview {
+    margin-top: 10px;
+    .quickview-button {
+      color: #AA7F58;
+      padding-top: 20px;
+      font-family: "SoleilW01-Regular";
+      font-size: 14px;
+      letter-spacing: 2.1px;
+    }
+  }
+  .wishlist-share-hint {
+    display: flex;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    justify-content: space-between;
+    @media ( max-width: 767px ) {
+      margin-bottom: 40px;
+    }
+    >div{
+      min-height: 40px;
+      width: calc(33.33% - 10px);
+      background: #F7F7F7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .share{
+      &:hover{
+        /*         .share-toolbox{
+        display:block;
+      } */
+      }
+      a {
+        font-size: 12px;
+        line-height: 1;
+      }
+    }
+    .wishlist{
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      .heart-icon {
+        position: relative;
+        margin-right: 5px;
+      }
+    }
+    .drophint-link, .dp_hint_button {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .product-infor {
+    display: flex;
+    font-size: 12px;
+    font-family: 'montserratregular';
+    line-height: 16px;
+    margin-bottom: 16px;
+  }
+  .product-type, span.vendor {
+    margin-right: 5px;
+  }
+}
+
+.wrapper-tab-content {
+  border-bottom: 1px solid #e6e6e6;
+  .tab-title {
+    position: relative;
+    color: #645E59;
+    font-size: 12px;
+    letter-spacing: 2.4px;
+    font-family: "SoleilW01-SemiBold";
+    line-height: 15px;
+  }
+}
+.product-detail {
+  font-size: 15px;
+  color: #aa7f58;
+  margin-left: 10px;
+}
+
+img.play-icon {
+  display: none;
+}
+div#ProductSection-product-template {
+  border-bottom: 1px solid #e6e6e6;
+  @media ( max-width: 767px ) {
+    border-bottom: none;
+  }
+}

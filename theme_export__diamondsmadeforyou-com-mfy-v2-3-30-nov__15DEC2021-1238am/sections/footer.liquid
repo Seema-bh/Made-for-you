@@ -1,0 +1,1034 @@
+{%- assign social_icons = false -%}
+{%- assign inline_list = false -%}
+{%- assign locale_selector = false -%}
+{%- assign currency_selector = false -%}
+{%- assign show_payment_icons = false -%}
+{%- assign show_selectors = false -%}
+
+{%- if section.settings.show_currency_selector and shop.enabled_currencies.size > 1 -%}
+{%- assign currency_selector = true -%}
+{%- endif -%}
+
+{%- if section.settings.show_locale_selector and shop.published_locales.size > 1 -%}
+{%- assign locale_selector = true -%}
+{%- endif -%}
+
+{%- if section.settings.show_payment_icons -%}
+{%- unless shop.enabled_payment_types == empty -%}
+{%- assign show_payment_icons = true -%}
+{%- endunless -%}
+{%- endif -%}
+
+{%- if currency_selector or locale_selector -%}
+{%- assign show_selectors = true -%}
+{%- endif -%}
+
+{%- if
+  settings.social_twitter_link != blank
+or settings.social_facebook_link != blank
+or settings.social_pinterest_link != blank
+or settings.social_instagram_link != blank
+or settings.social_tumblr_link != blank
+or settings.social_snapchat_link != blank
+or settings.social_youtube_link != blank
+or settings.social_vimeo_link != blank
+or request.page_type == 'article'
+or request.page_type == 'blog'
+-%}
+{%- assign social_icons = true -%}
+{%- endif -%}
+
+{%- assign payment_width_class = "one-half" -%}
+{%- if show_selectors -%}
+{%- unless social_icons -%}
+{%- assign payment_width_class = "" -%}
+{%- endunless -%}
+{%- endif -%}
+
+{%- assign copyright_show_class = "medium-up--hide" -%}
+{%- if social_icons -%}
+{%- unless show_selectors -%}
+{%- assign copyright_show_class = "" -%}
+{%- endunless -%}
+{%- endif -%}
+
+{%- case section.blocks.size -%}
+{%- when 1 -%}
+{%- assign footer_item = 'site-footer__item--full-width' -%}
+{%- assign inline_list = true -%}
+{%- when 2 -%}
+{%- assign footer_item = 'site-footer__item--one-half' -%}
+{%- assign inline_list = true -%}
+{%- when 3 -%}
+{%- assign footer_item = 'site-footer__item--one-third' -%}
+{%- for block in section.blocks -%}
+{%- if block.type == 'newsletter' -%}
+{%- assign footer_item = 'site-footer__item--one-quarter' -%}
+{%- break -%}
+{%- endif -%}
+{%- endfor -%}
+{%- when 4 -%}
+{%- assign footer_item = 'site-footer__item--one-quarter' -%}
+{%- when 5 -%}
+{%- assign footer_item = 'site-footer__item--one-fifth' -%}
+{%- endcase -%}
+
+{% comment %} Create an appropriate hover color based on text color and brightness {% endcomment %}
+{%- assign footer_text_color = section.settings.color_footer_text -%}
+{%- assign footer_text_color_brightness = section.settings.color_footer_text | color_brightness -%}
+{%- if footer_text_color_brightness <= 26 -%}
+{%- assign footer_text_color_hover = footer_text_color | color_lighten: 25 -%}
+{%- elsif footer_text_color_brightness <= 65 -%}
+{%- assign footer_text_color_hover = footer_text_color | color_lighten: 15 -%}
+{%- else -%}
+{%- assign footer_text_color_hover = footer_text_color | color_darken: 10 -%}
+{%- endif -%}
+
+<style>
+  .site-footer__hr {
+    border-bottom: 1px solid {{ section.settings.color_footer_bg | color_darken: 10 }};
+  }
+
+  .site-footer p,
+  .site-footer__linklist-item a,
+  .site-footer__rte a,
+  .site-footer h4,
+  .site-footer small,
+  .site-footer__copyright-content a,
+  .site-footer__newsletter-error,
+  .site-footer__social-icons .social-icons__link {
+    color: {{ section.settings.color_footer_text }};
+  }
+
+  .site-footer {
+    color: {{ section.settings.color_footer_text }};
+    background-color: {{ section.settings.color_footer_bg }};
+  }
+
+  .site-footer__rte a:hover,
+  .site-footer__linklist-item a:hover,
+  .site-footer__copyright-content a:hover {
+    color: {{ footer_text_color_hover }};
+  }
+
+  .site-footer__social-icons .social-icons__link:hover {
+    color: {{ footer_text_color_hover }};
+  }
+</style>
+
+
+{%- capture payment_icon_markup -%}
+{%- if show_payment_icons -%}
+<div class="site-footer__payment-icons small--text-center">
+  <span class="visually-hidden">{{ 'general.payment.method' | t }}</span>
+  <ul class="payment-icons">
+    <li class="payment-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24.855" height="19.338" viewBox="0 0 24.855 19.338"><defs><style>.mastercard-a,.mastercard-c{fill:#989593;}.mastercard-a{clip-rule:evenodd;}.mastercard-b{clip-path:url(#a);}.mastercard-c,.mastercard-d{fill-rule:evenodd;}.mastercard-d{fill:#837f7c;}</style><clipPath id="a"><path class="mastercard-a" d="M125.758,80h24.855V99.338H125.758Z" transform="translate(-125.758 -80)"/></clipPath></defs><g class="mastercard-b"><path class="mastercard-c" d="M164.81,285.859v.05h.046a.049.049,0,0,0,.025-.006.022.022,0,0,0,.009-.019.021.021,0,0,0-.009-.019.045.045,0,0,0-.025-.006h-.046Zm.047-.035a.086.086,0,0,1,.056.016.053.053,0,0,1,.02.044.05.05,0,0,1-.016.039.076.076,0,0,1-.044.019l.062.071h-.048l-.057-.07h-.019v.07h-.04v-.188h.087Zm-.012.253a.15.15,0,0,0,.061-.012.157.157,0,0,0,.083-.206.164.164,0,0,0-.034-.05.161.161,0,0,0-.05-.034.158.158,0,0,0-.061-.012.164.164,0,0,0-.062.012.159.159,0,0,0-.051.034.161.161,0,0,0-.033.174.149.149,0,0,0,.033.05.162.162,0,0,0,.051.034.155.155,0,0,0,.062.012m0-.36a.208.208,0,0,1,.146.06.2.2,0,0,1,.044.222.212.212,0,0,1-.044.064.222.222,0,0,1-.066.044.2.2,0,0,1-.081.016.208.208,0,0,1-.082-.016.212.212,0,0,1-.066-.044.21.21,0,0,1-.043-.067.2.2,0,0,1,0-.157.2.2,0,0,1,.044-.064.2.2,0,0,1,.066-.044.205.205,0,0,1,.082-.016m-19.03-.724a.618.618,0,1,1,.619.653.612.612,0,0,1-.619-.653m1.651,0v-1.02h-.444v.249a.773.773,0,0,0-.644-.3,1.072,1.072,0,0,0,0,2.142.774.774,0,0,0,.644-.3v.248h.443v-1.02Zm14.987,0a.618.618,0,1,1,.619.653.612.612,0,0,1-.619-.653m1.652,0v-1.839h-.444v1.068a.773.773,0,0,0-.644-.3,1.072,1.072,0,0,0,0,2.142.773.773,0,0,0,.644-.3v.248h.444Zm-11.134-.674a.507.507,0,0,1,.516.495H152.43a.525.525,0,0,1,.542-.495m.009-.4a1.072,1.072,0,0,0,.03,2.142,1.239,1.239,0,0,0,.836-.286l-.217-.329a.973.973,0,0,1-.593.213.566.566,0,0,1-.61-.5h1.515c0-.055.009-.111.009-.171a.979.979,0,0,0-.969-1.071m5.355,1.071a.618.618,0,1,1,.619.653.612.612,0,0,1-.619-.653m1.651,0v-1.02h-.443v.249a.774.774,0,0,0-.644-.3,1.072,1.072,0,0,0,0,2.142.774.774,0,0,0,.644-.3v.248h.443v-1.02Zm-4.156,0a1.03,1.03,0,0,0,1.088,1.071,1.066,1.066,0,0,0,.733-.243l-.213-.359a.9.9,0,0,1-.534.184.654.654,0,0,1,0-1.306.9.9,0,0,1,.534.184l.213-.358a1.067,1.067,0,0,0-.733-.243,1.03,1.03,0,0,0-1.088,1.071m5.718-1.071a.6.6,0,0,0-.538.3v-.247h-.44v2.04h.444v-1.143c0-.338.145-.525.435-.525a.719.719,0,0,1,.277.051l.137-.418a.943.943,0,0,0-.316-.056m-11.889.213a1.525,1.525,0,0,0-.832-.213c-.517,0-.849.248-.849.653,0,.333.248.538.7.6l.21.03c.243.034.358.1.358.213,0,.158-.162.248-.465.248a1.086,1.086,0,0,1-.678-.213l-.208.346a1.472,1.472,0,0,0,.883.265c.589,0,.93-.277.93-.666,0-.359-.269-.546-.713-.61l-.209-.03c-.192-.025-.346-.063-.346-.2s.145-.239.388-.239a1.315,1.315,0,0,1,.636.175l.192-.359Zm5.723-.213a.6.6,0,0,0-.537.3v-.248h-.44v2.04h.444v-1.143c0-.338.145-.525.435-.525a.72.72,0,0,1,.277.051l.137-.418a.942.942,0,0,0-.316-.056m-3.785.051h-.725v-.619h-.448v.619h-.414v.405h.414v.93c0,.473.184.755.708.755a1.042,1.042,0,0,0,.555-.158l-.128-.38a.821.821,0,0,1-.393.115c-.222,0-.294-.137-.294-.341v-.922h.725Zm-6.631,2.04v-1.28a.759.759,0,0,0-.8-.811.789.789,0,0,0-.717.363.749.749,0,0,0-.674-.363.675.675,0,0,0-.6.3v-.252h-.444v2.04h.447V284.88a.477.477,0,0,1,.5-.542c.294,0,.444.192.444.538v1.135h.448v-1.131a.481.481,0,0,1,.5-.542c.3,0,.447.192.447.538v1.135Z" transform="translate(-140.445 -266.783)"/><path class="mastercard-c" d="M423.914,231.026v-.3h-.078l-.09.2-.089-.2h-.078v.3h.055V230.8l.084.194h.057l.084-.194v.225h.055Zm-.493,0v-.247h.1v-.05h-.254v.05h.1v.247Z" transform="translate(-399.296 -218.583)"/><path class="mastercard-c" d="M245.032,112.463H238.31v-12.08h6.722Z" transform="translate(-229.241 -98.741)"/><path class="mastercard-c" d="M135.253,87.683a7.67,7.67,0,0,1,2.934-6.04,7.683,7.683,0,1,0,0,12.08,7.67,7.67,0,0,1-2.934-6.04" transform="translate(-125.758 -80)"/><path class="mastercard-d" d="M292.446,87.683a7.682,7.682,0,0,1-12.429,6.04,7.683,7.683,0,0,0,0-12.08,7.682,7.682,0,0,1,12.429,6.04" transform="translate(-267.588 -80)"/></g></svg>
+    </li>
+    <li class="payment-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="39.99" height="12.914" viewBox="0 0 39.99 12.914"><defs><style>.visa-a{fill:#989593;fill-rule:evenodd;}</style></defs><path class="visa-a" d="M100.682,139.544c-.023,1.8,1.6,2.8,2.828,3.4,1.258.612,1.681,1.005,1.676,1.553-.01.838-1,1.208-1.934,1.222a6.751,6.751,0,0,1-3.318-.789l-.585,2.737a9.727,9.727,0,0,0,3.593.663c3.394,0,5.614-1.675,5.626-4.273.013-3.3-4.56-3.479-4.528-4.952.011-.447.437-.923,1.371-1.045a6.083,6.083,0,0,1,3.186.558l.568-2.648a8.659,8.659,0,0,0-3.024-.555c-3.194,0-5.441,1.7-5.459,4.129m13.94-3.9a1.473,1.473,0,0,0-1.375.916L108.4,148.134h3.391l.675-1.865h4.144l.392,1.865h2.989l-2.608-12.491Zm.474,3.374.979,4.691h-2.68ZM96.57,135.643,93.9,148.134h3.231L99.8,135.643Zm-4.78,0-3.364,8.5-1.361-7.229a1.506,1.506,0,0,0-1.49-1.273h-5.5l-.077.363a13.45,13.45,0,0,1,3.188,1.063,1.367,1.367,0,0,1,.767,1.1l2.577,9.968h3.415l5.236-12.491Z" transform="translate(-80 -135.415)"/></svg>
+    </li>
+    <li class="payment-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="56.149" height="13.711" viewBox="0 0 56.149 13.711"><defs><style>.paypal-a{fill:#989593;}</style></defs><path class="paypal-a" d="M111.142,20.128h-3.107a.433.433,0,0,0-.427.364l-1.257,7.968a.237.237,0,0,0,0,.04.26.26,0,0,0,.259.259h1.484a.433.433,0,0,0,.427-.365l.339-2.149a.433.433,0,0,1,.426-.365h.984a3.191,3.191,0,0,0,3.536-2.953,2.393,2.393,0,0,0-.4-2.006,2.883,2.883,0,0,0-2.265-.793Zm.358,2.91c-.17,1.115-1.022,1.115-1.845,1.115h-.469l.329-2.082a.26.26,0,0,1,.256-.219h.215c.561,0,1.09,0,1.364.32A1.036,1.036,0,0,1,111.5,23.038ZM120.43,23h-1.488a.26.26,0,0,0-.256.219l-.066.416-.1-.151a2.118,2.118,0,0,0-1.757-.624,3.422,3.422,0,0,0-3.322,2.992,2.809,2.809,0,0,0,.554,2.286,2.328,2.328,0,0,0,1.874.757,2.847,2.847,0,0,0,2.059-.852l-.066.413a.248.248,0,0,0,0,.041.26.26,0,0,0,.259.259h1.34a.433.433,0,0,0,.427-.365l.8-5.093a.248.248,0,0,0,0-.041A.259.259,0,0,0,120.43,23Zm-2.074,2.9a1.658,1.658,0,0,1-1.679,1.421,1.153,1.153,0,0,1-1.233-1.447,1.666,1.666,0,0,1,1.667-1.432,1.255,1.255,0,0,1,.992.405A1.288,1.288,0,0,1,118.356,25.9Zm10-2.9h-1.5a.433.433,0,0,0-.358.189l-2.062,3.038-.874-2.919a.434.434,0,0,0-.414-.308h-1.47a.258.258,0,0,0-.245.343l1.647,4.833-1.548,2.186a.259.259,0,0,0,.211.409h1.493a.432.432,0,0,0,.355-.185l4.973-7.179a.259.259,0,0,0-.213-.407Z" transform="translate(-90.147 -17.061)"/><path class="paypal-a" d="M256.622,20.125h-3.108a.433.433,0,0,0-.426.364l-1.257,7.968a.237.237,0,0,0,0,.04.26.26,0,0,0,.259.259h1.595a.3.3,0,0,0,.3-.255l.357-2.259a.433.433,0,0,1,.426-.365h.983a3.192,3.192,0,0,0,3.537-2.953,2.392,2.392,0,0,0-.4-2.006,2.88,2.88,0,0,0-2.264-.793Zm.358,2.91c-.169,1.115-1.021,1.115-1.845,1.115h-.468L255,22.068a.259.259,0,0,1,.255-.219h.215c.561,0,1.09,0,1.364.32a1.036,1.036,0,0,1,.15.866ZM265.909,23h-1.487a.258.258,0,0,0-.255.219l-.066.416-.1-.151a2.117,2.117,0,0,0-1.757-.624,3.421,3.421,0,0,0-3.322,2.992,2.81,2.81,0,0,0,.554,2.286,2.329,2.329,0,0,0,1.874.757,2.847,2.847,0,0,0,2.059-.852l-.066.413a.249.249,0,0,0,0,.041.26.26,0,0,0,.259.259h1.34a.433.433,0,0,0,.426-.365l.8-5.093a.288.288,0,0,0,0-.04A.261.261,0,0,0,265.91,23Zm-2.074,2.9a1.658,1.658,0,0,1-1.679,1.421,1.153,1.153,0,0,1-1.233-1.447,1.666,1.666,0,0,1,1.667-1.432,1.255,1.255,0,0,1,.992.405A1.281,1.281,0,0,1,263.835,25.9Zm3.828-5.552-1.275,8.114a.24.24,0,0,0,0,.04.26.26,0,0,0,.259.259h1.282a.431.431,0,0,0,.427-.365l1.258-7.967a.237.237,0,0,0,0-.04.261.261,0,0,0-.258-.259h-1.436A.26.26,0,0,0,267.663,20.344Z" transform="translate(-213.464 -17.059)"/><path class="paypal-a" d="M5.983,15.834l.238-1.509-.529-.012H3.164L4.921,3.176a.144.144,0,0,1,.143-.122H9.325a3.793,3.793,0,0,1,2.9.876,2,2,0,0,1,.465.871,3.145,3.145,0,0,1,0,1.2l-.005.035v.307l.239.135a1.67,1.67,0,0,1,.484.369,1.718,1.718,0,0,1,.393.881,3.725,3.725,0,0,1-.056,1.278,4.5,4.5,0,0,1-.523,1.446,2.969,2.969,0,0,1-.829.909,3.364,3.364,0,0,1-1.117.5,5.569,5.569,0,0,1-1.4.161H9.551a1,1,0,0,0-.986.842L8.54,13l-.42,2.66-.019.1a.084.084,0,0,1-.026.057.07.07,0,0,1-.044.016Z" transform="translate(-2.682 -2.589)"/><path class="paypal-a" d="M26.114,22.865q-.019.122-.044.25C25.509,26,23.586,27,21.13,27H19.88a.607.607,0,0,0-.6.514l-.64,4.06-.181,1.151a.3.3,0,0,0,0,.05.321.321,0,0,0,.32.32h2.218a.534.534,0,0,0,.527-.45l.022-.113.418-2.65.027-.145a.533.533,0,0,1,.527-.451h.332c2.149,0,3.83-.872,4.322-3.4a2.892,2.892,0,0,0-.444-2.554,2.116,2.116,0,0,0-.607-.468Z" transform="translate(-15.643 -19.382)"/><path class="paypal-a" d="M30.12,20.2a4.5,4.5,0,0,0-.547-.121,6.94,6.94,0,0,0-1.1-.08h-3.34a.534.534,0,0,0-.527.451l-.711,4.5-.02.131a.609.609,0,0,1,.6-.514h1.25c2.456,0,4.378-1,4.94-3.882.017-.085.031-.169.044-.25a2.989,2.989,0,0,0-.462-.195Z" transform="translate(-20.236 -16.954)"/><path class="paypal-a" d="M4.368,3.5a.533.533,0,0,1,.527-.45h3.34a6.944,6.944,0,0,1,1.1.08,4.446,4.446,0,0,1,.673.16,3.041,3.041,0,0,1,.462.195,2.725,2.725,0,0,0-.578-2.45A4.234,4.234,0,0,0,6.643,0H2.382a.609.609,0,0,0-.6.515L0,11.766a.347.347,0,0,0,0,.057.368.368,0,0,0,.366.366H3L3.657,8Z" transform="translate(0 0)"/></svg>
+    </li>
+    <li class="payment-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="34.246" height="16.376" viewBox="0 0 34.246 16.376"><defs><style>.apple-pay-a{fill:#989593;fill-rule:evenodd;}</style></defs><path class="apple-pay-a" d="M136.919,108.064a2.813,2.813,0,0,0,.664-2.037,2.86,2.86,0,0,0-1.879.967,2.654,2.654,0,0,0-.674,1.974A2.362,2.362,0,0,0,136.919,108.064Zm1.847,4.742a2.893,2.893,0,0,1,1.38-2.432,2.988,2.988,0,0,0-2.333-1.262c-.994-.1-1.941.585-2.443.585s-1.28-.57-2.105-.552a3.12,3.12,0,0,0-2.639,1.6c-1.122,1.957-.285,4.847.811,6.43.537.775,1.174,1.646,2.015,1.614.809-.031,1.113-.523,2.09-.523s1.251.522,2.1.507c.869-.019,1.421-.791,1.954-1.57a6.947,6.947,0,0,0,.88-1.812A2.831,2.831,0,0,1,138.767,112.807Zm10.351-4.743a3.253,3.253,0,0,0-1.242-.723,5.646,5.646,0,0,0-1.77-.249,11.509,11.509,0,0,0-1.3.068q-.54.06-1.077.151l-.1.018V118.69h1.037V113.9a7.124,7.124,0,0,0,1.19.091,5.763,5.763,0,0,0,1.635-.223,3.651,3.651,0,0,0,1.311-.683,3.306,3.306,0,0,0,.875-1.138,3.671,3.671,0,0,0,.32-1.575,3.557,3.557,0,0,0-.23-1.317A3.012,3.012,0,0,0,149.118,108.064Zm-.953,4.34a3.4,3.4,0,0,1-2.242.673c-.263,0-.512-.012-.74-.033a3.483,3.483,0,0,1-.521-.088v-4.831c.137-.025.307-.049.506-.07a8.7,8.7,0,0,1,.906-.041,4.319,4.319,0,0,1,1.185.154,2.73,2.73,0,0,1,.911.446,1.932,1.932,0,0,1,.58.746,2.652,2.652,0,0,1,.206,1.085,2.43,2.43,0,0,1-.79,1.959Zm8.027,5.223c-.012-.322-.016-.644-.016-.966V113.5a5.956,5.956,0,0,0-.112-1.136,2.88,2.88,0,0,0-.43-1.057,2.4,2.4,0,0,0-.875-.777,3.007,3.007,0,0,0-1.427-.3,4.55,4.55,0,0,0-1.223.163,3.882,3.882,0,0,0-1.144.544l-.084.059.351.82.127-.085a3.445,3.445,0,0,1,1.893-.58,1.932,1.932,0,0,1,1.024.233,1.551,1.551,0,0,1,.56.576,2.193,2.193,0,0,1,.246.74,5.011,5.011,0,0,1,.058.714v.091a6.576,6.576,0,0,0-3.536.763,2.577,2.577,0,0,0-1.261,2.28,2.51,2.51,0,0,0,.149.842,2.174,2.174,0,0,0,.452.751,2.226,2.226,0,0,0,.77.53,2.7,2.7,0,0,0,1.078.2,3.019,3.019,0,0,0,1.63-.446,3.131,3.131,0,0,0,.565-.443q.1-.1.2-.217h.04l.1.922h1l-.028-.148a6.344,6.344,0,0,1-.1-.916Zm-1.053-1.618a1.793,1.793,0,0,1-.077.444,2.271,2.271,0,0,1-.279.555,2.132,2.132,0,0,1-1.086.82,2.54,2.54,0,0,1-.832.127,1.645,1.645,0,0,1-.547-.093,1.317,1.317,0,0,1-.46-.275,1.371,1.371,0,0,1-.323-.468,1.751,1.751,0,0,1-.123-.693,1.557,1.557,0,0,1,.354-1.069,2.327,2.327,0,0,1,.925-.627,4.745,4.745,0,0,1,1.249-.285,11.388,11.388,0,0,1,1.2-.052Zm8.093-5.591-1.936,5.263c-.121.318-.234.638-.336.95-.05.156-.1.3-.145.443h-.037q-.072-.23-.148-.46c-.1-.309-.208-.612-.319-.9l-2.07-5.3h-1.107l2.961,7.613a.875.875,0,0,1,.089.3,1.152,1.152,0,0,1-.091.3,5.527,5.527,0,0,1-.628,1.168,6.908,6.908,0,0,1-.648.779,3.54,3.54,0,0,1-.693.549,6.636,6.636,0,0,1-.656.344l-.112.05.361.877.114-.042c.094-.035.27-.116.537-.246a4.093,4.093,0,0,0,.888-.63,4.582,4.582,0,0,0,.747-.842,10.338,10.338,0,0,0,.652-1.091c.212-.408.424-.873.631-1.381s.43-1.083.659-1.7l2.392-6.055Z" transform="translate(-130.094 -106.028)"/></svg>
+    </li>
+    {% comment %}
+    {%- for type in shop.enabled_payment_types -%}
+    <li class="payment-icon">
+      {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+    </li>
+    {%- endfor -%}
+    {% endcomment %}
+  </ul>
+</div>
+{%- endif -%}
+{%- endcapture -%}
+
+{%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
+
+<footer class="site-footer critical-hidden" role="contentinfo" data-section-id="{{ section.id }}" data-section-type="footer-section">
+  <div class="page-width">
+    <div class="site-footer__content accordion">
+      {%- for block in section.blocks -%}
+
+      <div class="site-footer__item
+                  {% if section.blocks.size == 1 %} site-footer__item--center{% endif %}
+                  {{ footer_item }}
+                  {% if block.type == 'newsletter' and section.blocks.size == 3 %}site-footer-newsletter__one-half{% endif %}
+                  {% if block.type == 'newsletter' %} site-footer-newsletter small--text-center{% endif %}"
+           {{ block.shopify_attributes }}>
+        <div class="site-footer__item-inner site-footer__item-inner--{{ block.type }} acc-block">
+
+          {%- if block.settings.title -%}
+          <h4 class="acc-title">
+            {{ block.settings.title | escape }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" class="plus-icon"><defs><style>.accordion-plus-a{fill:#fff;opacity:0;}.accordion-plus-b{fill:none;stroke:#39342f;stroke-width:1.3px;}</style></defs><g transform="translate(-357 -6881)"><rect class="accordion-plus-a" width="18" height="18" transform="translate(357 6881)"/><g transform="translate(359 6882.5)"><line class="accordion-plus-b" y2="14.5" transform="translate(7.25)"/><line class="accordion-plus-b" x2="14.5" transform="translate(0 7.25)"/></g></g></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="14" viewBox="0 0 19 14" class="minus-icon"><defs><style>.accordion-minus-a{fill:#fff;opacity:0;}.accordion-minus-b{fill:none;stroke:#39342f;stroke-width:1.3px;}</style></defs><g transform="translate(-357 -6660)"><rect class="accordion-minus-a" width="19" height="14" transform="translate(357 6660)"/><g transform="translate(359 6659.75)"><line class="accordion-minus-b" x2="14.5" transform="translate(0 7.25)"/></g></g></svg>
+          </h4>
+          {%- endif -%}
+
+          {%- case block.type -%}
+          {%- when 'newsletter' -%}
+          {%- if block.settings.brand_name -%}
+          <div class="site-footer__brand-name small--hide">{{ block.settings.brand_name }}</div>
+          {%- endif -%}
+          <div class="site-footer__newsletter {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
+            {%- if block.settings.text -%}
+            <div class="newsletter_text">{{ block.settings.text }}</div>
+            {%- endif -%}
+            {%- assign formId = 'ContactFooter' -%}
+            {% form 'customer', id: formId, novalidate: 'novalidate' %}
+            {%- if form.posted_successfully? -%}
+            <p class="form-message form-message--success" tabindex="-1" data-form-status>
+              {{ 'general.newsletter_form.confirmation' | t }}
+            </p>
+            {%- endif -%}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="input-group {% if form.errors %} input-group--error{% endif %} newsletter_field_btn">
+              <input type="email"
+                     name="contact[email]"
+                     id="{{ formId }}-email"
+                     class="input-group__field newsletter__input{% if form.errors %} input--error{% endif %}"
+                     value="{{ form.email }}"
+                     placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                     aria-label="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                     aria-required="true"
+                     required
+                     autocorrect="off"
+                     autocapitalize="off"
+                     {% if form.errors %}
+                     aria-invalid="true"
+                     aria-describedby="{{ formId }}-email-error"
+                     data-form-status
+                     {% endif %}>
+              <span class="input-group__btn">
+                <button type="submit" class="newsletter__submit" name="commit" >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17"><defs><style>.newsletter-submit-a{fill:#fff;opacity:0;}.newsletter-submit-b{fill:#2a3134;}</style></defs><g transform="translate(-1199 -7679)"><rect class="newsletter-submit-a" width="17" height="17" transform="translate(1199 7679)"/><g transform="translate(-93.095 5986.271)"><g transform="translate(1292.872 1693.625)"><g transform="translate(0 0)"><path class="newsletter-submit-b" d="M604.672,1748.94a7.85,7.85,0,0,0,0-15.7h0a7.85,7.85,0,0,0,0,15.7Zm0-15.368v.333a7.185,7.185,0,0,1,0,14.37h0a7.185,7.185,0,0,1,0-14.37Z" transform="translate(-596.821 -1733.24)"/><path class="newsletter-submit-b" d="M602.771,1746.776a.331.331,0,0,0,.235-.1l3.155-3.155a.333.333,0,0,0,0-.47l-3.155-3.155a.332.332,0,0,0-.47.47l2.919,2.919-2.919,2.92a.332.332,0,0,0,.235.567Z" transform="translate(-596.086 -1735.439)"/></g></g></g></g></svg>
+                  {% comment %}<span class="newsletter__submit-text--large">{{ 'general.newsletter_form.submit' | t }}</span>{% endcomment %}
+                </button>
+              </span>
+            </div>
+            {% if form.errors contains 'email' %}
+            <span id="{{ formId }}-email-error" class="input-error-message">
+              <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+              {% include 'icon-error' %}
+              <span class="site-footer__newsletter-error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+            </span>
+            {% endif %}
+            {% endform %}
+          </div>
+
+          {%- when 'text' -%}
+          {%- if block.settings.text != blank -%}
+          <div class="site-footer__rte {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
+            {{ block.settings.text }}
+          </div>
+          {%- endif -%}
+
+          {%- when 'link_list' -%}
+          {%- assign footer_linklist = block.settings.menu -%}
+          <ul class="site-footer__linklist
+                     {% if inline_list %}list--inline{% endif %} acc-description">
+            {%- for link in linklists[footer_linklist].links -%}
+            <li class="site-footer__linklist-item">
+              <a href="{{ link.url }}" {% if link.current %} aria-current="page"{% endif %}>
+                {{ link.title | escape }}
+              </a>
+            </li>
+            {%- endfor -%}
+          </ul>
+
+          {%- endcase -%}
+
+        </div>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="footer_bottom">
+    <div class="page-width">
+      <div class="grid">
+        {%- if show_selectors -%}
+        <div class="grid__item one-half small--one-whole">
+          {%- form 'localization', class: 'selectors-form', data-disclosure-form: '' -%}
+          {%- if locale_selector -%}
+          <div class="selectors-form__item">
+            <h2 class="visually-hidden" id="lang-heading">
+              {{ 'general.language.dropdown_label' | t }}
+            </h2>
+
+            <div class="disclosure" data-disclosure-locale>
+              <button type="button" class="disclosure__toggle" aria-expanded="false" aria-controls="lang-list" aria-describedby="lang-heading" data-disclosure-toggle>
+                {{ form.current_locale.endonym_name }}
+              </button>
+              <ul id="lang-list" class="disclosure-list" data-disclosure-list>
+                {% for locale in form.available_locales %}
+                <li class="disclosure-list__item {% if locale.iso_code == form.current_locale.iso_code %}disclosure-list__item--current{% endif %}">
+                  <a class="disclosure-list__option" href="#" lang="{{ locale.iso_code }}" {% if locale.iso_code == form.current_locale.iso_code %}aria-current="true"{% endif %} data-value="{{ locale.iso_code }}" data-disclosure-option>
+                    {{ locale.endonym_name }}
+                  </a>
+                </li>
+                {%- endfor -%}
+              </ul>
+              <input type="hidden" name="locale_code" id="LocaleSelector" value="{{ form.current_locale.iso_code }}" data-disclosure-input/>
+            </div>
+          </div>
+          {%- endif -%}
+
+          {%- if currency_selector -%}
+          <div class="selectors-form__item">
+            <h2 class="visually-hidden" id="currency-heading">
+              {{ 'general.currency.dropdown_label' | t }}
+            </h2>
+
+            <div class="disclosure" data-disclosure-currency>
+              <button type="button" class="disclosure__toggle" aria-expanded="false" aria-controls="currency-list" aria-describedby="currency-heading" data-disclosure-toggle>
+                {{ form.current_currency.iso_code }} {%- if form.current_currency.symbol -%}{{ form.current_currency.symbol }}{%- endif -%}
+              </button>
+              <ul id="currency-list" class="disclosure-list" data-disclosure-list>
+                {% for currency in form.available_currencies %}
+                <li class="disclosure-list__item {% if currency.iso_code == form.current_currency.iso_code %}disclosure-list__item--current{% endif %}">
+                  <a class="disclosure-list__option" href="#" {% if currency.iso_code == form.current_currency.iso_code %}aria-current="true"{% endif %} data-value="{{ currency.iso_code }}" data-disclosure-option>
+                    {{ currency.iso_code }} {%- if currency.symbol -%}{{ currency.symbol }}{%- endif -%}
+                  </a>
+                </li>
+                {%- endfor -%}
+              </ul>
+              <input type="hidden" name="currency_code" id="CurrencySelector" value="{{ form.current_currency.iso_code }}" data-disclosure-input/>
+            </div>
+          </div>
+          {%- endif -%}
+          {%- endform -%}
+        </div>
+        {%- else -%}
+        <div class="grid__item medium-up--three-quarters site-footer__payment">{{ payment_icon_markup }}</div>
+        {%- if social_icons -%}
+        <div class="grid__item medium-up--one-quarter site-footer__social">
+          <ul class="list--inline social-icons site-footer__icon-list small--text-center">
+            {%- for social in socials -%}
+            {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+            {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
+            {%- if settings[social_link] != blank -%}
+            <li class="social-icons__item">
+              <a class="social-icons__link" target="_blank" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message">
+                {%- include icon_link -%}
+                <span class="icon__fallback-text">{{ social }}</span>
+              </a>
+            </li>
+            {%- endif -%}
+            {%- endfor -%}
+
+            {%- if request.page_type == 'blog' or request.page_type == 'article' -%}
+            <li>
+              <a class="social-icons__link" target="_blank" href="{{ shop.url }}{{ blog.url }}.atom">
+                {% include 'icon-rss' %}
+                <span class="icon__fallback-text">RSS</span>
+              </a>
+            </li>
+            {%- endif -%}
+          </ul>
+        </div>
+        {%- endif -%}
+        <div class="grid__item medium-up--one-whole site-footer__copyright">
+          <p class="site-footer__copyright-content text-center">&copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: routes.root_url }}</p>
+          {% comment %}<small class="site-footer__copyright-content site-footer__copyright-content-powered-by">{{ powered_by_link }}</small>{% endcomment %}
+        </div>
+        {%- endif -%}
+
+        {%- if show_selectors -%}
+        <div class="grid__item small--hide {{ payment_width_class }}">{{ payment_icon_markup }}</div>
+        {%- endif -%}
+
+        {% comment %}
+        {%- if show_selectors -%}
+        <div class="grid__item small--hide site-footer-item-align-right {% if show_payment_icons %}one-half{% endif %}">
+          <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
+          <small class="site-footer__copyright-content site-footer__copyright-content--powered-by">{{ powered_by_link }}</small>
+        </div>
+        {%- endif -%}
+
+        <div class="grid__item small--one-whole {{ copyright_show_class }} site-footer-item-align-right">
+          <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
+          <small class="site-footer__copyright-content site-footer__copyright-content--powered-by">{{ powered_by_link }}</small>
+        </div>
+        {% endcomment %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+{% schema %}
+{
+  "name": {
+    "cs": "Zápatí",
+    "da": "Sidefod",
+    "de": "Fußzeile",
+    "en": "Footer",
+    "es": "Pie de página",
+    "fi": "Alatunniste",
+    "fr": "Pied de page",
+    "it": "Footer",
+    "ja": "フッター",
+    "ko": "바닥글",
+    "nb": "Footer",
+    "nl": "Voettekst",
+    "pl": "Stopka",
+    "pt-BR": "Rodapé",
+    "pt-PT": "Rodapé",
+    "sv": "Sidfot",
+    "th": "ส่วนท้าย",
+    "tr": "Altbilgi",
+    "vi": "Chân trang",
+    "zh-CN": "页脚",
+    "zh-TW": "頁尾"
+  },
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "header",
+      "content": {
+        "cs": "Platební metody",
+        "da": "Betalingsmetoder",
+        "de": "Zahlungsmethoden",
+        "en": "Payment methods",
+        "es": "Métodos de pago",
+        "fi": "Maksutavat",
+        "fr": "Moyens de paiement",
+        "it": "Metodi di pagamento",
+        "ja": "決済方法",
+        "ko": "결제 방법",
+        "nb": "Betalingsmetoder",
+        "nl": "Betaalmethoden",
+        "pl": "Metody płatności",
+        "pt-BR": "Formas de pagamento",
+        "pt-PT": "Métodos de Pagamento",
+        "sv": "Betalningsmetoder",
+        "th": "วิธีการชำระเงิน",
+        "tr": "Ödeme yöntemleri",
+        "vi": "Phương thức thanh toán",
+        "zh-CN": "支付方式",
+        "zh-TW": "付款方式"
+      }
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": {
+        "cs": "Zobrazit ikony plateb",
+        "da": "Vis betalingsikoner",
+        "de": "Zahlungs-Buttons anzeigen",
+        "en": "Show payment icons",
+        "es": "Mostrar iconos de pago",
+        "fi": "Näytä maksukuvakkeet",
+        "fr": "Afficher les icônes de paiement",
+        "it": "Mostra le icone di pagamento",
+        "ja": "支払いアイコンを表示する",
+        "ko": "결제 아이콘 표시",
+        "nb": "Vis betalingsikoner",
+        "nl": "Betalingspictogrammen weergeven",
+        "pl": "Pokaż ikony płatności",
+        "pt-BR": "Exibir ícones de pagamento",
+        "pt-PT": "Mostrar ícones de pagamento",
+        "sv": "Visa betalningsikoner",
+        "th": "แสดงไอคอนการชำระเงิน",
+        "tr": "Ödeme simgelerini göster",
+        "vi": "Hiển thị biểu tượng thanh toán",
+        "zh-CN": "显示付款图标",
+        "zh-TW": "顯示付款圖示"
+      },
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": {
+        "cs": "Barva",
+        "da": "Farve",
+        "de": "Farbe",
+        "en": "Color",
+        "es": "Color",
+        "fi": "Väri",
+        "fr": "Couleur",
+        "it": "Colore",
+        "ja": "色",
+        "ko": "색상",
+        "nb": "Farge",
+        "nl": "Kleur",
+        "pl": "Kolor",
+        "pt-BR": "Cor",
+        "pt-PT": "Cor",
+        "sv": "Färg",
+        "th": "สี",
+        "tr": "Renk",
+        "vi": "Màu",
+        "zh-CN": "颜色",
+        "zh-TW": "顏色"
+      }
+    },
+    {
+      "type": "color",
+      "id": "color_footer_bg",
+      "label": {
+        "cs": "Pozadí",
+        "da": "Baggrund",
+        "de": "Hintergrund",
+        "en": "Background",
+        "es": "Fondo",
+        "fi": "Tausta",
+        "fr": "Couleur de fond",
+        "it": "Sfondo",
+        "ja": "背景",
+        "ko": "배경",
+        "nb": "Bakgrunn",
+        "nl": "Achtergrond",
+        "pl": "Tło",
+        "pt-BR": "Plano de fundo",
+        "pt-PT": "Fundo",
+        "sv": "Bakgrund",
+        "th": "พื้นหลัง",
+        "tr": "Arka plan",
+        "vi": "Nền",
+        "zh-CN": "背景",
+        "zh-TW": "背景"
+      },
+      "default": "#f6f6f6"
+    },
+    {
+      "type": "color",
+      "id": "color_footer_text",
+      "label": {
+        "cs": "Text",
+        "da": "Tekst",
+        "de": "Text",
+        "en": "Text",
+        "es": "Texto",
+        "fi": "Teksti",
+        "fr": "Texte",
+        "it": "Testo",
+        "ja": "テキスト",
+        "ko": "텍스트",
+        "nb": "Tekst",
+        "nl": "Tekst",
+        "pl": "Tekst",
+        "pt-BR": "Texto",
+        "pt-PT": "Texto",
+        "sv": "Text",
+        "th": "ข้อความ",
+        "tr": "Metin",
+        "vi": "Văn bản",
+        "zh-CN": "文本",
+        "zh-TW": "文字"
+      },
+      "default": "#333232"
+    },
+    {
+      "type": "header",
+      "content": {
+        "cs": "Selektor jazyka",
+        "da": "Sprogvælger",
+        "de": "Sprachauswahl",
+        "en": "Language Selector",
+        "es": "Selector de idioma",
+        "fi": "Kielenvalitsin",
+        "fr": "Sélecteur de langue",
+        "it": "Selettore lingua",
+        "ja": "言語セレクター",
+        "ko": "언어 선택기",
+        "nb": "Språkvelger",
+        "nl": "Taalkiezer",
+        "pl": "Selektor języka",
+        "pt-BR": "Seletor de idiomas",
+        "pt-PT": "Seletor de Idioma",
+        "sv": "Språkväljare",
+        "th": "ตัวเลือกภาษา",
+        "tr": "Dil Seçici",
+        "vi": "Hộp chọn ngôn ngữ",
+        "zh-CN": "语言选择器",
+        "zh-TW": "語言選擇器"
+      },
+      "info": {
+        "cs": "Pokud chcete přidat jazyk, přejděte na [jazykové nastavení.](/admin/settings/languages)",
+        "da": "Du kan tilføje et sprog ved at gå til dine [sprogindstillinger.](/admin/settings/languages)",
+        "de": "Gehe zu deinen [Spracheinstellungen](/admin/settings/languages), um eine Sprache hinzuzufügen.",
+        "en": "To add a language, go to your [language settings.](/admin/settings/languages)",
+        "es": "Para agregar un idioma, ve a tu[configuración de idioma](/admin/settings/languages)",
+        "fi": "Lisää kieli siirtymällä [kieliasetuksiin.](/admin/settings/languages)",
+        "fr": "Pour ajouter une langue, allez dans vos [paramètres de langue.](/admin/settings/languages).",
+        "it": "Per aggiungere una lingua, vai su [impostazioni della lingua.](/admin/settings/languages)",
+        "ja": "言語を追加するには、[言語設定](/admin/settings/languages) に移動します。",
+        "ko": "언어를 추가하려면 [언어 설정.](/admin/settings/languages)(으)로 이동하십시오.",
+        "nb": "For å legge til et språk, går du til dine [språkinnstillinger.](/admin/settings/languages)",
+        "nl": "Ga naar je [taalinstellingen.](/admin/settings/languages) om een taal toe te voegen.",
+        "pl": "Aby dodać język, przejdź do swoich [ustawień języka.](/admin/settings/languages)",
+        "pt-BR": "Para adicionar um idioma, acesse suas [configurações de idioma. ](/admin/settings/languages)",
+        "pt-PT": "Para adicionar um idioma, aceda a [definições de idioma.](/admin/settings/languages)",
+        "sv": "För att lägga till ett språk, gå till dina [språkinställningar.](/admin/settings/languages)",
+        "th": "หากต้องการเพิ่มภาษา ให้ไปที่ [การตั้งค่าภาษา ](/admin/settings/languages) ของคุณ",
+        "tr": "Dil eklemek için [dil ayarları](/admin/settings/languages) bölümünüze gidin.",
+        "vi": "Để thêm ngôn ngữ, mở [cài đặt ngôn ngữ.](/admin/settings/languages)",
+        "zh-CN": "若要添加语言，请转到您的 [语言设置。](/admin/settings/languages)",
+        "zh-TW": "若要新增語言，請前往 [語言設定。](/admin/settings/languages)"
+      }
+    },
+    {
+      "type": "checkbox",
+      "id": "show_locale_selector",
+      "label": {
+        "cs": "Zobrazit selektor jazyka",
+        "da": "Vis sprogvælger",
+        "de": "Sprachauswahl anzeigen",
+        "en": "Show language selector",
+        "es": "Mostrar el selector de idioma",
+        "fi": "Näytä kielenvalitsin",
+        "fr": "Afficher le sélecteur de langue",
+        "it": "Mostra selettore lingua",
+        "ja": "言語セレクターを表示する",
+        "ko": "언어 선택기 표시",
+        "nb": "Vis språkvelger",
+        "nl": "Taalkiezer weergeven",
+        "pl": "Pokaż selektor języka",
+        "pt-BR": "Exibir seletor de idioma",
+        "pt-PT": "Mostrar seletor de idioma",
+        "sv": "Visa språkväljare",
+        "th": "แสดงตัวเลือกภาษา",
+        "tr": "Dil seçiciyi göster",
+        "vi": "Hiển thị hộp chọn ngôn ngữ",
+        "zh-CN": "显示语言选择器",
+        "zh-TW": "顯示語言選擇器"
+      },
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": {
+        "cs": "Výběr měny",
+        "da": "Valutavælger",
+        "de": "Währungsauswahl",
+        "en": "Currency Selector",
+        "es": "Selector de moneda",
+        "fi": "Valuutanvalitsin",
+        "fr": "Sélecteur de devise",
+        "it": "Selettore di valuta",
+        "ja": "通貨セレクター",
+        "ko": "통화 선택기",
+        "nb": "Valutavelger",
+        "nl": "Valutakiezer",
+        "pl": "Selektor walut",
+        "pt-BR": "Seletor de moeda",
+        "pt-PT": "Seletor de Moeda",
+        "sv": "Valutaväljare",
+        "th": "เครื่องมือเลือกสกุลเงิน",
+        "tr": "Para Birimi Seçici",
+        "vi": "Hộp chọn đơn vị tiền tệ",
+        "zh-CN": "货币选择器",
+        "zh-TW": "幣別選擇器"
+      },
+      "info": {
+        "cs": "Pokud chcete přidat měnu, přejděte na [nastavení plateb.](/admin/settings/payments)",
+        "da": "Du kan tilføje en valuta ved at gå til dine [betalingsindstillinger.](/admin/settings/payments)",
+        "de": "Gehe zu deinen [Zahlungseinstellungen](/admin/settings/payments), um eine Währung hinzuzufügen.",
+        "en": "To add a currency, go to your [payment settings.](/admin/settings/payments)",
+        "es": "Para agregar una moneda, ve a tu [configuración de pago.](/admin/settings/payments)",
+        "fi": "Lisää valuutta siirtymällä [maksuasetuksiisi.](/admin/settings/payments)",
+        "fr": "Pour ajouter une devise, allez dans vos [paramètres de paiement.](/admin/settings/payments)",
+        "it": "Per aggiungere una valuta, vai su [impostazioni pagamento.](/admin/settings/payments)",
+        "ja": "通貨を追加するには、[決済設定](/admin/settings/payments) に移動します。",
+        "ko": "통화를 추가하려면 [결제 설정](/admin/settings/payments)(으)로 이동하십시오.",
+        "nb": "For å legge til en valuta, går du til [betalingsinnstillingene.](/admin/settings/payments)",
+        "nl": "Ga naar je [betaalinstellingen.](/admin/settings/payments) om een valuta toe te voegen.",
+        "pl": "Aby dodać walutę, przejdź do swoich [ustawień płatności.](/admin/settings/payments)",
+        "pt-BR": "Para adicionar uma moeda, acesse as [configurações de pagamento.](/admin/settings/payments)",
+        "pt-PT": "Para adicionar uma moeda, aceda às suas [definições de pagamento.](/admin/settings/payments)",
+        "sv": "Gå till [payment settings ](/admin/settings/payments) för att lägga till en valuta.",
+        "th": "หากต้องการเพิ่มสกุลเงิน ให้ไปที่ [การตั้งค่าการชำระเงิน ](/admin/settings/payments)",
+        "tr": "Para birimi seçmek için [ödeme ayarlarınıza](/admin/settings/payments) gidin.",
+        "vi": "Để thêm đơn vị tiền tệ, đến phần [cài đặt thanh toán.](/admin/settings/payments)",
+        "zh-CN": "若要添加货币，请转到 [支付设置。](/admin/settings/payments)",
+        "zh-TW": "若要新增幣別，請前往 [付款設定。](/admin/settings/payments)"
+      }
+    },
+    {
+      "type": "checkbox",
+      "id": "show_currency_selector",
+      "label": {
+        "cs": "Zobrazit selektor měny",
+        "da": "Vis valutavælger",
+        "de": "Währungsauswahl anzeigen",
+        "en": "Show currency selector",
+        "es": "Mostrar el selector de moneda",
+        "fi": "Näytä valuutanvalitsin",
+        "fr": "Afficher le sélecteur de devise",
+        "it": "Mostra selettore valuta",
+        "ja": "通貨セレクターを表示する",
+        "ko": "통화 선택기 표시",
+        "nb": "Vis valutavelger",
+        "nl": "Valutakiezer weergeven",
+        "pl": "Pokaż selektor walut",
+        "pt-BR": "Exibir seletor de moeda",
+        "pt-PT": "Mostrar seletor de moeda",
+        "sv": "Visa valutaväljare",
+        "th": "แสดงเครื่องมือเลือกสกุลเงิน",
+        "tr": "Para birimi seçici göster",
+        "vi": "Hiển thị hộp chọn đơn vị tiền tệ",
+        "zh-CN": "货币选择器显示",
+        "zh-TW": "顯示幣別選擇器"
+      },
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": {
+      "cs": "Nabídka",
+      "da": "Menu",
+      "de": "Menü",
+      "en": "Menu",
+      "es": "Menú",
+      "fi": "Valikko",
+      "fr": "Menu",
+      "it": "Menu",
+      "ja": "メニュー",
+      "ko": "메뉴",
+      "nb": "Meny",
+      "nl": "Menu",
+      "pl": "Menu",
+      "pt-BR": "Menu",
+      "pt-PT": "Menu",
+      "sv": "Meny",
+      "th": "เมนู",
+      "tr": "Menü",
+      "vi": "Menu",
+      "zh-CN": "菜单",
+      "zh-TW": "選單"
+      },
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": {
+            "cs": "Nadpis",
+            "da": "Overskrift",
+            "de": "Überschrift",
+            "en": "Heading",
+            "es": "Título",
+            "fi": "Otsake",
+            "fr": "Titre",
+            "it": "Heading",
+            "ja": "見出し",
+            "ko": "제목",
+            "nb": "Overskrift",
+            "nl": "Kop",
+            "pl": "Nagłówek",
+            "pt-BR": "Título",
+            "pt-PT": "Título",
+            "sv": "Rubrik",
+            "th": "ส่วนหัว",
+            "tr": "Başlık",
+            "vi": "Tiêu đề",
+            "zh-CN": "标题",
+            "zh-TW": "標題"
+          },
+          "default": {
+            "cs": "Rychlé odkazy",
+            "da": "Genvejslinks",
+            "de": "Quick-Links",
+            "en": "Quick links",
+            "es": "Enlaces rápidos",
+            "fi": "Pikalinkit",
+            "fr": "Liens rapides",
+            "it": "Link rapidi",
+            "ja": "クイックリンク",
+            "ko": "빠른 링크",
+            "nb": "Hurtigkoblinger",
+            "nl": "Snelle links",
+            "pl": "Szybkie linki",
+            "pt-BR": "Links rápidos",
+            "pt-PT": "Ligações rápidas",
+            "sv": "Snabblänkar",
+            "th": "ลิงก์ด่วน",
+            "tr": "Hızlı bağlantılar",
+            "vi": "Liên kết nhanh",
+            "zh-CN": "快速链接",
+            "zh-TW": "快速連結"
+          }
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": {
+            "cs": "Nabídka",
+            "da": "Menu",
+            "de": "Menü",
+            "en": "Menu",
+            "es": "Menú",
+            "fi": "Valikko",
+            "fr": "Menu",
+            "it": "Menu",
+            "ja": "メニュー",
+            "ko": "메뉴",
+            "nb": "Meny",
+            "nl": "Menu",
+            "pl": "Menu",
+            "pt-BR": "Menu",
+            "pt-PT": "Menu",
+            "sv": "Meny",
+            "th": "เมนู",
+            "tr": "Menü",
+            "vi": "Menu",
+            "zh-CN": "菜单",
+            "zh-TW": "選單"
+          },
+          "default": "footer"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": {
+        "cs": "Text",
+        "da": "Tekst",
+        "de": "Text",
+        "en": "Text",
+        "es": "Texto",
+        "fi": "Teksti",
+        "fr": "Texte",
+        "it": "Testo",
+        "ja": "テキスト",
+        "ko": "텍스트",
+        "nb": "Tekst",
+        "nl": "Tekst",
+        "pl": "Tekst",
+        "pt-BR": "Texto",
+        "pt-PT": "Texto",
+        "sv": "Text",
+        "th": "ข้อความ",
+        "tr": "Metin",
+        "vi": "Văn bản",
+        "zh-CN": "文本",
+        "zh-TW": "文字"
+      },
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": {
+            "cs": "Nadpis",
+            "da": "Overskrift",
+            "de": "Überschrift",
+            "en": "Heading",
+            "es": "Título",
+            "fi": "Otsake",
+            "fr": "Titre",
+            "it": "Heading",
+            "ja": "見出し",
+            "ko": "제목",
+            "nb": "Overskrift",
+            "nl": "Kop",
+            "pl": "Nagłówek",
+            "pt-BR": "Título",
+            "pt-PT": "Título",
+            "sv": "Rubrik",
+            "th": "ส่วนหัว",
+            "tr": "Başlık",
+            "vi": "Tiêu đề",
+            "zh-CN": "标题",
+            "zh-TW": "標題"
+          },
+          "default": {
+            "cs": "Informujte o svém obchodu",
+            "da": "Fortæl om din virksomhed",
+            "de": "Rede über dein Unternehmen",
+            "en": "Talk about your business",
+            "es": "Habla sobre tu negocio",
+            "fi": "Kerro yrityksestäsi",
+            "fr": "Parlez de votre entreprise",
+            "it": "Parla della tua attività commerciale",
+            "ja": "あなたのビジネスについて語る",
+            "ko": "비즈니스에 대한 이야기하기",
+            "nb": "Snakk om bedriften din",
+            "nl": "Vertel over je bedrijf",
+            "pl": "Opowiedz o swojej firmie",
+            "pt-BR": "Fale sobre o seu negócio",
+            "pt-PT": "Fale sobre o seu negócio",
+            "sv": "Prata om ditt företag",
+            "th": "พูดถึงธุรกิจของคุณ",
+            "tr": "İşletmenizden bahsedin",
+            "vi": "Chia sẻ về doanh nghiệp của bạn",
+            "zh-CN": "介绍您的业务",
+            "zh-TW": "描述您的商家"
+          }
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": {
+            "cs": "Text",
+            "da": "Tekst",
+            "de": "Text",
+            "en": "Text",
+            "es": "Texto",
+            "fi": "Teksti",
+            "fr": "Texte",
+            "it": "Testo",
+            "ja": "テキスト",
+            "ko": "텍스트",
+            "nb": "Tekst",
+            "nl": "Tekst",
+            "pl": "Tekst",
+            "pt-BR": "Texto",
+            "pt-PT": "Texto",
+            "sv": "Text",
+            "th": "ข้อความ",
+            "tr": "Metin",
+            "vi": "Văn bản",
+            "zh-CN": "文本",
+            "zh-TW": "文字"
+          },
+          "default": {
+            "cs": "<p>Popište zákazníkům podrobně svůj obchod, propagační akce nebo značky nabízeného zboží.</p>",
+            "da": "<p>Del butiksoplysninger, reklamer eller brandindhold med dine kunder.</p>",
+            "de": "<p>Teile deine Shop-Details, Werbeaktionen oder Markeninhalte mit deinen Kunden.</p>",
+            "en": "<p>Share store details, promotions, or brand content with your customers.</p>",
+            "es": "<p>Comparte detalles de la tienda, promociones o contenido de la marca con tus clientes.</p>",
+            "fi": "<p>Jaa myymälän tiedot, tarjoukset tai brändin sisältö asiakkaittesi kanssa.</p>",
+            "fr": "<p>Partagez les détails de la boutique, les promotions ou le contenu de la marque avec vos clients.</p>",
+            "it": "<p>Condividi dettagli del negozio, promozioni o contenuti del brand con i clienti.</p>",
+            "ja": "<p>ストア詳細、プロモーション、ブランドのコンテンツをお客様と共有する。</p>",
+            "ko": "<p>스토어 세부 정보, 프로모션 또는 브랜드 콘텐츠를 고객과 공유하십시오.</p>",
+            "nb": "<p>Del butikkdetaljer, kampanjer eller merkevareinnhold med kundene dine.</p>",
+            "nl": "<p>Deel winkeldetails, promoties of merkcontent met je klanten.</p>",
+            "pl": "<p>Poinformuj swoich klientów o sklepie, promocjach lub zawartości marki.</p>",
+            "pt-BR": "<p>Compartilhe informações da loja, promoções ou conteúdo da marca com seus clientes.</p>",
+            "pt-PT": "<p>Partilhe detalhes da loja, promoções ou conteúdo de marca com os seus clientes.</p>",
+            "sv": "<p>Dela butikens detaljer, kampanjer eller varumärkesinnehåll med dina kunder.</p>",
+            "th": "<p>แชร์รายละเอียดร้านค้า โปรโมชัน หรือเนื้อหาแบรนด์กับลูกค้าของคุณ</p>",
+            "tr": "<p>Mağaza ayrıntılarını, promosyonları, marka içeriğini müşterilerinizle paylaşın.</p>",
+            "vi": "<p>Chia sẻ thông tin cửa hàng, khuyến mãi hoặc nội dung thương hiệu với khách hàng.</p>",
+            "zh-CN": "<p>与您的客户共享商店详细信息、促销信息或品牌内容。</p>",
+            "zh-TW": "<p>與顧客分享商店的詳細資訊、宣傳活動或品牌內容。</p>"
+          }
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "limit": 1,
+      "name": {
+        "cs": "Přihlášení k odběru novinek",
+        "da": "Tilmelding til nyhedsbrev",
+        "de": "Newsletter-Anmeldung",
+        "en": "Newsletter signup",
+        "es": "Suscripción al boletín",
+        "fi": "Uutiskirjeen tilaus",
+        "fr": "Inscription",
+        "it": "Iscriviti alla Newsletter",
+        "ja": "ニュースレターの登録",
+        "ko": "뉴스레터 신청",
+        "nb": "Registrering for nyhetsbrev",
+        "nl": "Nieuwsbriefaanmelding",
+        "pl": "Rejestracja do newslettera",
+        "pt-BR": "Assinatura da newsletter",
+        "pt-PT": "Registo na newsletter",
+        "sv": "Nyhetsbrevsregistrering",
+        "th": "การสมัครรับจดหมายข่าว",
+        "tr": "Bülten aboneliği",
+        "vi": "Đăng ký nhận bản tin",
+        "zh-CN": "新闻通讯注册",
+        "zh-TW": "訂閱電子報"
+      },
+      "settings": [
+		{
+          "type": "text",
+          "id": "brand_name",
+          "label": "Brand Name",
+		  "default": "MADE FOR YOU"
+		},
+        {
+          "type": "text",
+          "id": "title",
+          "label": {
+            "cs": "Nadpis",
+            "da": "Overskrift",
+            "de": "Überschrift",
+            "en": "Heading",
+            "es": "Título",
+            "fi": "Otsake",
+            "fr": "Titre",
+            "it": "Heading",
+            "ja": "見出し",
+            "ko": "제목",
+            "nb": "Overskrift",
+            "nl": "Kop",
+            "pl": "Nagłówek",
+            "pt-BR": "Título",
+            "pt-PT": "Título",
+            "sv": "Rubrik",
+            "th": "ส่วนหัว",
+            "tr": "Başlık",
+            "vi": "Tiêu đề",
+            "zh-CN": "标题",
+            "zh-TW": "標題"
+          },
+          "info": {
+            "cs": "Odběratelé budou přidáni do vašeho [seznamu zákazníků, kteří přijímají marketing.](/admin/customers?query=&accepts_marketing=1)",
+            "da": "Abonnenter bliver føjet til [kundelisten](/admin/customers?query=&accepts_marketing=1) for \"accepterer markedsføring\".",
+            "de": "Abonnenten werden zu deiner Liste „akzeptiert Marketingmaterial“ hinzugefügt [Kundenliste.](/admin/customers?query=&accepts_marketing=1)",
+            "en": "Subscribers will be added to your “accepts marketing” [customer list.](/admin/customers?query=&accepts_marketing=1)",
+            "es": "Se añadirá los suscriptores a tu [lista de clientes.](/admin/customers?query=&accepts_marketing=1) \"acepta marketing\".",
+            "fi": "Tilaajat lisätään \"hyväksyy markkinointi\" [-asiakasluetteloosi. ](/admin/customers?query=&accepts_marketing=1)",
+            "fr": "Les abonnés seront ajoutés à votre [liste de clients](/admin/customers?query=&accepts_marketing=1) « Accepte le marketing ».",
+            "it": "Gli iscritti verranno aggiunti al tuo [elenco clienti.](/admin/customers?query=&accepts_marketing=1) «accetta marketing»",
+            "ja": "購読者は「マーケティングを受け入れる」[顧客リスト](/admin/customers?query=&accepts_marketing=1) に追加されます。",
+            "ko": "가입자가 \"마케팅 수락\" [고객 목록.](/admin/customers?query=&accepts_marketing=1)에 추가됩니다.",
+            "nb": "Abonnenter vil bli lagt til i «aksepterer markedsføring» [kundeliste.](/admin/customers?query=&accepts_marketing=1)",
+            "nl": "Abonnees worden toegevoegd aan je \"accepteert marketing\" [klantenlijst.](/admin/customers?query=&accepts_marketing=1)",
+            "pl": "Subskrybenci zostaną dodani do Twojej [listy klientów \"akceptujących marketing\".](/admin/customers?query=&accepts_marketing=1)",
+            "pt-BR": "Os assinantes serão adicionados à “aceita marketing” [lista de clientes. ](/admin/customers?query=&accepts_marketing=1)",
+            "pt-PT": "Os subscritores serão adicionados à sua lista de \"aceitam marketing\" [lista de clientes.](/admin/customers?query=&accepts_marketing=1)",
+            "sv": "Prenumeranter läggs till i din \"accepterar marknadsföring\" [kundlista. ](/admin/customers?query=&accepts_marketing=1)",
+            "th": "ระบบจะเพิ่มผู้สมัครใช้งานไปยังส่วน “ยอมรับการตลาด” ของคุณ [รายชื่อลูกค้า](/admin/customers?query=&accepts_marketing=1)",
+            "tr": "Aboneler \"pazarlama kabul ediyor\" [müşteri listenize](/admin/customers?query=&accepts_marketing=1) eklenir.",
+            "vi": "Người đăng ký sẽ được thêm vào [danh sách khách hàng](/admin/customers?query=&accepts_marketing=1) \"chấp nhận tiếp thị\".",
+            "zh-CN": "订阅者将被添加到您的“接受营销”[客户列表](/admin/customers?query=&accepts_marketing=1)中。",
+            "zh-TW": "系統會將訂閱者新增至您的「接受行銷」[客戶清單。](/admin/customers?query=&accepts_marketing=1)"
+          },
+          "default": {
+            "cs": "Novinky",
+            "da": "Nyhedsbrev",
+            "de": "Newsletter",
+            "en": "Newsletter",
+            "es": "Boletín",
+            "fi": "Uutiskirje",
+            "fr": "Newsletter",
+            "it": "Newsletter",
+            "ja": "ニュースレター",
+            "ko": "뉴스레터",
+            "nb": "Nyhetsbrev",
+            "nl": "Nieuwsbrief",
+            "pl": "Newsletter",
+            "pt-BR": "Newsletter",
+            "pt-PT": "Newsletter",
+            "sv": "Nyhetsbrev",
+            "th": "จดหมายข่าว",
+            "tr": "Bülten",
+            "vi": "Bản tin",
+            "zh-CN": "新闻通讯",
+            "zh-TW": "電子報"
+          }
+        },
+		{
+          "type": "richtext",
+          "id": "text",
+          "label": "Subtitle",
+		  "default": "<p>Receive our latest news, product launches and the occasional Goodie, just for you.</p>"
+		}
+      ]
+    }
+  ]
+}
+{% endschema %}

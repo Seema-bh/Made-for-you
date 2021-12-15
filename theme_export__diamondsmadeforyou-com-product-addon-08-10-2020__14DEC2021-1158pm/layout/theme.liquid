@@ -1,0 +1,290 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+
+  <!-- Basic page needs ================================================== -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                                                        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                              })(window,document,'script','dataLayer','GTM-5XNMR3J');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Title and description ================================================== -->
+  <title>
+    {{ page_title }}
+  </title>
+
+  {% if page_description %}
+  <meta name="description" content="{{ page_description | escape | split: '[/countdown]' | last | strip_html }}">
+  {% endif %}
+
+  <!-- Product meta ================================================== -->
+  {% include 'fb-open-graph-tags' %}
+  {% include 'twitter-card' %}
+
+  <!-- Helpers ================================================== -->
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, minimal-ui">
+  <meta name="google-site-verification" content="IoYhRDzMQaqN4I2PaIzJzVBMLS327g-iU2yZbovR4Dg" />
+  <!-- Favicon -->
+  {% if settings.favicon != blank %}
+  <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+  {% endif %}
+
+  <!-- fonts -->
+  {% include 'head_fonts' %}
+
+  <!-- Styles -->
+  {% include 'head_styles' %}
+
+  <!-- Scripts -->
+  {% include 'head_scripts' %}
+
+  {% include 'binary' %}
+
+  <!-- Header hook for plugins ================================ -->
+  {{ content_for_header }}
+
+  <!--[if lt IE 9]>
+{{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
+<![endif]-->
+
+  {% comment %}
+  If you store has customers disabled, you can remove the following JS file
+  {% endcomment %}
+
+  {% if template contains 'customers' %}
+  {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+  {% endif %}
+
+  {% include 'linked-options' %}
+  {% if template == nill %}<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">{% endif %}
+
+
+  {% if template contains 'product' %} {% for image in product.images limit:3 %} <meta property="product-image" content="http:{{ image.src | product_img_url: 'grande' }}"> {% endfor %} {% endif %}
+  {% if template contains 'index' %}
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Made For You USA",
+        "url": "https://diamondsmadeforyou.com/",
+        "logo": "https://cdn.shopify.com/s/files/1/0411/6437/4183/files/Logo-_1.png?v=1593158461",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "212 751 4860",
+          "contactType": "customer service",
+          "areaServed": "US",
+          "availableLanguage": "en"
+        },
+        "sameAs": [
+          "https://www.facebook.com/DiamondsMadeForYou/",
+          "https://www.instagram.com/madeforyou_usa/?hl=en"
+        ]
+      }
+  </script>
+  {% endif %}
+
+  <meta name="p:domain_verify" content="8b665b88489065ac88250f4261003b19"/>
+
+  {% include 'wiser' %}{% include 'wiser_popup' %}
+  <script src="https://www.googleoptimize.com/optimize.js?id=OPT-5WDZWJ7"></script>
+</head>
+
+{% if settings.layout_body == 'full' %}    
+{%- assign layout_class = 'body-full' -%}   
+{% elsif settings.layout_body == 'boxed' %} 
+{%- assign layout_class = 'body-boxed' -%} 
+{% endif %}
+
+{% if settings.header_layout == 'vertical' %}
+{%- assign header_class = 'header-vertical-tpl' -%} 
+{% endif %}
+
+<body id="{{ page_title | handle }}" class="{{ header_class }} {{ layout_class }} {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}">
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XNMR3J"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div class="iwish-add-remove-msg container" style="display: none;">
+    <div class="row align-items-center">
+      <div class="col-md-10 col-9">
+        <p><span class="iwishproduct-title"></span> <span class="iwish-message">was successfully added to </span> <b>My Wishlist!</b></p>
+      </div>
+      <div class="col-md-2 col-3 popupclose">
+        DISMISS
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XNMR3J"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+
+  <div class="top-body">
+
+    {% include 'new-header' %}
+    {% section 'policy-shipping' %}
+  </div>
+
+  {% include 'scheme' %}
+
+  <div class="wrapper-container wrapper-body">	
+    <main class="main-content" role="main">      
+      {{ content_for_layout }}
+    </main>        
+    {% section 'footer' %}
+
+
+    {% unless template contains 'product' %}
+    <div class="footbar-fixed">
+      {% section 'someone-purchased' %}
+      {% section 'GDPR-modal' %}
+    </div>
+    {% endunless %}
+    {% if settings.enable_backtotop %}
+    <div id="back-top" style="display: none;">
+      <a class="nav_up" href="#top" title="Back to top">
+        <i class="fa fa-angle-up" aria-hidden="true"></i>
+      </a>
+    </div>  
+    {% endif %}
+  </div>
+  {% include 'footer_scripts' %}
+
+  {% include 'sweettooth-widgets' %}
+
+  {% include 'search-autocomplete' %}
+
+  <div class="translate-header" data-translate-header>
+    {% include 'customer_links' %}
+  </div>
+
+  {% include 'size-chart' %}
+
+  {% include 'message-modal' %}
+
+  {% include 'newsletter' %} 
+  <div class="wrapper-overlay"></div>
+
+  <div class="close-mm">{% include 'icon-close' %}</div>
+  {% include 'iwish_v2' with 'iwishfooter' %}
+  {% if template contains 'product' %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "{{ product.title }}",
+      "image": [
+        "{{ product.featured_image }}"
+       ],
+      "description": "{{ product.description }}",
+      "sku": "{{ product.selected_or_first_available_variant.sku }}",
+      "brand": {
+        "@type": "Brand",
+        "name": "Disney"
+      }
+    }
+  </script>
+  {% endif %}
+  {% include 'cart_drawer' %}
+  {% include 'modal2' %}
+
+  <!--=========================================Header=========================================-->
+  <!-- Global Site Tag (gtag.js) - Google AdWords: 614145190 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-614145190"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-614145190', {'send_page_view': false});
+  </script>
+
+
+  <!--=========================================Footer=========================================-->
+  <!-- google dynamic remarketing tag for theme.liquid -->
+  {% if template contains 'product' %}
+  <script type="text/javascript">
+    var json_product = {{ product | json }};
+  </script>
+  <script>
+    var ecomm_prodid=[];
+    for(var i=0;i<json_product.variants.length;i++)
+      ecomm_prodid.push('shopify_US_{{product.id}}_'+json_product.variants[i].id);
+  </script>
+  <script type="text/javascript">
+    var google_tag_params = {
+      ecomm_prodid: ecomm_prodid,
+      ecomm_pagetype: 'product',
+      ecomm_totalvalue: parseFloat('{{ product.price | money_without_currency | remove: ","}}')
+                                   };
+  </script>
+  {% elsif template contains 'collection' %}
+  <script type="text/javascript">
+    var google_tag_params = {
+      ecomm_pagetype: 'category'
+    };
+  </script>
+  {% elsif template contains 'cart' %}
+  <script type="text/javascript">
+    var id = new Array();
+    {% for item in cart.items %}
+    id.push('shopify_US_{{item.product.id}}_{{item.variant.id}}');
+            {% endfor %}
+
+            var google_tag_params = {
+            ecomm_prodid: id,
+            ecomm_pagetype: 'cart',
+            ecomm_totalvalue: parseFloat('{{ cart.total_price | money_without_currency | remove: ","}}')
+            };
+  </script>
+  {% elsif template contains 'search' %}
+  <script type="text/javascript">
+    var google_tag_params = {
+      ecomm_pagetype: 'searchresults'
+    };
+  </script>
+  {% elsif template contains 'index' %}
+  <script type="text/javascript">
+    var google_tag_params = {
+      ecomm_pagetype: 'home'
+    };
+  </script>
+  {% else %}
+  <script type="text/javascript">
+    var google_tag_params = {
+      ecomm_pagetype: 'other'
+    };
+  </script>
+  {% endif %}
+  <script>
+    gtag('event', 'page_view', {'send_to': 'AW-614145190',
+                                'ecomm_prodid':window.google_tag_params.ecomm_prodid,
+                                'ecomm_pagetype': window.google_tag_params.ecomm_pagetype,
+                                'ecomm_totalvalue':window.google_tag_params.ecomm_totalvalue
+                               });
+  </script>
+
+
+
+  <!--=================================Thank You=================================================-->
+  <style>
+    #preview-bar-iframe{display:none;}
+  </style>
+
+</body>
+</html>
